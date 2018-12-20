@@ -1,6 +1,6 @@
 import Chance from 'chance';
 
-import compressor from '../src/compressor';
+import index from '../src/index';
 import scaleService from '../src/services/sizing/scaleService';
 import qualityService from '../src/services/sizing/qualityService';
 
@@ -10,7 +10,7 @@ jest.mock('../src/services/sizing/qualityService');
 const chance = new Chance();
 
 //todo: compare first and second file to determine if the second is actually smaller than the first
-describe('compressor', async () => {
+describe('index', async () => {
     const filename = chance.string();
     const file = new File([chance.integer({min: 0})], filename);
     const scale = 0.29;
@@ -23,7 +23,7 @@ describe('compressor', async () => {
     qualityService.toFile.mockReturnValue(expectedCompressedFile);
 
     beforeAll(async () => {
-        actualCompressedFile = await compressor.compress(file);
+        actualCompressedFile = await index.compress(file);
     });
 
     it('should convert file to canvasService and scale', async () => {
