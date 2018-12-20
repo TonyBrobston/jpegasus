@@ -25,5 +25,4 @@ const create = async (file) => {
 
 export default {
     create
-
 };
