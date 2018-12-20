@@ -1,14 +1,14 @@
-const create = (img, scale) => {
+const create = (image, scale) => {
     const canvas = document.createElement('canvas');
 
-    const scaledHeight = img.height * scale;
+    const scaledHeight = image.height * scale;
     canvas.height = scaledHeight;
 
-    const scaledWidth = img.width * scale;
+    const scaledWidth = image.width * scale;
     canvas.width = scaledWidth;
 
     const context = canvas.getContext('2d');
-    context.drawImage(img, 0, 0, scaledWidth, scaledHeight);
+    context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
 
     return canvas;
 };

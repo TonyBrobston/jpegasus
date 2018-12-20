@@ -7,7 +7,7 @@ const chance = new Chance();
 describe('canvasService', () => {
     const height = chance.integer({min: 0});
     const width = chance.integer({min: 0});
-    const img = {
+    const image = {
         height,
         width
     };
@@ -30,7 +30,7 @@ describe('canvasService', () => {
 
     canvas.getContext.mockReturnValue(context);
     beforeAll(() => {
-        actualCanvas = canvasService.create(img, scale);
+        actualCanvas = canvasService.create(image, scale);
 
     });
 
@@ -44,9 +44,9 @@ describe('canvasService', () => {
         expect(canvas.getContext).toHaveBeenCalledWith('2d');
     });
 
-    it('should draw the img on the context of the imageCanvas', () => {
+    it('should draw the image on the context of the imageCanvas', () => {
         expect(context.drawImage).toHaveBeenCalledTimes(1);
-        expect(context.drawImage).toHaveBeenCalledWith(img, 0, 0, scaledWidth, scaledHeight);
+        expect(context.drawImage).toHaveBeenCalledWith(image, 0, 0, scaledWidth, scaledHeight);
     });
 
     it('should return a canvasService', () => {
