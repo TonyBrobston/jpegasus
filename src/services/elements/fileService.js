@@ -4,4 +4,4 @@ const create = (blob, filename) => {
 
 export default {
     create
-};
+}
