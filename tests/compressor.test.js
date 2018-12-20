@@ -1,8 +1,10 @@
 import Chance from 'chance';
+import base64toblob from 'base64toblob';
 
 import compressor from '../src/compressor';
 import image from '../src/image';
 
+jest.mock('base64toblob');
 jest.mock('../src/image');
 
 const chance = new Chance();
@@ -13,6 +15,9 @@ describe('file compression', async () => {
         height: chance.integer({min: 0}),
         width: chance.integer({min: 0})
     };
+    const base64CanvasPrefix = chance.string();
+    const base64CanvasSuffix = chance.string();
+    const base64Canvas = `${base64CanvasPrefix},${base64CanvasSuffix}`;
 
     document.createElement = jest.fn();
     const canvas = {
@@ -26,6 +31,7 @@ describe('file compression', async () => {
     document.createElement.mockReturnValue(canvas);
     canvas.getContext.mockReturnValue(context);
     image.build.mockResolvedValue(img);
+    canvas.toDataURL.mockReturnValue(base64Canvas);
 
     compressor.compress(file);
 
@@ -54,5 +60,10 @@ describe('file compression', async () => {
     it('should convert canvas to data url', () => {
         expect(canvas.toDataURL).toHaveBeenCalledTimes(1);
         expect(canvas.toDataURL).toHaveBeenCalledWith('image/jpeg', 0.5);
+    });
+
+    it('should convert canvas base64 to blob', () => {
+        expect(base64toblob).toHaveBeenCalledTimes(1);
+        expect(base64toblob).toHaveBeenCalledWith(base64CanvasSuffix, 'image/jpeg');
     });
 });

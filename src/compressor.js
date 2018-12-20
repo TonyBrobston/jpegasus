@@ -1,4 +1,5 @@
-// import base64toblob from 'base64toblob';
+import base64toblob from 'base64toblob';
+
 import image from './image';
 
 const compress = async (file) => {
@@ -13,8 +14,8 @@ const compress = async (file) => {
     // canvas.height = scaledHeight;
     context.drawImage(img, 0, 0, scaledWidth, scaledHeight);
     const base64Canvas = canvas.toDataURL('image/jpeg', 0.5);
-    // const base64Only = base64Canvas.split(',')[1];
-    // const canvasAsBlob = base64toblob(base64Only, 'image/jpeg');
+    const base64Only = base64Canvas.split(',')[1];
+    const canvasAsBlob = base64toblob(base64Only, 'image/jpeg');
     // const compressedFile = new File([canvasAsBlob], 'temp.jpeg');
     // return compressedFile;
 };
