@@ -1,11 +1,11 @@
 {
   "name": "jpegasus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `File` of type `.jpeg`.",
   "main": "compressor.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/TonyBrobston/jpegasus"
+    "type": "git",
+    "url": "https://github.com/TonyBrobston/jpegasus"
   },
   "scripts": {
     "create": "babel src -d lib",
