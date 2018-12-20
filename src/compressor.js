@@ -9,9 +9,11 @@ const compress = async (imageFile) => {
     const imageScalePercentage = 0.29;
     const scaledHeight = img.height * imageScalePercentage;
     const scaledWidth = img.width * imageScalePercentage;
+
     const imageCanvas = canvas.create(scaledHeight, scaledWidth);
     const context = imageCanvas.getContext('2d');
     context.drawImage(img, 0, 0, scaledWidth, scaledHeight);
+
     const base64Canvas = imageCanvas.toDataURL('image/jpeg', 0.5);
     const base64Only = base64Canvas.split(',')[1];
     const canvasAsBlob = base64toblob(base64Only, 'image/jpeg');
