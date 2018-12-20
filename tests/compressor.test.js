@@ -26,7 +26,7 @@ describe('compressor', async () => {
         actualCompressedFile = await compressor.compress(file);
     });
 
-    it('should convert file to canvas and scale', async () => {
+    it('should convert file to canvasService and scale', async () => {
         expect(scaleService.toCanvas).toHaveBeenCalledTimes(1);
         expect(scaleService.toCanvas).toHaveBeenCalledWith(file, scale);
     });

@@ -30,7 +30,7 @@ describe('qualityService', () => {
         actualFile = qualityService.toFile(canvas, quality, filename);
     });
 
-    it('should convert canvas to data url', () => {
+    it('should convert canvasService to data url', () => {
         expect(canvas.toDataURL).toHaveBeenCalledTimes(1);
         expect(canvas.toDataURL).toHaveBeenCalledWith('image/jpeg', quality);
     });

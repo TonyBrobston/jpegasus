@@ -33,7 +33,7 @@ describe('scaleService', () => {
         expect(canvasService.create).toHaveBeenCalledWith(image, scale);
     });
 
-    it('should return a scaled canvas', () => {
+    it('should return a scaled canvasService', () => {
         expect(actualCanvas).toBe(expectedCanvas);
     });
 });
