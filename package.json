@@ -10,6 +10,7 @@
   "scripts": {
     "create": "babel src -d lib",
     "coverage": "jest --coverage",
+    "deploy": "yarn build && npm publish",
     "build": "rm -rf lib && babel src -d lib",
     "unit": "jest"
   },
