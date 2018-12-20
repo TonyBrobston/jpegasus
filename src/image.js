@@ -22,4 +22,4 @@ const build = async (file) => {
     });
 };
 
-modules.exports.build = build;
+module.exports.build = build;

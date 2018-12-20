@@ -1,11 +1,26 @@
+import Chance from 'chance';
+
 import compressor from '../src/compressor';
+import image from '../src/image';
+
+jest.mock('../src/image');
+
+const chance = new Chance();
 
 describe('file compression', async () => {
-    document.createElement = jest.fn();
-    const canvas = jest.fn();
-    canvas.getContext = canvas;
-    document.createElement.mockReturnValue(canvas.getContext);
     const file = new File([], '');
+    const img = {
+        height: chance.integer({min: 0}),
+        width: chance.integer({min: 0})
+    };
+
+    document.createElement = jest.fn();
+    const canvas = {
+        getContext: jest.fn()
+    };
+
+    document.createElement.mockReturnValue(canvas);
+    image.build.mockReturnValue(img);
 
     compressor.compress(file);
 
@@ -19,7 +34,8 @@ describe('file compression', async () => {
         expect(canvas.getContext).toHaveBeenCalledWith('2d');
     });
 
-    // it('should have built an image', () => {
-    //
+    // it('should have built an img', () => {
+    //     expect(image.build).toHaveBeenCalledTimes(1);
+    //     expect(image.build).toHaveBeenCalledWith(file);
     // });
 });
