@@ -1,9 +1,9 @@
 const getImageSource = (file) => {
     return new Promise((resolve) => {
         const fileReader = new FileReader();
-        fileReader.onload = function () {
+        fileReader.addEventListener('load', () => {
             resolve(fileReader.result);
-        };
+        });
         fileReader.readAsDataURL(file);
     });
 };
@@ -11,19 +11,19 @@ const getImageSource = (file) => {
 const buildImage = async (imageSource) => {
     return new Promise(async (resolve) => {
         const image = new Image();
-        image.onload = function () {
+        image.addEventListener('load', () => {
             resolve(image);
-
-        };
+        });
         image.src = imageSource;
     });
 };
 
 const create = async (file) => {
-    const source = await getImageSource(file);
-    return await buildImage(source);
+    const imageSource = await getImageSource(file);
+    return await buildImage(imageSource);
 };
 
 export default {
     create
+
 };
