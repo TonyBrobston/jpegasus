@@ -22,4 +22,6 @@ const build = async (file) => {
     });
 };
 
-module.exports.build = build;
+export default {
+    build
+};

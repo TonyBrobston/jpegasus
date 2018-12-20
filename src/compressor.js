@@ -12,11 +12,13 @@ const compress = async (file) => {
     // canvas.width = scaledWidth;
     // canvas.height = scaledHeight;
     context.drawImage(img, 0, 0, scaledWidth, scaledHeight);
-    // const base64Canvas = canvas.toDataURL('image/jpeg', 0.5);
+    const base64Canvas = canvas.toDataURL('image/jpeg', 0.5);
     // const base64Only = base64Canvas.split(',')[1];
     // const canvasAsBlob = base64toblob(base64Only, 'image/jpeg');
     // const compressedFile = new File([canvasAsBlob], 'temp.jpeg');
     // return compressedFile;
 };
 
-module.exports.compress = compress;
+export default {
+    compress
+};

@@ -16,6 +16,7 @@ describe('file compression', async () => {
 
     document.createElement = jest.fn();
     const canvas = {
+        toDataURL: jest.fn(),
         getContext: jest.fn(),
     };
     const context = {
@@ -48,5 +49,10 @@ describe('file compression', async () => {
         const scaledWidth = img.width * 0.29;
         const scaledHeight = img.height * 0.29;
         expect(context.drawImage).toHaveBeenCalledWith(img, 0, 0, scaledWidth, scaledHeight);
+    });
+
+    it('should convert canvas to data url', () => {
+        expect(canvas.toDataURL).toHaveBeenCalledTimes(1);
+        expect(canvas.toDataURL).toHaveBeenCalledWith('image/jpeg', 0.5);
     });
 });
