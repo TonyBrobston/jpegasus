@@ -36,12 +36,8 @@ describe('file compression', async () => {
     canvas.toDataURL.mockReturnValue(base64Canvas);
     base64toblob.mockReturnValue(base64CanvasSuffix);
 
-    beforeEach(async () => {
+    beforeAll(async () => {
         compressedFile = await compressor.compress(file);
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
     });
 
     it('should have created a canvas', () => {
