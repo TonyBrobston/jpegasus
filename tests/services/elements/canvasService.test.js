@@ -1,5 +1,6 @@
-import canvasService from '../../../src/services/elements/canvasService';
 import Chance from 'chance';
+
+import canvasService from '../../../src/services/elements/canvasService';
 
 const chance = new Chance();
 
