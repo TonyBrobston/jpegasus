@@ -16,11 +16,15 @@ describe('file compression', async () => {
 
     document.createElement = jest.fn();
     const canvas = {
-        getContext: jest.fn()
+        getContext: jest.fn(),
+    };
+    const context = {
+        drawImage: jest.fn()
     };
 
     document.createElement.mockReturnValue(canvas);
-    image.build.mockReturnValue(img);
+    canvas.getContext.mockReturnValue(context);
+    image.build.mockResolvedValue(img);
 
     compressor.compress(file);
 
@@ -34,8 +38,15 @@ describe('file compression', async () => {
         expect(canvas.getContext).toHaveBeenCalledWith('2d');
     });
 
-    // it('should have built an img', () => {
-    //     expect(image.build).toHaveBeenCalledTimes(1);
-    //     expect(image.build).toHaveBeenCalledWith(file);
-    // });
+    it('should have built an img', () => {
+        expect(image.build).toHaveBeenCalledTimes(1);
+        expect(image.build).toHaveBeenCalledWith(file);
+    });
+
+    it('should have drawn the img on the context of the canvas', () => {
+        expect(context.drawImage).toHaveBeenCalledTimes(1);
+        const scaledWidth = img.width * 0.29;
+        const scaledHeight = img.height * 0.29;
+        expect(context.drawImage).toHaveBeenCalledWith(img, 0, 0, scaledWidth, scaledHeight);
+    });
 });
