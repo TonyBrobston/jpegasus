@@ -1,0 +1,54 @@
+{
+  "name": "image-compressor",
+  "version": "1.0.0",
+  "description": "A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `File` of type `.jpeg`.",
+  "main": "compressor.js",
+  "scripts": {
+    "build": "babel src -d lib",
+    "coverage": "jest --coverage",
+    "test": "jest"
+  },
+  "keywords": [
+    "javascript",
+    "image",
+    "compression",
+    "compressor",
+    "canvas",
+    "scale",
+    "size",
+    "reduce",
+    "smaller"
+  ],
+  "author": "Tony Brobston",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
+    "regenerator-runtime": "^0.13.1"
+  },
+  "dependencies": {
+    "base64toblob": "^0.0.2"
+  },
+  "jest": {
+    "coverageDirectory": ".coverage",
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  }
+}
