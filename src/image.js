@@ -10,7 +10,7 @@ const getSource = (file) => {
     });
 };
 
-const build = async (file) => {
+const create = async (file) => {
     return new Promise(async (resolve) => {
         const image = new Image();
 
@@ -23,5 +23,5 @@ const build = async (file) => {
 };
 
 export default {
-    build
+    create
 };

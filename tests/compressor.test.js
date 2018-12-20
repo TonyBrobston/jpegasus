@@ -3,16 +3,20 @@ import base64toblob from 'base64toblob';
 
 import compressor from '../src/compressor';
 import image from '../src/image';
+import file from '../src/file';
 
 jest.mock('base64toblob');
 jest.mock('../src/image');
+jest.mock('../src/file');
 
 const chance = new Chance();
 
 //todo: compare first and second file to determine if the second is actually smaller than the first
 describe('file compression', async () => {
-    const file = new File([], '');
-    let compressedFile;
+    const filename = chance.string();
+    const imageFile = new File([chance.integer({min: 0})], filename);
+    const expectedCompressedFile = new File([chance.integer({min: 0})], chance.string());
+    let actualCompressedFile;
     const img = {
         height: chance.integer({min: 0}),
         width: chance.integer({min: 0})
@@ -20,6 +24,7 @@ describe('file compression', async () => {
     const base64CanvasPrefix = chance.string();
     const base64CanvasSuffix = chance.string();
     const base64Canvas = `${base64CanvasPrefix},${base64CanvasSuffix}`;
+    const canvasAsBlob = chance.string();
 
     document.createElement = jest.fn();
     const canvas = {
@@ -32,12 +37,13 @@ describe('file compression', async () => {
 
     document.createElement.mockReturnValue(canvas);
     canvas.getContext.mockReturnValue(context);
-    image.build.mockResolvedValue(img);
+    image.create.mockResolvedValue(img);
     canvas.toDataURL.mockReturnValue(base64Canvas);
-    base64toblob.mockReturnValue(base64CanvasSuffix);
+    base64toblob.mockReturnValue(canvasAsBlob);
+    file.create.mockReturnValue(expectedCompressedFile);
 
     beforeAll(async () => {
-        compressedFile = await compressor.compress(file);
+        actualCompressedFile = await compressor.compress(imageFile);
     });
 
     it('should have created a canvas', () => {
@@ -51,8 +57,8 @@ describe('file compression', async () => {
     });
 
     it('should have built an img', () => {
-        expect(image.build).toHaveBeenCalledTimes(1);
-        expect(image.build).toHaveBeenCalledWith(file);
+        expect(image.create).toHaveBeenCalledTimes(1);
+        expect(image.create).toHaveBeenCalledWith(imageFile);
     });
 
     it('should have drawn the img on the context of the canvas', () => {
@@ -72,8 +78,12 @@ describe('file compression', async () => {
         expect(base64toblob).toHaveBeenCalledWith(base64CanvasSuffix, 'image/jpeg');
     });
 
+    it('should create a new file', () => {
+        expect(file.create).toHaveBeenCalledTimes(1);
+        expect(file.create).toHaveBeenCalledWith(canvasAsBlob, filename);
+    });
+
     it('should return a compressed file', () => {
-        console.log(compressedFile);
-        // expect(compressedFile).toBe();
+        expect(actualCompressedFile).toBe(expectedCompressedFile);
     });
 });
