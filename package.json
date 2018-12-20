@@ -6,6 +6,7 @@
   "scripts": {
     "create": "babel src -d lib",
     "coverage": "jest --coverage",
+    "build": "babel src -d lib",
     "test": "jest"
   },
   "keywords": [

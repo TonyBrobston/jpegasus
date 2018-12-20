@@ -1,9 +1,9 @@
 import imageService from '../elements/imageService';
-import canvasSerice from '../elements/canvasService';
+import canvasService from '../elements/canvasService';
 
 const toCanvas = async (file, scale) => {
     const image = await imageService.create(file);
-    return canvasSerice.create(image, scale);
+    return canvasService.create(image, scale);
 };
 
 export default {
