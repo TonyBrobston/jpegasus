@@ -9,8 +9,10 @@ jest.mock('../src/image');
 
 const chance = new Chance();
 
+//todo: compare first and second file to determine if the second is actually smaller than the first
 describe('file compression', async () => {
     const file = new File([], '');
+    let compressedFile;
     const img = {
         height: chance.integer({min: 0}),
         width: chance.integer({min: 0})
@@ -32,8 +34,15 @@ describe('file compression', async () => {
     canvas.getContext.mockReturnValue(context);
     image.build.mockResolvedValue(img);
     canvas.toDataURL.mockReturnValue(base64Canvas);
+    base64toblob.mockReturnValue(base64CanvasSuffix);
 
-    compressor.compress(file);
+    beforeEach(async () => {
+        compressedFile = await compressor.compress(file);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     it('should have created a canvas', () => {
         expect(document.createElement).toHaveBeenCalledTimes(1);
@@ -65,5 +74,10 @@ describe('file compression', async () => {
     it('should convert canvas base64 to blob', () => {
         expect(base64toblob).toHaveBeenCalledTimes(1);
         expect(base64toblob).toHaveBeenCalledWith(base64CanvasSuffix, 'image/jpeg');
+    });
+
+    it('should return a compressed file', () => {
+        console.log(compressedFile);
+        // expect(compressedFile).toBe();
     });
 });
