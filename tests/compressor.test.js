@@ -1,4 +1,4 @@
-const compressor = require('../src/compressor');
+import compressor from '../src/compressor';
 
 describe('file compression', async () => {
     document.createElement = jest.fn();
