@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/tbrobston/.nvm/versions/node/v10.13.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js test
+  /Users/tbrobston/.nvm/versions/node/v10.13.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js coverage
 
 PATH: 
   /Users/tbrobston/.nvm/versions/node/v10.13.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools
@@ -20,7 +20,7 @@ npm manifest:
     "description": "A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `File` of type `.jpeg`.",
     "main": "compressor.js",
     "scripts": {
-      "build": "babel src -d lib",
+      "create": "babel src -d lib",
       "coverage": "jest --coverage",
       "test": "jest"
     },
@@ -3639,7 +3639,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c jest
+  Arguments: -c jest --coverage
   Directory: /Users/tbrobston/Developer/image-compressor
   Output:
   

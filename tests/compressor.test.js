@@ -46,22 +46,22 @@ describe('file compression', async () => {
         actualCompressedFile = await compressor.compress(imageFile);
     });
 
-    it('should have created a canvas', () => {
+    it('should create a canvas', () => {
         expect(document.createElement).toHaveBeenCalledTimes(1);
         expect(document.createElement).toHaveBeenCalledWith('canvas');
     });
 
-    it('should have created a canvas context', () => {
+    it('should create a canvas context', () => {
         expect(canvas.getContext).toHaveBeenCalledTimes(1);
         expect(canvas.getContext).toHaveBeenCalledWith('2d');
     });
 
-    it('should have built an img', () => {
+    it('should build an img', () => {
         expect(image.create).toHaveBeenCalledTimes(1);
         expect(image.create).toHaveBeenCalledWith(imageFile);
     });
 
-    it('should have drawn the img on the context of the canvas', () => {
+    it('should draw the img on the context of the canvas', () => {
         expect(context.drawImage).toHaveBeenCalledTimes(1);
         const scaledWidth = img.width * 0.29;
         const scaledHeight = img.height * 0.29;
