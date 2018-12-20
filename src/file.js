@@ -1,4 +1,4 @@
-const create = async (blob, filename) => {
+const create = (blob, filename) => {
     return new File([blob], filename);
 };
 
