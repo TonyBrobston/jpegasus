@@ -9,7 +9,6 @@ jest.mock('../src/services/sizing/qualityService');
 
 const chance = new Chance();
 
-//todo: compare first and second file to determine if the second is actually smaller than the first
 describe('index', async () => {
     const file = new File([chance.integer({min: 0})], chance.string());
     const options = undefined;
