@@ -1,8 +1,15 @@
 # jpegasus
 A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `File` of type `.jpeg`.
- 
+
+### Parameters
+* First parameter: JavaScript `File`
+* Second parameter: Object of `options`
+  * targetFileSize: the target compressed output `File` in bytes; not required. This is likely far from perfect currently.
+  * maxHeight: the max height in pixels of the compressed output `File`.
+  * maxWidth: the max width in pixels of the compressed output `File`.
+
 ### Here's a temporary example using react-dropzone until I can build something more concise.
- 
+
 ```
 import React from 'react';
 import Dropzone from 'react-dropzone';
@@ -21,7 +28,11 @@ class FileUploader extends React.Component {
 
         console.log(file);
 
-        const compressedFile = await Jpegasus.compress(file);
+        const compressedFile = await Jpegasus.compress(file, {
+            maxHeight: 1200, //default is image's height (not required)
+            maxWidth: 1200, //default is image's width (not required)
+            targetFileSize: 1000000 //default is 500000 bytes (not required)
+        });
 
         console.log(compressedFile);
 
