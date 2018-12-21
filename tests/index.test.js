@@ -14,8 +14,6 @@ describe('index', async () => {
     const file = new File([chance.integer({min: 0})], chance.string());
     const options = undefined;
     const defaultOptions = {
-        maxHeight: 1200,
-        maxWidth: 1200,
         targetFileSize: 500000
     };
     const canvas = chance.string();
