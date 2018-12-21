@@ -11,11 +11,9 @@ const chance = new Chance();
 
 //todo: compare first and second file to determine if the second is actually smaller than the first
 describe('index', async () => {
-    const filename = chance.string();
-    const file = new File([chance.integer({min: 0})], filename);
+    const file = new File([chance.integer({min: 0})], chance.string());
     const options = undefined;
     const canvas = chance.string();
-    const quality = 0.5;
     const expectedCompressedFile = new File([chance.integer({min: 0})], chance.string());
     let actualCompressedFile;
 
@@ -33,7 +31,7 @@ describe('index', async () => {
 
     it('should convert file to file and reduce quality', () => {
         expect(qualityService.toFile).toHaveBeenCalledTimes(1);
-        expect(qualityService.toFile).toHaveBeenCalledWith(filename, canvas, quality, );
+        expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, {});
     });
 
     it('should return a compressed file', () => {
