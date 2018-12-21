@@ -10,17 +10,6 @@ jest.mock('../../../src/services/elements/fileService');
 const chance = new Chance();
 
 describe('qualityService', () => {
-    const file = {
-        name: chance.string(),
-        size: 100
-    };
-    const canvas = {
-        toDataURL: jest.fn(),
-    };
-    const options = {
-        targetFileSize: 10
-    };
-    const quality = 0.1;
     const base64Prefix = chance.string();
     const base64Suffix = chance.string();
     const base64 = `${base64Prefix},${base64Suffix}`;
@@ -28,30 +17,77 @@ describe('qualityService', () => {
     const expectedFile = chance.string();
     let actualFile;
 
-    canvas.toDataURL.mockReturnValue(base64);
-    base64toblob.mockReturnValue(blob);
-    fileService.create.mockReturnValue(expectedFile);
+    const scenarios = [
+        {
+            file: {
+                name: chance.string(),
+                size: 100
+            },
+            name: 'no options',
+            options: {},
+            quality: 1
+        },
+        {
+            file: {
+                name: chance.string(),
+                size: 100
+            },
+            name: 'targetFileSize < file.size',
+            options: {
+                targetFileSize: 10
+            },
+            quality: 0.1
+        },
+        {
+            file: {
+                name: chance.string(),
+                size: 10
+            },
+            name: 'file.size < targetFileSize',
+            options: {
+                targetFileSize: 100
+            },
+            quality: 1
+        }
+    ];
 
-    beforeAll(() => {
-        actualFile = qualityService.toFile(file, canvas, options);
-    });
+    scenarios.forEach((scenario) => {
+        describe(scenario.name, () => {
+            const canvas = {
+                toDataURL: jest.fn(),
+            };
 
-    it('should convert canvasService to data url', () => {
-        expect(canvas.toDataURL).toHaveBeenCalledTimes(1);
-        expect(canvas.toDataURL).toHaveBeenCalledWith('image/jpeg', quality);
-    });
+            beforeAll(() => {
+                canvas.toDataURL.mockReturnValue(base64);
+                base64toblob.mockReturnValue(blob);
+                fileService.create.mockReturnValue(expectedFile);
 
-    it('should convert imageCanvas base64 to blob', () => {
-        expect(base64toblob).toHaveBeenCalledTimes(1);
-        expect(base64toblob).toHaveBeenCalledWith(base64Suffix, 'image/jpeg');
-    });
 
-    it('should create a new file', () => {
-        expect(fileService.create).toHaveBeenCalledTimes(1);
-        expect(fileService.create).toHaveBeenCalledWith(blob, file.name);
-    });
+                actualFile = qualityService.toFile(scenario.file, canvas, scenario.options);
+            });
 
-    it('should return a compressed file', () => {
-        expect(actualFile).toBe(expectedFile);
+            afterAll(() => {
+                jest.clearAllMocks();
+            });
+
+            it('should convert canvasService to data url', () => {
+                expect(canvas.toDataURL).toHaveBeenCalledTimes(1);
+                expect(canvas.toDataURL).toHaveBeenCalledWith('image/jpeg', scenario.quality);
+            });
+
+            it('should convert imageCanvas base64 to blob', () => {
+                expect(base64toblob).toHaveBeenCalledTimes(1);
+                expect(base64toblob).toHaveBeenCalledWith(base64Suffix, 'image/jpeg');
+            });
+
+            it('should create a new file', () => {
+                expect(fileService.create).toHaveBeenCalledTimes(1);
+                expect(fileService.create).toHaveBeenCalledWith(blob, scenario.file.name);
+            });
+
+            it('should return a compressed file', () => {
+                expect(actualFile).toBe(expectedFile);
+            });
+        });
     });
 });
