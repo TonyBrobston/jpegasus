@@ -13,6 +13,9 @@ const chance = new Chance();
 describe('index', async () => {
     const file = new File([chance.integer({min: 0})], chance.string());
     const options = undefined;
+    const defaultOptions = {
+        targetFileSize: 500000
+    };
     const canvas = chance.string();
     const expectedCompressedFile = new File([chance.integer({min: 0})], chance.string());
     let actualCompressedFile;
@@ -26,12 +29,12 @@ describe('index', async () => {
 
     it('should convert file to canvasService and scale', async () => {
         expect(scaleService.toCanvas).toHaveBeenCalledTimes(1);
-        expect(scaleService.toCanvas).toHaveBeenCalledWith(file, {});
+        expect(scaleService.toCanvas).toHaveBeenCalledWith(file, defaultOptions);
     });
 
     it('should convert file to file and reduce quality', () => {
         expect(qualityService.toFile).toHaveBeenCalledTimes(1);
-        expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, {});
+        expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, defaultOptions);
     });
 
     it('should return a compressed file', () => {
