@@ -14,11 +14,16 @@ describe('qualityService', () => {
     const base64Suffix = chance.string();
     const base64 = `${base64Prefix},${base64Suffix}`;
     const blob = chance.string();
-    const expectedFile = chance.string();
     let actualFile;
 
     const scenarios = [
         {
+            createdFile: {
+                size: 100
+            },
+            expectedFile: {
+                size: 100
+            },
             file: {
                 name: chance.string(),
                 size: 100
@@ -28,6 +33,12 @@ describe('qualityService', () => {
             quality: 1.00
         },
         {
+            createdFile: {
+                size: 10
+            },
+            expectedFile: {
+                size: 10
+            },
             file: {
                 name: chance.string(),
                 size: 100
@@ -39,11 +50,34 @@ describe('qualityService', () => {
             quality: 0.10
         },
         {
+            createdFile: {
+                size: 10
+            },
+            expectedFile: {
+                size: 10
+            },
             file: {
                 name: chance.string(),
                 size: 10
             },
             name: 'file.size < targetFileSize',
+            options: {
+                targetFileSize: 100
+            },
+            quality: 1.00
+        },
+        {
+            createdFile: {
+                size: 1000
+            },
+            expectedFile: {
+                size: 100
+            },
+            file: {
+                name: chance.string(),
+                size: 100
+            },
+            name: 'file got bigger',
             options: {
                 targetFileSize: 100
             },
@@ -60,8 +94,7 @@ describe('qualityService', () => {
             beforeAll(() => {
                 canvas.toDataURL.mockReturnValue(base64);
                 base64toblob.mockReturnValue(blob);
-                fileService.create.mockReturnValue(expectedFile);
-
+                fileService.create.mockReturnValue(scenario.createdFile);
 
                 actualFile = qualityService.toFile(scenario.file, canvas, scenario.options);
             });
@@ -86,7 +119,7 @@ describe('qualityService', () => {
             });
 
             it('should return a compressed file', () => {
-                expect(actualFile).toBe(expectedFile);
+                expect(actualFile.size).toBe(scenario.expectedFile.size);
             });
         });
     });
