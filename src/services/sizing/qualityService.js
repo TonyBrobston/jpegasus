@@ -13,7 +13,7 @@ function determineQuality(options, file) {
     return 1.00;
 }
 
-function compressionSafety(compressedFile, originalFile) {
+function pickSmallerFile(compressedFile, originalFile) {
     if (compressedFile.size < originalFile.size) {
         return compressedFile;
     }
@@ -27,7 +27,7 @@ const toFile = (file, canvas, options) => {
     const base64 = dataUrl.split(',')[1];
     const blob = base64toblob(base64, 'image/jpeg');
     const compressedFile = fileService.create(blob, file.name);
-    return compressionSafety(compressedFile, file);
+    return pickSmallerFile(compressedFile, file);
 };
 
 export default {
