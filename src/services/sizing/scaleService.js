@@ -2,15 +2,20 @@ import imageService from '../elements/imageService';
 import canvasService from '../elements/canvasService';
 
 const determineScale = (image, options) => {
-    const maxHeight = options.maxHeight;
-    const heightCanBeScaled = image.height > maxHeight;
-    const maxWidth = options.maxWidth;
-    const widthCanBeScaled = image.width > maxWidth;
+    const height = image.height;
+    const width = image.width;
 
-    if (maxHeight && heightCanBeScaled) {
-        return maxHeight / image.height;
+    const maxHeight = options.maxHeight;
+    const maxWidth = options.maxWidth;
+
+    const heightCanBeScaled = height > maxHeight;
+    const heightIsLargest = height > width;
+    const widthCanBeScaled = width > maxWidth;
+
+    if (maxHeight && heightCanBeScaled && heightIsLargest) {
+        return maxHeight / height;
     } else if (maxWidth && widthCanBeScaled) {
-        return maxWidth / image.width;
+        return maxWidth / width;
     }
 
     return 1.00;

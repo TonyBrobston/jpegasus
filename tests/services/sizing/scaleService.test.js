@@ -67,6 +67,30 @@ describe('scaleService', () => {
                 height: 1000,
                 width: 1000
             }
+        },
+        {
+            name: 'maxHeight scale, width < height',
+            options: {
+                maxHeight: 600,
+                maxWidth: 600
+            },
+            scale: 0.50,
+            image: {
+                height: 1200,
+                width: 800
+            }
+        },
+        {
+            name: 'maxWidth scale, height < width',
+            options: {
+                maxHeight: 600,
+                maxWidth: 600
+            },
+            scale: 0.50,
+            image: {
+                height: 800,
+                width: 1200
+            }
         }
     ];
 
