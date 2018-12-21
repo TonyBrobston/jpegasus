@@ -10,11 +10,17 @@ jest.mock('../../../src/services/elements/fileService');
 const chance = new Chance();
 
 describe('qualityService', () => {
-    const quality = chance.string();
-    const filename = chance.string();
+    const file = {
+        name: chance.string(),
+        size: 100
+    };
     const canvas = {
         toDataURL: jest.fn(),
     };
+    const options = {
+        targetFileSize: 10
+    };
+    const quality = 0.1;
     const base64Prefix = chance.string();
     const base64Suffix = chance.string();
     const base64 = `${base64Prefix},${base64Suffix}`;
@@ -27,7 +33,7 @@ describe('qualityService', () => {
     fileService.create.mockReturnValue(expectedFile);
 
     beforeAll(() => {
-        actualFile = qualityService.toFile(filename, canvas, quality);
+        actualFile = qualityService.toFile(file, canvas, options);
     });
 
     it('should convert canvasService to data url', () => {
@@ -42,7 +48,7 @@ describe('qualityService', () => {
 
     it('should create a new file', () => {
         expect(fileService.create).toHaveBeenCalledTimes(1);
-        expect(fileService.create).toHaveBeenCalledWith(blob, filename);
+        expect(fileService.create).toHaveBeenCalledWith(blob, file.name);
     });
 
     it('should return a compressed file', () => {
