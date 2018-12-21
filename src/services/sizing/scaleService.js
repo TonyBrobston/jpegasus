@@ -4,10 +4,8 @@ import canvasService from '../elements/canvasService';
 const determineScale = (image, options) => {
     const height = image.height;
     const width = image.width;
-
     const maxHeight = options.maxHeight;
     const maxWidth = options.maxWidth;
-
     const heightCanBeScaled = height > maxHeight;
     const heightIsLargest = height > width;
     const widthCanBeScaled = width > maxWidth;
