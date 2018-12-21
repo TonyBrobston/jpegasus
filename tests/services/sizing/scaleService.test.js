@@ -16,27 +16,62 @@ describe('scaleService', () => {
 
     const scenarios = [
         {
+            name: 'no options',
             options: {},
-            scale: 1,
+            scale: 1.00,
             image: {
                 height: chance.integer({min: 1}),
                 width: chance.integer({min: 1})
             }
         },
         {
+            name: 'maxHeight scale',
             options: {
                 maxHeight: 1200
             },
-            scale: 4032 / 1200,
+            scale: 0.30,
             image: {
-                height: 4032,
-                width: 3024
+                height: 4000,
+                width: 3000
+            }
+        },
+        {
+            name: 'maxWidth scale',
+            options: {
+                maxWidth: 1200
+            },
+            scale: 0.40,
+            image: {
+                height: 4000,
+                width: 3000
+            }
+        },
+        {
+            name: 'no scale, height < maxHeight',
+            options: {
+                maxHeight: 1200
+            },
+            scale: 1.00,
+            image: {
+                height: 1000,
+                width: 1000
+            }
+        },
+        {
+            name: 'no scale, width < maxWidth',
+            options: {
+                maxWidth: 1200
+            },
+            scale: 1.00,
+            image: {
+                height: 1000,
+                width: 1000
             }
         }
     ];
 
     scenarios.forEach((scenario) => {
-        describe(scenario.scale, () => {
+        describe(scenario.name, () => {
             beforeAll(async () => {
                 imageService.create.mockResolvedValue(scenario.image);
                 canvasService.create.mockReturnValue(expectedCanvas);
