@@ -11,29 +11,56 @@ const chance = new Chance();
 
 describe('scaleService', () => {
     const file = chance.string();
-    const scale = chance.string();
-    const image = chance.string();
     const expectedCanvas = chance.string();
     let actualCanvas;
 
-    imageService.create.mockResolvedValue(image);
-    canvasService.create.mockReturnValue(expectedCanvas);
+    const scenarios = [
+        {
+            options: {},
+            scale: 1,
+            image: {
+                height: chance.integer({min: 1}),
+                width: chance.integer({min: 1})
+            }
+        },
+        {
+            options: {
+                maxHeight: 1200
+            },
+            scale: 4032 / 1200,
+            image: {
+                height: 4032,
+                width: 3024
+            }
+        }
+    ];
 
-    beforeAll(async () => {
-        actualCanvas = await scaleService.toCanvas(file, scale)
-    });
+    scenarios.forEach((scenario) => {
+        describe(scenario.scale, () => {
+            beforeAll(async () => {
+                imageService.create.mockResolvedValue(scenario.image);
+                canvasService.create.mockReturnValue(expectedCanvas);
 
-    it('should create and image', () => {
-        expect(imageService.create).toHaveBeenCalledTimes(1);
-        expect(imageService.create).toHaveBeenCalledWith(file);
-    });
+                actualCanvas = await scaleService.toCanvas(file, scenario.options);
+            });
 
-    it('should create and image', () => {
-        expect(canvasService.create).toHaveBeenCalledTimes(1);
-        expect(canvasService.create).toHaveBeenCalledWith(image, scale);
-    });
+            afterAll(() => {
+                jest.clearAllMocks();
+            });
 
-    it('should return a scaled canvasService', () => {
-        expect(actualCanvas).toBe(expectedCanvas);
+            it('should create an image', () => {
+                expect(imageService.create).toHaveBeenCalledTimes(1);
+                expect(imageService.create).toHaveBeenCalledWith(file);
+            });
+
+            it('should create a canvas', () => {
+                expect(canvasService.create).toHaveBeenCalledTimes(1);
+                expect(canvasService.create).toHaveBeenCalledWith(scenario.image, scenario.scale);
+            });
+
+            it('should return a scaled canvasService', () => {
+                expect(actualCanvas).toBe(expectedCanvas);
+            });
+        });
     });
 });
