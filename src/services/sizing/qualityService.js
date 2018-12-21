@@ -10,7 +10,7 @@ function determineQuality(options, file) {
         return targetFileSize / file.size
     }
 
-    return 1;
+    return 1.00;
 }
 
 const toFile = (file, canvas, options) => {

@@ -25,7 +25,7 @@ describe('qualityService', () => {
             },
             name: 'no options',
             options: {},
-            quality: 1
+            quality: 1.00
         },
         {
             file: {
@@ -36,7 +36,7 @@ describe('qualityService', () => {
             options: {
                 targetFileSize: 10
             },
-            quality: 0.1
+            quality: 0.10
         },
         {
             file: {
@@ -47,7 +47,7 @@ describe('qualityService', () => {
             options: {
                 targetFileSize: 100
             },
-            quality: 1
+            quality: 1.00
         }
     ];
 
