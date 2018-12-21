@@ -27,7 +27,7 @@ describe('qualityService', () => {
     fileService.create.mockReturnValue(expectedFile);
 
     beforeAll(() => {
-        actualFile = qualityService.toFile(canvas, quality, filename);
+        actualFile = qualityService.toFile(filename, canvas, quality);
     });
 
     it('should convert canvasService to data url', () => {

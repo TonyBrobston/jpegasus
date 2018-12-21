@@ -33,7 +33,7 @@ describe('index', async () => {
 
     it('should convert file to file and reduce quality', () => {
         expect(qualityService.toFile).toHaveBeenCalledTimes(1);
-        expect(qualityService.toFile).toHaveBeenCalledWith(canvas, quality, filename);
+        expect(qualityService.toFile).toHaveBeenCalledWith(filename, canvas, quality, );
     });
 
     it('should return a compressed file', () => {

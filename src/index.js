@@ -5,7 +5,7 @@ const compress = async (file, options = {}) => {
     const quality = 0.5;
 
     const canvas = await scaleService.toCanvas(file, options);
-    return qualityService.toFile(canvas, quality, file.name);
+    return qualityService.toFile(file.name, canvas, quality);
 };
 
 export default {
