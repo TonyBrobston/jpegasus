@@ -11,29 +11,115 @@ const chance = new Chance();
 
 describe('scaleService', () => {
     const file = chance.string();
-    const scale = chance.string();
-    const image = chance.string();
     const expectedCanvas = chance.string();
     let actualCanvas;
 
-    imageService.create.mockResolvedValue(image);
-    canvasService.create.mockReturnValue(expectedCanvas);
+    const scenarios = [
+        {
+            name: 'no options',
+            options: {},
+            scale: 1.00,
+            image: {
+                height: chance.integer({min: 1}),
+                width: chance.integer({min: 1})
+            }
+        },
+        {
+            name: 'maxHeight scale',
+            options: {
+                maxHeight: 1200
+            },
+            scale: 0.30,
+            image: {
+                height: 4000,
+                width: 3000
+            }
+        },
+        {
+            name: 'maxWidth scale',
+            options: {
+                maxWidth: 1200
+            },
+            scale: 0.40,
+            image: {
+                height: 4000,
+                width: 3000
+            }
+        },
+        {
+            name: 'no scale, height < maxHeight',
+            options: {
+                maxHeight: 1200
+            },
+            scale: 1.00,
+            image: {
+                height: 1000,
+                width: 1000
+            }
+        },
+        {
+            name: 'no scale, width < maxWidth',
+            options: {
+                maxWidth: 1200
+            },
+            scale: 1.00,
+            image: {
+                height: 1000,
+                width: 1000
+            }
+        },
+        {
+            name: 'maxHeight scale, width < height',
+            options: {
+                maxHeight: 600,
+                maxWidth: 600
+            },
+            scale: 0.50,
+            image: {
+                height: 1200,
+                width: 800
+            }
+        },
+        {
+            name: 'maxWidth scale, height < width',
+            options: {
+                maxHeight: 600,
+                maxWidth: 600
+            },
+            scale: 0.50,
+            image: {
+                height: 800,
+                width: 1200
+            }
+        }
+    ];
 
-    beforeAll(async () => {
-        actualCanvas = await scaleService.toCanvas(file, scale)
-    });
+    scenarios.forEach((scenario) => {
+        describe(scenario.name, () => {
+            beforeAll(async () => {
+                imageService.create.mockResolvedValue(scenario.image);
+                canvasService.create.mockReturnValue(expectedCanvas);
 
-    it('should create and image', () => {
-        expect(imageService.create).toHaveBeenCalledTimes(1);
-        expect(imageService.create).toHaveBeenCalledWith(file);
-    });
+                actualCanvas = await scaleService.toCanvas(file, scenario.options);
+            });
 
-    it('should create and image', () => {
-        expect(canvasService.create).toHaveBeenCalledTimes(1);
-        expect(canvasService.create).toHaveBeenCalledWith(image, scale);
-    });
+            afterAll(() => {
+                jest.clearAllMocks();
+            });
 
-    it('should return a scaled canvasService', () => {
-        expect(actualCanvas).toBe(expectedCanvas);
+            it('should create an image', () => {
+                expect(imageService.create).toHaveBeenCalledTimes(1);
+                expect(imageService.create).toHaveBeenCalledWith(file);
+            });
+
+            it('should create a canvas', () => {
+                expect(canvasService.create).toHaveBeenCalledTimes(1);
+                expect(canvasService.create).toHaveBeenCalledWith(scenario.image, scenario.scale);
+            });
+
+            it('should return a scaled canvasService', () => {
+                expect(actualCanvas).toBe(expectedCanvas);
+            });
+        });
     });
 });
