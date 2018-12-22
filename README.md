@@ -4,9 +4,9 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 ### Parameters
 * First parameter: JavaScript `File`
 * Second parameter: Object of `options`
-  * targetFileSize: the target compressed output `File` in bytes; not required. This is likely far from perfect currently.
   * maxHeight: the max height in pixels of the compressed output `File`.
   * maxWidth: the max width in pixels of the compressed output `File`.
+  * quality: degrades quality, values is between 0.01 and 1.00.
 
 ### Here's a temporary example using react-dropzone until I can build something more concise.
 
@@ -29,9 +29,9 @@ class FileUploader extends React.Component {
         console.log(file);
 
         const compressedFile = await Jpegasus.compress(file, {
-            maxHeight: 1200, //default is image's height (not required)
-            maxWidth: 1200, //default is image's width (not required)
-            targetFileSize: 1000000 //default is 500000 bytes (not required)
+            quality: 0.50 //default is 0.50 (not required)
+            maxHeight: 1200, //default is 16250 (not required)
+            maxWidth: 1200, //default is 16250 (not required)
         });
 
         console.log(compressedFile);
