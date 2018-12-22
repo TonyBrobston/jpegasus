@@ -13,7 +13,9 @@ describe('index', async () => {
     const file = new File([chance.integer({min: 0})], chance.string());
     const options = undefined;
     const defaultOptions = {
-        targetFileSize: 500000
+        maxHeight: 16250,
+        maxWidth: 16250,
+        quality: 0.5
     };
     const canvas = chance.string();
     const expectedCompressedFile = new File([chance.integer({min: 0})], chance.string());

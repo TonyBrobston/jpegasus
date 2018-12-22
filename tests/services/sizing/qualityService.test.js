@@ -34,6 +34,24 @@ describe('qualityService', () => {
         },
         {
             createdFile: {
+                size: 100
+            },
+            expectedFile: {
+                size: 75
+            },
+            file: {
+                name: chance.string(),
+                size: 75
+            },
+            name: 'quality overrides targetFileSize',
+            options: {
+                quality: 0.75,
+                targetFileSize: 10
+            },
+            quality: 0.75
+        },
+        {
+            createdFile: {
                 size: 10
             },
             expectedFile: {
