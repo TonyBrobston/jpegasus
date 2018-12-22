@@ -1,6 +1,6 @@
 {
   "name": "jpegasus",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `File` of type `.jpeg`.",
   "main": "lib/index.js",
   "repository": {
