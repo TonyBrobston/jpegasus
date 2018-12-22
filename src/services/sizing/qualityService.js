@@ -3,6 +3,10 @@ import base64toblob from 'base64toblob';
 import fileService from '../elements/fileService';
 
 function determineQuality(options, file) {
+    if (options.quality) {
+        return options.quality
+    }
+
     const targetFileSize = options.targetFileSize;
     const qualityCanBeLess = targetFileSize < file.size;
 
