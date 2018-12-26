@@ -29,7 +29,7 @@ class FileUploader extends React.Component {
         console.log(file);
 
         const compressedFile = await Jpegasus.compress(file, {
-            quality: 0.50 //default is 0.50 (not required)
+            quality: 0.50, //default is 0.50 (not required)
             maxHeight: 1200, //default is 16250 (not required)
             maxWidth: 1200, //default is 16250 (not required)
         });
