@@ -6,8 +6,14 @@ const compress = async (file, options = {
     maxWidth: 16250,
     quality: 0.5
 }) => {
-    const canvas = await scaleService.toCanvas(file, options);
-    return qualityService.toFile(file, canvas, options);
+    const isValidFile = typeof file === 'object' && file.size > 0 && file.type.includes('image/');
+
+    if (isValidFile) {
+        const canvas = await scaleService.toCanvas(file, options);
+        return qualityService.toFile(file, canvas, options);
+    }
+
+    return file;
 };
 
 export default {
