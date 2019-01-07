@@ -1,1 +1,7 @@
 /src/
+/tests/
+.coverage
+.idea
+README.md
+yarn.lock
+yarn-error.log
