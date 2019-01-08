@@ -1,5 +1,9 @@
 const create = (blob, filename) => {
-    return new File([blob], filename);
+    return {
+        ...blob,
+        lastModifiedDate: new Date(),
+        name: filename
+    };
 };
 
 export default {
