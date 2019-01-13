@@ -31,7 +31,7 @@ describe('index', async () => {
             actualCompressedFile = await index.compress(file, options);
         });
 
-        it('should convert file to canvasService and scale', async () => {
+        it('should convert file to canvas and scale it', async () => {
             expect(scaleService.toCanvas).toHaveBeenCalledTimes(1);
             expect(scaleService.toCanvas).toHaveBeenCalledWith(file, defaultOptions);
         });
@@ -50,7 +50,7 @@ describe('index', async () => {
         const sadPaths = [
             {
                 file: chance.string(),
-                scenario: 'string'
+                scenario: 'file of string'
             },
             {
                 file: new File([], chance.string()),
@@ -58,27 +58,27 @@ describe('index', async () => {
             },
             {
                 file: {},
-                scenario: 'empty object'
+                scenario: 'file of empty object'
             },
             {
-                file: 'undefined',
-                scenario: undefined
+                file: undefined,
+                scenario: 'file of undefined'
             },
             {
                 file: null,
-                scenario: 'null'
+                scenario: 'file of null'
             },
             {
                 file: {
                     size: chance.integer({min: 1}),
                     type: chance.string()
                 },
-                scenario: 'should not allow a File that\'s type does not start with image'
+                scenario: 'a File that\'s type does not start with image'
             }
         ];
 
         sadPaths.forEach((sadPath) => {
-            it(`should not allow file of ${sadPath.scenario}`, async () => {
+            it(`should not allow ${sadPath.scenario}`, async () => {
                 const compressedFile = await index.compress(sadPath.file);
 
                 expect(compressedFile).toBe(sadPath.file);
