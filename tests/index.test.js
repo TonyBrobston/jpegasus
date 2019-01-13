@@ -47,40 +47,42 @@ describe('index', async () => {
     });
 
     describe('sad path', () => {
-        it('should not allow file of string', async () => {
-            const file = chance.string();
+        const sadPaths = [
+            {
+                file: chance.string(),
+                scenario: 'string'
+            },
+            {
+                file: new File([], chance.string()),
+                scenario: 'file with no size'
+            },
+            {
+                file: {},
+                scenario: 'empty object'
+            },
+            {
+                file: 'undefined',
+                scenario: undefined
+            },
+            {
+                file: null,
+                scenario: 'null'
+            },
+            {
+                file: {
+                    size: chance.integer({min: 1}),
+                    type: chance.string()
+                },
+                scenario: 'should not allow a File that\'s type does not start with image'
+            }
+        ];
 
-            const compressedFile = await index.compress(file);
+        sadPaths.forEach((sadPath) => {
+            it(`should not allow file of ${sadPath.scenario}`, async () => {
+                const compressedFile = await index.compress(sadPath.file);
 
-            expect(compressedFile).toBe(file);
-        });
-
-        it('should not File with no size', async () => {
-            const file = new File([], chance.string());
-
-            const compressedFile = await index.compress(file);
-
-            expect(compressedFile).toBe(file);
-        });
-
-        it('should not allow an empty object', async () => {
-            const file = {};
-
-            const compressedFile = await index.compress(file);
-
-            expect(compressedFile).toBe(file);
-        });
-
-
-        it('should not allow a File that\'s type does not start with image/' , async () => {
-            const file = {
-                size: chance.integer({min: 1}),
-                type: chance.string()
-            };
-
-            const compressedFile = await index.compress(file);
-
-            expect(compressedFile).toBe(file);
+                expect(compressedFile).toBe(sadPath.file);
+            });
         });
     });
 });

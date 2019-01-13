@@ -6,7 +6,7 @@ const compress = async (file, options = {
     maxWidth: 16250,
     quality: 0.5
 }) => {
-    const isValidFile = typeof file === 'object' && file.size > 0 && file.type.includes('image/');
+    const isValidFile = typeof file === 'object' && file !== null && file.size > 0 && file.type.includes('image/');
 
     if (isValidFile) {
         const canvas = await scaleService.toCanvas(file, options);
