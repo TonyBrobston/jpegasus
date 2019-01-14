@@ -121,7 +121,7 @@ describe('qualityService', () => {
                 jest.clearAllMocks();
             });
 
-            it('should convert canvasService to data url', () => {
+            it('should convert canvas to data url', () => {
                 expect(canvas.toDataURL).toHaveBeenCalledTimes(1);
                 expect(canvas.toDataURL).toHaveBeenCalledWith('image/jpeg', scenario.quality);
             });
