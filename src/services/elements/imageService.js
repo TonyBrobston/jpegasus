@@ -8,8 +8,8 @@ const getImageSource = (file) => {
     });
 };
 
-const buildImage = async (imageSource) => {
-    return new Promise(async (resolve) => {
+const buildImage = (imageSource) => {
+    return new Promise((resolve) => {
         const image = new Image();
         image.addEventListener('load', () => {
             resolve(image);
@@ -20,7 +20,7 @@ const buildImage = async (imageSource) => {
 
 const create = async (file) => {
     const imageSource = await getImageSource(file);
-    return await buildImage(imageSource);
+    return buildImage(imageSource);
 };
 
 export default {
