@@ -1,7 +1,7 @@
 import scaleService from './services/sizing/scaleService';
 import qualityService from './services/sizing/qualityService';
 
-const compress = async (file, options = {
+export const compress = async (file, options = {
     maxHeight: 16250,
     maxWidth: 16250,
     quality: 0.5
@@ -14,8 +14,4 @@ const compress = async (file, options = {
     }
 
     return file;
-};
-
-export default {
-    compress
 };
