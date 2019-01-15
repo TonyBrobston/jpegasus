@@ -3,6 +3,7 @@ import 'babel-polyfill';
 
 import scaleService from './services/sizing/scaleService';
 import qualityService from './services/sizing/qualityService';
+import fileService from './services/elements/fileService';
 
 module.exports.compress = async (file, options = {
     maxHeight: 16250,
@@ -12,7 +13,8 @@ module.exports.compress = async (file, options = {
     const isValidFile = typeof file === 'object' && file !== null && file.size > 0 && file.type.includes('image/');
 
     if (isValidFile) {
-        const canvas = await scaleService.toCanvas(file, options);
+        const exifOrientation = await fileService.getOrientation(file);
+        const canvas = await scaleService.toCanvas(file, options, exifOrientation);
         return qualityService.toFile(file, canvas, options);
     }
 

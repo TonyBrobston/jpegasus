@@ -42,7 +42,8 @@
   "dependencies": {
     "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
-    "base64toblob": "^0.0.2"
+    "base64toblob": "^0.0.2",
+    "exif-js": "^2.3.0"
   },
   "babel": {
     "presets": [
