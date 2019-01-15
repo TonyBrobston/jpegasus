@@ -1,10 +1,10 @@
-import "babel-core/register";
-import "babel-polyfill";
+import 'babel-core/register';
+import 'babel-polyfill';
 
 import scaleService from './services/sizing/scaleService';
 import qualityService from './services/sizing/qualityService';
 
-export const compress = async (file, options = {
+module.exports.compress = async (file, options = {
     maxHeight: 16250,
     maxWidth: 16250,
     quality: 0.5
