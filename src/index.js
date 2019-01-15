@@ -1,6 +1,3 @@
-import 'babel-core/register';
-import 'babel-polyfill';
-
 import scaleService from './services/sizing/scaleService';
 import qualityService from './services/sizing/qualityService';
 import fileService from './services/elements/fileService';
