@@ -7,7 +7,7 @@ module.exports.compress = async (file, options = {
     maxWidth: 16250,
     quality: 0.5
 }) => {
-    const isValidFile = typeof file === 'object' && file !== null && file.size > 0 && file.type.includes('image/');
+    const isValidFile = typeof file === 'object' && file !== null && file.size > 0 && file.type.indexOf('image/') >= 0;
 
     if (isValidFile) {
         const exifOrientation = await fileService.getOrientation(file);
