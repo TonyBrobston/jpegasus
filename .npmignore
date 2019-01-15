@@ -1,2 +1,6 @@
-*
-!lib/
+/src/
+/tests/
+.coverage
+.idea
+yarn.lock
+yarn-error.log

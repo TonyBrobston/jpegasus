@@ -12,11 +12,13 @@ const create = (blob, filename) => {
 const getOrientation = (file) =>
     new Promise((resolve) => {
         const image = new Image();
+
         image.onload = () => {
             EXIF.getData(image, function () {
                 resolve(EXIF.getTag(this, 'Orientation'));
             });
         };
+
         image.src = URL.createObjectURL(file);
     });
 
