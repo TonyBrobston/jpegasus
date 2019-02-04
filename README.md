@@ -4,6 +4,7 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 ### Parameters
 * First parameter: JavaScript `File`
 * Second parameter: Object of `options`
+  * allowCrossOriginResourceSharing: a boolean that determines if `CORS` should be allowed.
   * maxHeight: the max height in pixels of the compressed output `File`.
   * maxWidth: the max width in pixels of the compressed output `File`.
   * quality: degrades quality, values is between 0.01 and 1.00.
