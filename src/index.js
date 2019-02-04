@@ -3,6 +3,7 @@ import qualityService from './services/sizing/qualityService';
 import fileService from './services/elements/fileService';
 
 module.exports.compress = async (file, options = {
+    allowCrossOriginResourceSharing: false,
     maxHeight: 16250,
     maxWidth: 16250,
     quality: 0.5

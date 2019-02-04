@@ -8,9 +8,12 @@ const getImageSource = (file) => {
     });
 };
 
-const buildImage = (imageSource) => {
+const buildImage = (imageSource, options) => {
     return new Promise((resolve) => {
         const image = new Image();
+        if (options.allowCrossOriginResourceSharing) {
+            image.crossOrigin = 'Anonymous';
+        }
         image.addEventListener('load', () => {
             resolve(image);
         });
@@ -18,9 +21,9 @@ const buildImage = (imageSource) => {
     });
 };
 
-const create = async (file) => {
+const create = async (file, options) => {
     const imageSource = await getImageSource(file);
-    return buildImage(imageSource);
+    return buildImage(imageSource, options);
 };
 
 export default {
