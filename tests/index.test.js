@@ -18,6 +18,7 @@ describe('index', async () => {
         });
         const options = undefined;
         const defaultOptions = {
+            allowCrossOriginResourceSharing: false,
             maxHeight: 16250,
             maxWidth: 16250,
             quality: 0.5
