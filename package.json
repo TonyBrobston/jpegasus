@@ -10,9 +10,9 @@
   "scripts": {
     "create": "babel src -d lib",
     "coverage": "jest --coverage",
-    "deploy:major": "yarn build && npm version major && npm publish",
-    "deploy:minor": "yarn build && npm version minor && npm publish",
-    "deploy:patch": "yarn build && npm version patch && npm publish",
+    "deploy:major": "npm login && yarn build && npm version major && npm publish",
+    "deploy:minor": "npm login && yarn build && npm version minor && npm publish",
+    "deploy:patch": "npm login && yarn build && npm version patch && npm publish",
     "build": "rm -rf lib && babel src -d lib",
     "unit": "jest"
   },
