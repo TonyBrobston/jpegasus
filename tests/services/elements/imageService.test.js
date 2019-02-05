@@ -72,13 +72,16 @@ describe('imageService', () => {
                 expect(window.Image).toHaveBeenCalledWith();
             });
 
-            it('should fire file loader onload of image', () => {
+            it('should fire onload on load of image source', () => {
                 expect(image.addEventListener).toHaveBeenCalledTimes(1);
                 expect(image.addEventListener).toHaveBeenCalledWith('load', expect.any(Function));
             });
 
-            it('should have image source from file reader result', () => {
+            it(`should only allow CORS if ${scenario.expectedCrossOrigin}`, () => {
                 expect(image.crossOrigin).toBe(scenario.expectedCrossOrigin);
+            });
+
+            it('should have image source from file reader result', () => {
                 expect(image.src).toBe(fileReader.result);
             })
         });

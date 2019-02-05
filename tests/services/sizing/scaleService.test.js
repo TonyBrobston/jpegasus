@@ -3,9 +3,12 @@ import Chance from 'chance';
 import scaleService from '../../../src/services/sizing/scaleService';
 import imageService from '../../../src/services/elements/imageService';
 import canvasService from '../../../src/services/elements/canvasService';
+import exchangeableImageFormatService from '../../../src/services/formats/exchangeableImageFormatService';
 
 jest.mock('../../../src/services/elements/imageService');
 jest.mock('../../../src/services/elements/canvasService');
+jest.mock('../../../src/services/formats/exchangeableImageFormatService');
+
 
 const chance = new Chance();
 
@@ -13,7 +16,7 @@ describe('scaleService', () => {
     const file = chance.string();
     const expectedCanvas = chance.string();
     let actualCanvas,
-        expectedExifOrientation;
+        expectedOrientation;
 
     const scenarios = [
         {
@@ -99,11 +102,10 @@ describe('scaleService', () => {
         describe(scenario.name, () => {
             beforeAll(async () => {
                 imageService.create.mockResolvedValue(scenario.image);
+                exchangeableImageFormatService.determineOrientation.mockResolvedValue(expectedOrientation);
                 canvasService.create.mockReturnValue(expectedCanvas);
 
-                expectedExifOrientation = chance.integer();
-
-                actualCanvas = await scaleService.toCanvas(file, scenario.options, expectedExifOrientation);
+                actualCanvas = await scaleService.toCanvas(file, scenario.options);
             });
 
             afterAll(() => {
@@ -115,9 +117,14 @@ describe('scaleService', () => {
                 expect(imageService.create).toHaveBeenCalledWith(file, scenario.options);
             });
 
+            it('should determine orientation', () => {
+                expect(exchangeableImageFormatService.determineOrientation).toHaveBeenCalledTimes(1);
+                expect(exchangeableImageFormatService.determineOrientation).toHaveBeenCalledWith(file);
+            });
+
             it('should create a canvas', () => {
                 expect(canvasService.create).toHaveBeenCalledTimes(1);
-                expect(canvasService.create).toHaveBeenCalledWith(scenario.image, scenario.scale, expectedExifOrientation);
+                expect(canvasService.create).toHaveBeenCalledWith(scenario.image, scenario.scale, expectedOrientation);
             });
 
             it('should return a scaled canvasService', () => {

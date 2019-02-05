@@ -11,8 +11,7 @@ module.exports.compress = async (file, options = {
     const isValidFile = typeof file === 'object' && file !== null && file.size > 0 && file.type.indexOf('image/') >= 0;
 
     if (isValidFile) {
-        const exifOrientation = await fileService.getOrientation(file);
-        const canvas = await scaleService.toCanvas(file, options, exifOrientation);
+        const canvas = await scaleService.toCanvas(file, options);
         return qualityService.toFile(file, canvas, options);
     }
 
