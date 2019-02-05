@@ -10,6 +10,7 @@ const chance = new Chance();
 describe('exchangeableImageFormatService', () => {
     const file = new File([], '');
     let expectedOrientation,
+        expectedUrl,
         image,
         actualOrientation;
 
@@ -24,7 +25,8 @@ describe('exchangeableImageFormatService', () => {
             cb();
         });
         global.URL.createObjectURL = jest.fn();
-        global.URL.createObjectURL.mockReturnValue(chance.url());
+        expectedUrl = chance.url();
+        global.URL.createObjectURL.mockReturnValue(expectedUrl);
 
         actualOrientation = await exchangeableImageFormatService.determineOrientation(file);
     });
@@ -51,6 +53,15 @@ describe('exchangeableImageFormatService', () => {
     it('should have called exif getTag', () => {
         expect(exif.getTag).toHaveBeenCalledTimes(1);
         expect(exif.getTag).toHaveBeenCalledWith(image, 'Orientation');
+    });
+
+    it('should have called URL createObjectURL', () => {
+        expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
+        expect(global.URL.createObjectURL).toHaveBeenCalledWith(file);
+    });
+
+    it('should return correct url', () => {
+        expect(image.src).toBe(expectedUrl);
     });
 
     it('should have orientation of file', () => {

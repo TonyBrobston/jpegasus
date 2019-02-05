@@ -24,43 +24,25 @@ describe('imageService', () => {
 
     scenarios.forEach((scenario) => {
         const file = new File([], '');
-        let fileReader,
-            image,
+        let image,
+            expectedUrl,
             actualImageSource;
 
         describe(scenario.name, () => {
             beforeAll(async () => {
-                fileReader = {
-                    addEventListener: jest.fn((_, evtHandler) => { evtHandler(); }),
-                    readAsDataURL: jest.fn(),
-                    result: chance.string
-                };
                 image = {
                     addEventListener: jest.fn((_, evtHandler) => { evtHandler(); })
                 };
-                window.FileReader = jest.fn(() => fileReader);
                 window.Image = jest.fn(() => image);
+                global.URL.createObjectURL = jest.fn();
+                expectedUrl = chance.url();
+                global.URL.createObjectURL.mockReturnValue(expectedUrl)
 
                 actualImageSource = await imageService.create(file, scenario.options);
             });
 
             afterAll(() => {
                 jest.clearAllMocks();
-            });
-
-            it('should create file reader', async () => {
-                expect(window.FileReader).toHaveBeenCalledTimes(1);
-                expect(window.FileReader).toHaveBeenCalledWith();
-            });
-
-            it('should fire file loader onload of file reader', () => {
-                expect(fileReader.addEventListener).toHaveBeenCalledTimes(1);
-                expect(fileReader.addEventListener).toHaveBeenCalledWith('load', expect.any(Function));
-            });
-
-            it('should fire read as data url on read of file reader', () => {
-                expect(fileReader.readAsDataURL).toHaveBeenCalledTimes(1);
-                expect(fileReader.readAsDataURL).toHaveBeenCalledWith(file);
             });
 
             it('should return image source from file reader', () => {
@@ -81,8 +63,17 @@ describe('imageService', () => {
                 expect(image.crossOrigin).toBe(scenario.expectedCrossOrigin);
             });
 
+            it('should have called URL createObjectURL', () => {
+                expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
+                expect(global.URL.createObjectURL).toHaveBeenCalledWith(file);
+            });
+
+            it('should return correct url', () => {
+                expect(image.src).toBe(expectedUrl);
+            });
+
             it('should have image source from file reader result', () => {
-                expect(image.src).toBe(fileReader.result);
+                expect(image.src).toBe(expectedUrl);
             })
         });
     });
