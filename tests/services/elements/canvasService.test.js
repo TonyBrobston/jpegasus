@@ -5,8 +5,8 @@ import canvasService from '../../../src/services/elements/canvasService';
 const chance = new Chance();
 
 describe('canvasService', () => {
-    const height = chance.integer({min: 0});
-    const width = chance.integer({min: 0});
+    const height = chance.natural();
+    const width = chance.natural();
     const image = {
         height,
         width

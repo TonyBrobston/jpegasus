@@ -1,13 +1,13 @@
 import base64toblob from 'base64toblob';
 
-import fileService from '../elements/fileService';
+import blobService from '../formats/blobService';
 
 const toFile = (file, canvas, options) => {
     const quality = determineQuality(file, options);
     const dataUrl = canvas.toDataURL('image/jpeg', quality);
     const base64 = dataUrl.split(',')[1];
     const blob = base64toblob(base64, 'image/jpeg');
-    const compressedFile = fileService.create(blob, file.name);
+    const compressedFile = blobService.create(blob, file.name);
     return pickSmallerFile(compressedFile, file);
 };
 

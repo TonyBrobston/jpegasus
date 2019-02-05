@@ -40,15 +40,10 @@ const correctExifRotation = (canvas, exifOrientation, height, width) => {
 
 const create = (image, scale, exifOrientation) => {
     const canvas = document.createElement('canvas');
-
     const scaledHeight = image.height * scale;
-
     const scaledWidth = image.width * scale;
-
     const context = correctExifRotation(canvas, exifOrientation, scaledHeight, scaledWidth);
-
     context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
-
     return canvas;
 };
 
