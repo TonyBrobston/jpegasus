@@ -1,10 +1,10 @@
-const create = (file, filename) => {
-    const blob = file;
+const create = (blob, name) => {
+    const blobWithMetadata = blob;
 
-    blob.lastModifiedDate = new Date();
-    blob.name = filename;
+    blobWithMetadata.lastModifiedDate = new Date();
+    blobWithMetadata.name = name;
 
-    return blob;
+    return blobWithMetadata;
 };
 
 export default {
