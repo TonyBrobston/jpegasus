@@ -10,16 +10,16 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 ```
 const jpegasus = require('Jpegasus');
 
-const compress = (file, maxHeight, maxWidth, quality) => {
+const processFile = (file) => {
     return jpegasus.compress(file, {
-        maxHeight,
-        maxWidth,
-        quality
+        maxHeight: 1000,
+        maxWidth: 1000,
+        quality: 0.65
     });
 };
 
 module.exports = {
-    compress
+    processFile
 };
 ```
 
