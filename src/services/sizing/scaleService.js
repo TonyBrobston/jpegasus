@@ -1,6 +1,5 @@
 import imageService from '../elements/imageService';
 import canvasService from '../elements/canvasService';
-import exchangeableImageFormatService from '../formats/exchangeableImageFormatService';
 
 const determineScale = (image, options) => {
     const height = image.height;
@@ -22,9 +21,8 @@ const determineScale = (image, options) => {
 
 const toCanvas = async (file, options) => {
     const image = await imageService.create(file, options);
-    const exifOrientation = await exchangeableImageFormatService.determineOrientation(file);
     const scale = determineScale(image, options);
-    return canvasService.create(image, scale, exifOrientation);
+    return canvasService.create(image, scale);
 };
 
 export default {

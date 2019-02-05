@@ -1,7 +1,9 @@
-const correctExifRotation = (canvas, exifOrientation, height, width) => {
+import exifService from '../formats/exifService';
+
+const correctExifRotation = (canvas, orientation, height, width) => {
     const context = canvas.getContext('2d');
 
-    if (exifOrientation > 4 && exifOrientation < 9) {
+    if (orientation > 4 && orientation < 9) {
         canvas.width = height;
         canvas.height = width;
     } else {
@@ -9,7 +11,7 @@ const correctExifRotation = (canvas, exifOrientation, height, width) => {
         canvas.height = height;
     }
 
-    switch (exifOrientation) {
+    switch (orientation) {
         case 2:
             context.transform(-1, 0, 0, 1, width, 0);
             break;
@@ -38,11 +40,12 @@ const correctExifRotation = (canvas, exifOrientation, height, width) => {
     return context;
 };
 
-const create = (image, scale, exifOrientation) => {
+const create = async (image, scale) => {
     const canvas = document.createElement('canvas');
     const scaledHeight = image.height * scale;
     const scaledWidth = image.width * scale;
-    const context = correctExifRotation(canvas, exifOrientation, scaledHeight, scaledWidth);
+    const orientation = await exifService.determineOrientation(image);
+    const context = correctExifRotation(canvas, orientation, scaledHeight, scaledWidth);
     context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
     return canvas;
 };

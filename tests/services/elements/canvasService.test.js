@@ -1,8 +1,11 @@
 import Chance from 'chance';
 
 import canvasService from '../../../src/services/elements/canvasService';
+import exifService from '../../../src/services/formats/exifService';
 
 const chance = new Chance();
+
+jest.mock('../../../src/services/formats/exifService');
 
 describe('canvasService', () => {
     const height = chance.natural();
@@ -20,6 +23,7 @@ describe('canvasService', () => {
     const canvas = {
         getContext: jest.fn()
     };
+    const expectedOrientation = chance.integer();
 
     let actualCanvas;
 
@@ -31,10 +35,11 @@ describe('canvasService', () => {
     };
 
     canvas.getContext.mockReturnValue(context);
+    exifService.determineOrientation.mockResolvedValue(expectedOrientation);
 
     describe('create', () => {
-        beforeAll(() => {
-            actualCanvas = canvasService.create(image, scale, chance.integer());
+        beforeAll(async () => {
+            actualCanvas = await canvasService.create(image, scale);
         });
 
         it('should create a canvasService', () => {
@@ -45,6 +50,11 @@ describe('canvasService', () => {
         it('should get a imageCanvas context', () => {
             expect(canvas.getContext).toHaveBeenCalledTimes(1);
             expect(canvas.getContext).toHaveBeenCalledWith('2d');
+        });
+
+        it('should determine orientation', () => {
+            expect(exifService.determineOrientation).toHaveBeenCalledTimes(1);
+            expect(exifService.determineOrientation).toHaveBeenCalledWith(image);
         });
 
         it('should draw the image on the context of the imageCanvas', () => {
@@ -105,9 +115,11 @@ describe('canvasService', () => {
         ];
 
         expectedRotationScenarios.forEach((scenario) => {
-            it(`should perform the correct rotation - orientation ${scenario.exifOrientation}`, () => {
+            it(`should perform the correct rotation - orientation ${scenario.exifOrientation}`, async () => {
                 context.transform.mockClear();
-                actualCanvas = canvasService.create(image, scale, scenario.exifOrientation);
+                exifService.determineOrientation.mockResolvedValue(scenario.exifOrientation);
+
+                actualCanvas = await canvasService.create(image, scale);
 
                 expect(actualCanvas.height).toBe(scenario.height);
                 expect(actualCanvas.width).toBe(scenario.width);

@@ -11,7 +11,7 @@ const chance = new Chance();
 
 describe('index', async () => {
     describe('happy path', () => {
-        const file = new File([chance.integer({min: 1})], chance.string(), {
+        const file = new File([chance.natural()], chance.string(), {
             type: `image/${chance.pickone(['jpeg', 'gif', 'png'])}`
         });
         const options = undefined;
@@ -73,7 +73,7 @@ describe('index', async () => {
             },
             {
                 file: {
-                    size: chance.integer({min: 1}),
+                    size: chance.natural(),
                     type: chance.string()
                 },
                 scenario: 'a File that\'s type does not start with image'
