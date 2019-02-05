@@ -1,6 +1,6 @@
 import base64toblob from 'base64toblob';
 
-import fileService from '../elements/fileService';
+import fileService from '../formats/blobService';
 
 const toFile = (file, canvas, options) => {
     const quality = determineQuality(file, options);
