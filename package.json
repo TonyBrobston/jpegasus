@@ -66,5 +66,8 @@
         "statements": 100
       }
     }
+  },
+  "peerDependencies": {
+    "babel-runtime": "^6.26.0"
   }
 }
