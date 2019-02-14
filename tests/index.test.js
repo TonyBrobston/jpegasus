@@ -10,16 +10,18 @@ jest.mock('../src/services/sizing/qualityService');
 const chance = new Chance();
 
 describe('index', async () => {
+    const file = new File([chance.natural()], chance.string(), {
+        type: `image/${chance.pickone(['jpeg', 'gif', 'png'])}`
+    });
+
     describe('happy path', () => {
-        const file = new File([chance.natural()], chance.string(), {
-            type: `image/${chance.pickone(['jpeg', 'gif', 'png'])}`
-        });
         const options = undefined;
         const defaultOptions = {
             allowCrossOriginResourceSharing: false,
             maxHeight: 16250,
             maxWidth: 16250,
-            quality: 0.5
+            quality: 0.5,
+            readImageFileTimeout: 5000
         };
         const canvas = chance.string();
         const expectedCompressedFile = new File([chance.natural()], chance.string());
@@ -50,41 +52,57 @@ describe('index', async () => {
     });
 
     describe('sad path', () => {
-        const sadPaths = [
-            {
-                file: chance.string(),
-                scenario: 'file of string'
-            },
-            {
-                file: new File([], chance.string()),
-                scenario: 'file with no size'
-            },
-            {
-                file: {},
-                scenario: 'file of empty object'
-            },
-            {
-                file: undefined,
-                scenario: 'file of undefined'
-            },
-            {
-                file: null,
-                scenario: 'file of null'
-            },
-            {
-                file: {
-                    size: chance.natural(),
-                    type: chance.string()
+        describe('scenarios', () => {
+            const sadPaths = [
+                {
+                    file: chance.string(),
+                    scenario: 'file of string'
                 },
-                scenario: 'a File that\'s type does not start with image'
-            }
-        ];
+                {
+                    file: new File([], chance.string()),
+                    scenario: 'file with no size'
+                },
+                {
+                    file: {},
+                    scenario: 'file of empty object'
+                },
+                {
+                    file: undefined,
+                    scenario: 'file of undefined'
+                },
+                {
+                    file: null,
+                    scenario: 'file of null'
+                },
+                {
+                    file: {
+                        size: chance.natural(),
+                        type: chance.string()
+                    },
+                    scenario: 'a File that\'s type does not start with image'
+                }
+            ];
 
-        sadPaths.forEach((sadPath) => {
-            it(`should not allow ${sadPath.scenario}`, async () => {
-                const compressedFile = await index.compress(sadPath.file);
+            sadPaths.forEach((sadPath) => {
+                it(`should not allow ${sadPath.scenario}`, async () => {
+                    const compressedFile = await index.compress(sadPath.file);
 
-                expect(compressedFile).toBe(sadPath.file);
+                    expect(compressedFile).toBe(sadPath.file);
+                });
+            });
+        });
+
+        describe('throws', () => {
+            it('scaleService toCanvas throws', async () => {
+                const expectedFile = file;
+
+                scaleService.toCanvas.mockImplementation(() => {
+                    throw new Error();
+                });
+
+                const actualFile = await index.compress(expectedFile);
+
+                expect(actualFile).toBe(expectedFile);
             });
         });
     });
