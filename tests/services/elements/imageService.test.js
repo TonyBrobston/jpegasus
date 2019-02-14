@@ -86,6 +86,6 @@ describe('imageService', () => {
             it('should return image source from file reader', () => {
                 expect(actualImageSource).toBe(image);
             });
-        });
     });
+  });
 });

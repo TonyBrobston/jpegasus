@@ -28,28 +28,28 @@ describe('index', async () => {
         let actualCompressedFile,
             exifOrientation;
 
-        scaleService.toCanvas.mockResolvedValue(canvas);
-        qualityService.toFile.mockReturnValue(expectedCompressedFile);
+    scaleService.toCanvas.mockResolvedValue(canvas);
+    qualityService.toFile.mockReturnValue(expectedCompressedFile);
 
-        beforeAll(async () => {
-            exifOrientation = chance.integer();
-            actualCompressedFile = await index.compress(file, options, exifOrientation);
-        });
-
-        it('should convert file to canvasService and scale', async () => {
-            expect(scaleService.toCanvas).toHaveBeenCalledTimes(1);
-            expect(scaleService.toCanvas).toHaveBeenCalledWith(file, defaultOptions);
-        });
-
-        it('should convert file to file and reduce quality', () => {
-            expect(qualityService.toFile).toHaveBeenCalledTimes(1);
-            expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, defaultOptions);
-        });
-
-        it('should return a compressed file', () => {
-            expect(actualCompressedFile).toBe(expectedCompressedFile);
-        });
+    beforeAll(async () => {
+      exifOrientation = chance.integer();
+      actualCompressedFile = await index.compress(file, options, exifOrientation);
     });
+
+    it('should convert file to canvasService and scale', async () => {
+      expect(scaleService.toCanvas).toHaveBeenCalledTimes(1);
+      expect(scaleService.toCanvas).toHaveBeenCalledWith(file, defaultOptions);
+    });
+
+    it('should convert file to file and reduce quality', () => {
+      expect(qualityService.toFile).toHaveBeenCalledTimes(1);
+      expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, defaultOptions);
+    });
+
+    it('should return a compressed file', () => {
+      expect(actualCompressedFile).toBe(expectedCompressedFile);
+    });
+  });
 
     describe('sad path', () => {
         describe('scenarios', () => {
@@ -105,5 +105,5 @@ describe('index', async () => {
                 expect(actualFile).toBe(expectedFile);
             });
         });
-    });
+  });
 });
