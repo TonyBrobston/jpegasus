@@ -1,12 +1,12 @@
 const create = (blob, name) => {
-    const blobWithMetadata = blob;
+  const blobWithMetadata = blob;
 
-    blobWithMetadata.lastModifiedDate = new Date();
-    blobWithMetadata.name = name;
+  blobWithMetadata.lastModifiedDate = new Date();
+  blobWithMetadata.name = name;
 
-    return blobWithMetadata;
+  return blobWithMetadata;
 };
 
 export default {
-    create
+  create,
 };
