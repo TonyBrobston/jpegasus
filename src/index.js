@@ -3,7 +3,11 @@ import qualityService from './services/sizing/qualityService';
 
 module.exports.compress = async (file, overrideOptions) => {
   try {
-    const isValidFile = typeof file === 'object' && file !== null && file.size > 0 && file.type.indexOf('image/') >= 0;
+    const fileIsNotNull = file !== null;
+    const fileIsAnObject = typeof file === 'object';
+    const fileHasSize = file.size > 0;
+    const fileIsValidType = ['image/jpeg', 'image/gif', 'image/png'].includes(file.type);
+    const isValidFile = fileIsNotNull && fileIsAnObject && fileHasSize && fileIsValidType;
 
     if (isValidFile) {
       const defaultOptions = {
