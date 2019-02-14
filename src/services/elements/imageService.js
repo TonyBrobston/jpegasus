@@ -1,5 +1,7 @@
+import promiseService from '../timeout/promiseService';
+
 const create = async (file, options) => {
-    return new Promise((resolve) => {
+    const imagePromise = new Promise((resolve) => {
         const image = new Image();
         if (options.allowCrossOriginResourceSharing) {
             image.crossOrigin = 'Anonymous';
@@ -9,6 +11,8 @@ const create = async (file, options) => {
         });
         image.src = URL.createObjectURL(file);
     });
+
+    return promiseService.timeout(imagePromise, options.readImageFileTimeout, 'The reading of the image timed out.');
 };
 
 export default {

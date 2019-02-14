@@ -1,6 +1,9 @@
 import Chance from 'chance';
 
+import promiseService from '../../../src/services/timeout/promiseService';
 import imageService from '../../../src/services/elements/imageService';
+
+jest.mock('../../../src/services/timeout/promiseService');
 
 const chance = new Chance();
 
@@ -10,14 +13,16 @@ describe('imageService', () => {
             expectedCrossOrigin: 'Anonymous',
             name: 'Allow CORS',
             options: {
-                allowCrossOriginResourceSharing: true
+                allowCrossOriginResourceSharing: true,
+                readImageFileTimeout: 5000
             }
         },
         {
             expectedCrossOrigin: undefined,
             name: 'Do not allow CORS',
             options: {
-                allowCrossOriginResourceSharing: false
+                allowCrossOriginResourceSharing: false,
+                readImageFileTimeout: 5000
             }
         }
     ];
@@ -34,6 +39,7 @@ describe('imageService', () => {
                     addEventListener: jest.fn((_, evtHandler) => { evtHandler(); })
                 };
                 window.Image = jest.fn(() => image);
+                promiseService.timeout.mockReturnValue(image);
                 global.URL.createObjectURL = jest.fn();
                 expectedUrl = chance.url();
                 global.URL.createObjectURL.mockReturnValue(expectedUrl)
@@ -45,8 +51,9 @@ describe('imageService', () => {
                 jest.clearAllMocks();
             });
 
-            it('should return image source from file reader', () => {
-                expect(actualImageSource).toBe(image);
+            it('should call promiseService timeoutPromise', () => {
+                expect(promiseService.timeout).toHaveBeenCalledTimes(1);
+                expect(promiseService.timeout).toHaveBeenCalledWith(expect.any(Promise), scenario.options.readImageFileTimeout, 'The reading of the image timed out.');
             });
 
             it('should create an image', () => {
@@ -75,6 +82,10 @@ describe('imageService', () => {
             it('should have image source from file reader result', () => {
                 expect(image.src).toBe(expectedUrl);
             })
+
+            it('should return image source from file reader', () => {
+                expect(actualImageSource).toBe(image);
+            });
         });
     });
 });
