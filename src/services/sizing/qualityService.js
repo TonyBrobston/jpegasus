@@ -17,12 +17,21 @@ const determineQuality = (file, options) => {
     return 1.00;
 };
 
+const pickSmallerFile = (compressedBlob, originalFile) => {
+    if (compressedBlob.size < originalFile.size) {
+        return compressedBlob;
+    }
+
+    return originalFile;
+};
+
 const toFile = (file, canvas, options) => {
     const quality = determineQuality(file, options);
     const dataUrl = canvas.toDataURL('image/jpeg', quality);
     const base64 = dataUrl.split(',')[1];
     const blob = base64toblob(base64, 'image/jpeg');
-    return blobService.create(blob, file.name);
+    const compressedBlob = blobService.create(blob, file.name);
+    return pickSmallerFile(compressedBlob, file);
 };
 
 export default {

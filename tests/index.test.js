@@ -1,9 +1,11 @@
 import Chance from 'chance';
 
 import index from '../src/index';
+import optionService from '../src/services/config/optionService';
 import scaleService from '../src/services/sizing/scaleService';
 import qualityService from '../src/services/sizing/qualityService';
 
+jest.mock('../src/services/config/optionService');
 jest.mock('../src/services/sizing/scaleService');
 jest.mock('../src/services/sizing/qualityService');
 
@@ -13,39 +15,43 @@ describe('index', async () => {
     const fileTypes = ['image/jpeg', 'image/gif', 'image/png'];
 
     fileTypes.forEach((fileType) => {
-        describe('happy path', () => {
+        describe(`happy path ${fileType}`, () => {
+            let actualCompressedFile;
+
             const file = new File([chance.natural()], chance.string(), {
                 type: fileType,
             });
-            const options = undefined;
-            const defaultOptions = {
-                allowCrossOriginResourceSharing: false,
-                maxHeight: 16250,
-                maxWidth: 16250,
-                quality: 0.5,
-                readImageFileTimeout: 5000,
-            };
             const canvas = chance.string();
             const expectedCompressedFile = new File([chance.natural()], chance.string());
-            let actualCompressedFile;
-            let exifOrientation;
+            const options = chance.string();
+            const mergedOptions = chance.string();
 
-            scaleService.toCanvas.mockResolvedValue(canvas);
-            qualityService.toFile.mockReturnValue(expectedCompressedFile);
 
             beforeAll(async () => {
-                exifOrientation = chance.integer();
-                actualCompressedFile = await index.compress(file, options, exifOrientation);
+                optionService.override.mockReturnValue(mergedOptions);
+                scaleService.toCanvas.mockResolvedValue(canvas);
+                qualityService.toFile.mockReturnValue(expectedCompressedFile);
+
+                actualCompressedFile = await index.compress(file, options);
+            });
+
+            afterAll(() => {
+                jest.clearAllMocks();
+            });
+
+            it('should override default options', () => {
+                expect(optionService.override).toHaveBeenCalledTimes(1);
+                expect(optionService.override).toHaveBeenCalledWith(options);
             });
 
             it('should convert file to canvasService and scale', async () => {
                 expect(scaleService.toCanvas).toHaveBeenCalledTimes(1);
-                expect(scaleService.toCanvas).toHaveBeenCalledWith(file, defaultOptions);
+                expect(scaleService.toCanvas).toHaveBeenCalledWith(file, mergedOptions);
             });
 
             it('should convert file to file and reduce quality', () => {
                 expect(qualityService.toFile).toHaveBeenCalledTimes(1);
-                expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, defaultOptions);
+                expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, mergedOptions);
             });
 
             it('should return a compressed file', () => {

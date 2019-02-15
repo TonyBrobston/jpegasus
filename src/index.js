@@ -1,7 +1,8 @@
+import optionService from './services/config/optionService';
 import scaleService from './services/sizing/scaleService';
 import qualityService from './services/sizing/qualityService';
 
-module.exports.compress = async (file, overrideOptions) => {
+module.exports.compress = async (file, options) => {
     try {
         const fileIsNotNull = file !== null;
         const fileIsAnObject = typeof file === 'object';
@@ -10,17 +11,7 @@ module.exports.compress = async (file, overrideOptions) => {
         const isValidFile = fileIsNotNull && fileIsAnObject && fileHasSize && fileIsValidType;
 
         if (isValidFile) {
-            const defaultOptions = {
-                allowCrossOriginResourceSharing: false,
-                maxHeight: 16250,
-                maxWidth: 16250,
-                quality: 0.5,
-                readImageFileTimeout: 5000,
-            };
-            const mergedOptions = {
-                ...defaultOptions,
-                ...overrideOptions,
-            };
+            const mergedOptions = optionService.override(options);
             const canvas = await scaleService.toCanvas(file, mergedOptions);
             return qualityService.toFile(file, canvas, mergedOptions);
         }
