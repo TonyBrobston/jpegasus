@@ -30,4 +30,3 @@ module.exports = {
   * `maxHeight`: the max height in pixels of the compressed output File, defaults to `16250`.
   * `maxWidth`: the max width in pixels of the compressed output File, defaults to `16250`.
   * `quality`: degrades quality of File, values is between `0.01` and `1.00`, defaults to `0.50`.
-  * `readImageFileTimeout`: the amount of milliseconds to wait before deciding the image cannot be loaded, defaults to `5000` ms.
