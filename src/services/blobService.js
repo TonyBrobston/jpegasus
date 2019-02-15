@@ -1,4 +1,4 @@
-const create = (blob, name) => {
+const addMetadata = (blob, name) => {
     const blobWithMetadata = blob;
 
     blobWithMetadata.lastModifiedDate = new Date();
@@ -8,5 +8,5 @@ const create = (blob, name) => {
 };
 
 export default {
-    addMetadata: create,
+    addMetadata,
 };

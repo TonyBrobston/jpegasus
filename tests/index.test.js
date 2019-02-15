@@ -1,15 +1,17 @@
 import Chance from 'chance';
 
-import index from '../src/index';
 import fileService from '../src/services/fileService';
 import optionService from '../src/services/optionService';
 import scaleService from '../src/services/scaleService';
 import qualityService from '../src/services/qualityService';
+import comparisonService from '../src/services/comparisonService';
+import index from '../src/index';
 
 jest.mock('../src/services/fileService');
 jest.mock('../src/services/optionService');
 jest.mock('../src/services/scaleService');
 jest.mock('../src/services/qualityService');
+jest.mock('../src/services/comparisonService');
 
 const chance = new Chance();
 
@@ -21,16 +23,16 @@ describe('index', async () => {
             type: 'image/jpeg',
         });
         const canvas = chance.string();
-        const expectedCompressedFile = new File([chance.natural()], chance.string());
+        const expectedCompressedBlob = new File([chance.natural()], chance.string());
         const inputOptions = chance.string();
         const options = chance.string();
+        fileService.validate.mockReturnValue(true);
+        optionService.override.mockReturnValue(options);
+        scaleService.toCanvas.mockResolvedValue(canvas);
+        qualityService.toBlob.mockReturnValue(expectedCompressedBlob);
+        comparisonService.pickSmaller.mockReturnValue(expectedCompressedBlob);
 
         beforeAll(async () => {
-            fileService.validate.mockReturnValue(true);
-            optionService.override.mockReturnValue(options);
-            scaleService.toCanvas.mockResolvedValue(canvas);
-            qualityService.toFile.mockReturnValue(expectedCompressedFile);
-
             actualCompressedFile = await index.compress(file, inputOptions);
         });
 
@@ -49,12 +51,17 @@ describe('index', async () => {
         });
 
         it('should convert file to file and reduce quality', () => {
-            expect(qualityService.toFile).toHaveBeenCalledTimes(1);
-            expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, options);
+            expect(qualityService.toBlob).toHaveBeenCalledTimes(1);
+            expect(qualityService.toBlob).toHaveBeenCalledWith(file, canvas, options);
+        });
+
+        it('should compare a blob and a file and return the smaller one', () => {
+            expect(comparisonService.pickSmaller).toHaveBeenCalledTimes(1);
+            expect(comparisonService.pickSmaller).toHaveBeenCalledWith(expectedCompressedBlob, file);
         });
 
         it('should return a compressed file', () => {
-            expect(actualCompressedFile).toBe(expectedCompressedFile);
+            expect(actualCompressedFile).toBe(expectedCompressedBlob);
         });
     });
 

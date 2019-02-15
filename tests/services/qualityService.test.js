@@ -2,7 +2,7 @@ import Chance from 'chance';
 import base64toblob from 'base64toblob';
 
 import qualityService from '../../src/services/qualityService';
-import fileService from '../../src/services/blobService';
+import blobService from '../../src/services/blobService';
 
 jest.mock('base64toblob');
 jest.mock('../../src/services/blobService');
@@ -18,9 +18,6 @@ describe('qualityService', () => {
 
     const scenarios = [
         {
-            createdFile: {
-                size: 100,
-            },
             expectedFile: {
                 size: 100,
             },
@@ -33,11 +30,8 @@ describe('qualityService', () => {
             quality: 1.00,
         },
         {
-            createdFile: {
-                size: 100,
-            },
             expectedFile: {
-                size: 75,
+                size: 100,
             },
             file: {
                 name: chance.string(),
@@ -51,9 +45,6 @@ describe('qualityService', () => {
             quality: 0.75,
         },
         {
-            createdFile: {
-                size: 10,
-            },
             expectedFile: {
                 size: 10,
             },
@@ -68,9 +59,6 @@ describe('qualityService', () => {
             quality: 0.10,
         },
         {
-            createdFile: {
-                size: 10,
-            },
             expectedFile: {
                 size: 10,
             },
@@ -85,11 +73,8 @@ describe('qualityService', () => {
             quality: 1.00,
         },
         {
-            createdFile: {
-                size: 1000,
-            },
             expectedFile: {
-                size: 100,
+                size: 1000,
             },
             file: {
                 name: chance.string(),
@@ -112,9 +97,9 @@ describe('qualityService', () => {
             beforeAll(() => {
                 canvas.toDataURL.mockReturnValue(base64);
                 base64toblob.mockReturnValue(blob);
-                fileService.addMetadata.mockReturnValue(scenario.createdFile);
+                blobService.addMetadata.mockReturnValue(scenario.expectedFile);
 
-                actualFile = qualityService.toFile(scenario.file, canvas, scenario.options);
+                actualFile = qualityService.toBlob(scenario.file, canvas, scenario.options);
             });
 
             afterAll(() => {
@@ -132,8 +117,8 @@ describe('qualityService', () => {
             });
 
             it('should addMetadata a new file', () => {
-                expect(fileService.addMetadata).toHaveBeenCalledTimes(1);
-                expect(fileService.addMetadata).toHaveBeenCalledWith(blob, scenario.file.name);
+                expect(blobService.addMetadata).toHaveBeenCalledTimes(1);
+                expect(blobService.addMetadata).toHaveBeenCalledWith(blob, scenario.file.name);
             });
 
             it('should return a compressed file', () => {
