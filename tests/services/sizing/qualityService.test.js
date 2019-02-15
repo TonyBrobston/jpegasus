@@ -86,21 +86,21 @@ describe('qualityService', () => {
         },
         {
             createdFile: {
-                size: 1000
+                size: 1000,
             },
             expectedFile: {
-                size: 100
+                size: 100,
             },
             file: {
                 name: chance.string(),
-                size: 100
+                size: 100,
             },
             name: 'file got bigger',
             options: {
-                targetFileSize: 100
+                targetFileSize: 100,
             },
-            quality: 1.00
-        }
+            quality: 1.00,
+        },
     ];
 
     scenarios.forEach((scenario) => {

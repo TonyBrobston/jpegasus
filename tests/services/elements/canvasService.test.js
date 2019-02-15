@@ -73,19 +73,19 @@ describe('canvasService', () => {
             {
                 exifOrientation: 2,
                 height: scaledHeight,
-                parameters: [-1, 0, 0, 1, scaledWidth, 0],
+                parameters: [- 1, 0, 0, 1, scaledWidth, 0],
                 width: scaledWidth,
             },
             {
                 exifOrientation: 3,
                 height: scaledHeight,
-                parameters: [-1, 0, 0, -1, scaledWidth, scaledHeight],
+                parameters: [- 1, 0, 0, - 1, scaledWidth, scaledHeight],
                 width: scaledWidth,
             },
             {
                 exifOrientation: 4,
                 height: scaledHeight,
-                parameters: [1, 0, 0, -1, 0, scaledHeight],
+                parameters: [1, 0, 0, - 1, 0, scaledHeight],
                 width: scaledWidth,
             },
             {
@@ -97,19 +97,19 @@ describe('canvasService', () => {
             {
                 exifOrientation: 6,
                 height: scaledWidth,
-                parameters: [0, 1, -1, 0, scaledHeight, 0],
+                parameters: [0, 1, - 1, 0, scaledHeight, 0],
                 width: scaledHeight,
             },
             {
                 exifOrientation: 7,
                 height: scaledWidth,
-                parameters: [0, -1, -1, 0, scaledHeight, scaledWidth],
+                parameters: [0, - 1, - 1, 0, scaledHeight, scaledWidth],
                 width: scaledHeight,
             },
             {
                 exifOrientation: 8,
                 height: scaledWidth,
-                parameters: [0, -1, 1, 0, 0, scaledWidth],
+                parameters: [0, - 1, 1, 0, 0, scaledWidth],
                 width: scaledHeight,
             },
         ];

@@ -45,6 +45,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "chance": "^1.0.18",
     "eslint": "^5.13.0",
+    "eslint-config-devine": "^2.0.1",
     "eslint-config-google": "^0.12.0",
     "jest": "^23.6.0"
   },

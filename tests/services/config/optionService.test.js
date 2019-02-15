@@ -1,7 +1,6 @@
 import optionService from '../../../src/services/config/optionService';
 
 describe('optionService', () => {
-
     const scenarios = [
         {
             expected: {
@@ -12,7 +11,7 @@ describe('optionService', () => {
                 readImageFileTimeout: 5000,
             },
             name: 'should not override any options',
-            options: {}
+            options: {},
         },
         {
             expected: {
@@ -29,7 +28,7 @@ describe('optionService', () => {
                 maxWidth: 4,
                 quality: 0.75,
                 readImageFileTimeout: 2500,
-            }
+            },
         },
         {
             expected: {
@@ -41,8 +40,8 @@ describe('optionService', () => {
             },
             name: 'should override only allowCrossOriginResourceSharing',
             options: {
-                allowCrossOriginResourceSharing: true
-            }
+                allowCrossOriginResourceSharing: true,
+            },
         },
     ];
 
