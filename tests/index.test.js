@@ -22,16 +22,16 @@ describe('index', async () => {
         });
         const canvas = chance.string();
         const expectedCompressedFile = new File([chance.natural()], chance.string());
+        const inputOptions = chance.string();
         const options = chance.string();
-        const mergedOptions = chance.string();
 
         beforeAll(async () => {
             fileService.validate.mockReturnValue(true);
-            optionService.override.mockReturnValue(mergedOptions);
+            optionService.override.mockReturnValue(options);
             scaleService.toCanvas.mockResolvedValue(canvas);
             qualityService.toFile.mockReturnValue(expectedCompressedFile);
 
-            actualCompressedFile = await index.compress(file, options);
+            actualCompressedFile = await index.compress(file, inputOptions);
         });
 
         afterAll(() => {
@@ -40,17 +40,17 @@ describe('index', async () => {
 
         it('should override default options', () => {
             expect(optionService.override).toHaveBeenCalledTimes(1);
-            expect(optionService.override).toHaveBeenCalledWith(options);
+            expect(optionService.override).toHaveBeenCalledWith(inputOptions);
         });
 
         it('should convert file to canvasService and scale', async () => {
             expect(scaleService.toCanvas).toHaveBeenCalledTimes(1);
-            expect(scaleService.toCanvas).toHaveBeenCalledWith(file, mergedOptions);
+            expect(scaleService.toCanvas).toHaveBeenCalledWith(file, options);
         });
 
         it('should convert file to file and reduce quality', () => {
             expect(qualityService.toFile).toHaveBeenCalledTimes(1);
-            expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, mergedOptions);
+            expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, options);
         });
 
         it('should return a compressed file', () => {
