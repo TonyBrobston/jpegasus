@@ -1,96 +1,122 @@
 import Chance from 'chance';
 
-import promiseService from '../../src/services/promiseService';
 import imageService from '../../src/services/imageService';
-
-jest.mock('../../src/services/promiseService');
 
 const chance = new Chance();
 
 describe('imageService', () => {
-    const scenarios = [
-        {
-            expectedCrossOrigin: 'Anonymous',
-            name: 'Allow CORS',
-            options: {
-                allowCrossOriginResourceSharing: true,
-                readImageFileTimeout: 5000,
+    describe('happy path', () => {
+        const scenarios = [
+            {
+                expectedCrossOrigin: 'Anonymous',
+                name: 'Allow CORS',
+                options: {
+                    allowCrossOriginResourceSharing: true
+                },
             },
-        },
-        {
-            expectedCrossOrigin: undefined,
-            name: 'Do not allow CORS',
-            options: {
-                allowCrossOriginResourceSharing: false,
-                readImageFileTimeout: 5000,
+            {
+                expectedCrossOrigin: undefined,
+                name: 'Do not allow CORS',
+                options: {
+                    allowCrossOriginResourceSharing: false
+                },
             },
-        },
-    ];
+        ];
 
-    scenarios.forEach((scenario) => {
-        const file = new File([], '');
-        let image;
-        let expectedUrl;
-        let actualImageSource;
+        scenarios.forEach((scenario) => {
+            const file = new File([1234], chance.string());
+            let image,
+                expectedUrl,
+                actualImageSource;
 
-        describe(scenario.name, () => {
+            describe(scenario.name, () => {
+                beforeAll(async () => {
+                    const map = {};
+                    image = {
+                        addEventListener: jest.fn((event, cb) => {
+                            map[event] = cb;
+                        }),
+                    };
+                    window.Image = jest.fn(() => image);
+                    expectedUrl = chance.url();
+                    global.URL.createObjectURL = jest.fn();
+                    global.URL.createObjectURL.mockImplementation(() => {
+                        map.load();
+                        return expectedUrl;
+                    });
+
+                    actualImageSource = await imageService.create(file, scenario.options);
+                });
+
+                afterAll(() => {
+                    jest.clearAllMocks();
+                });
+
+                it('should addMetadata an image', () => {
+                    expect(window.Image).toHaveBeenCalledTimes(1);
+                    expect(window.Image).toHaveBeenCalledWith();
+                });
+
+                it('should fire onload on load of image source', () => {
+                    expect(image.addEventListener).toHaveBeenCalledTimes(2);
+                    expect(image.addEventListener).toHaveBeenCalledWith('load', expect.any(Function));
+                });
+
+                it(`should only allow CORS: ${scenario.options.allowCrossOriginResourceSharing}`, () => {
+                    expect(image.crossOrigin).toBe(scenario.expectedCrossOrigin);
+                });
+
+                it('should have called URL createObjectURL', () => {
+                    expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
+                    expect(global.URL.createObjectURL).toHaveBeenCalledWith(file);
+                });
+
+                it('should return correct url', () => {
+                    expect(image.src).toBe(expectedUrl);
+                });
+
+                it('should return image source from file reader', () => {
+                    expect(actualImageSource).toEqual(image);
+                });
+            });
+        });
+    });
+
+    describe('sad path', () => {
+        const file = new File([1234], chance.string());
+        let image,
+            expectedError,
+            actualError;
+
+        describe('should reject', () => {
             beforeAll(async () => {
+                const map = {};
                 image = {
-                    addEventListener: jest.fn((_, evtHandler) => {
-                        evtHandler();
+                    addEventListener: jest.fn((event, cb) => {
+                        map[event] = cb;
                     }),
                 };
                 window.Image = jest.fn(() => image);
-                promiseService.timeout.mockReturnValue(image);
                 global.URL.createObjectURL = jest.fn();
-                expectedUrl = chance.url();
-                global.URL.createObjectURL.mockReturnValue(expectedUrl);
+                expectedError = chance.string();
+                global.URL.createObjectURL.mockImplementation(() => {
+                    map.error(expectedError);
+                });
 
-                actualImageSource = await imageService.create(file, scenario.options);
-            });
-
-            afterAll(() => {
-                jest.clearAllMocks();
-            });
-
-            it('should call promiseService timeoutPromise', () => {
-                expect(promiseService.timeout).toHaveBeenCalledTimes(1);
-                expect(promiseService.timeout).toHaveBeenCalledWith(
-                    expect.any(Promise),
-                    scenario.options.readImageFileTimeout,
-                    'The reading of the image timed out.'
-                );
-            });
-
-            it('should addMetadata an image', () => {
-                expect(window.Image).toHaveBeenCalledTimes(1);
-                expect(window.Image).toHaveBeenCalledWith();
+                try {
+                    await imageService.create(file, {});
+                } catch (error) {
+                    actualError = error;
+                }
             });
 
             it('should fire onload on load of image source', () => {
-                expect(image.addEventListener).toHaveBeenCalledTimes(1);
-                expect(image.addEventListener).toHaveBeenCalledWith('load', expect.any(Function));
+                expect(image.addEventListener).toHaveBeenCalledTimes(2);
+                expect(image.addEventListener).toHaveBeenCalledWith('error', expect.any(Function));
             });
 
-            it(`should only allow CORS if ${scenario.expectedCrossOrigin}`, () => {
-                expect(image.crossOrigin).toBe(scenario.expectedCrossOrigin);
-            });
-
-            it('should have called URL createObjectURL', () => {
-                expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
-                expect(global.URL.createObjectURL).toHaveBeenCalledWith(file);
-            });
-
-            it('should return correct url', () => {
-                expect(image.src).toBe(expectedUrl);
-            });
-
-            it('should have image source from file reader result', () => {
-                expect(image.src).toBe(expectedUrl);
-            });
-
-            it('should return image source from file reader', () => {
-                expect(actualImageSource).toBe(image);
+            it('should return error', () => {
+                expect(actualError).toEqual(expectedError);
             });
         });
     });
