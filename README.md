@@ -3,6 +3,7 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 
 [![Build Status](https://travis-ci.com/TonyBrobston/jpegasus.svg?branch=master)](https://travis-ci.org/tonybrobston/jpegasus)
 [![codecov](https://codecov.io/gh/TonyBrobston/jpegasus/branch/master/graph/badge.svg)](https://codecov.io/gh/tonybrobston/jpegasus)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ffcbe17657aabd16ed79/maintainability)](https://codeclimate.com/github/tonybrobston/jpegasus/maintainability)
 [![Known Vulnerabilities](https://snyk.io/test/github/tonybrobston/jpegasus/badge.svg)](https://snyk.io/test/github/tonybrobston/jpegasus)
 
 ### Demo
