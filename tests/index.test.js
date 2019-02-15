@@ -57,7 +57,8 @@ describe('index', async () => {
 
         it('should compare a blob and a file and return the smaller one', () => {
             expect(comparisonService.pickSmaller).toHaveBeenCalledTimes(1);
-            expect(comparisonService.pickSmaller).toHaveBeenCalledWith(expectedCompressedBlob, file);
+            expect(comparisonService.pickSmaller).toHaveBeenCalledWith(
+                expectedCompressedBlob, file);
         });
 
         it('should return a compressed file', () => {

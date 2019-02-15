@@ -115,7 +115,7 @@ describe('canvasService', () => {
         ];
 
         expectedRotationScenarios.forEach((scenario) => {
-            it(`should perform the correct rotation - orientation ${scenario.exifOrientation}`, async () => {
+            it(`should correct orientation ${scenario.exifOrientation}`, async () => {
                 context.transform.mockClear();
                 exifService.determineOrientation.mockResolvedValue(scenario.exifOrientation);
 

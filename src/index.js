@@ -12,9 +12,7 @@ module.exports.compress = async (file, inputOptions) => {
             const blob = qualityService.toBlob(file, canvas, options);
             return comparisonService.pickSmaller(blob, file);
         }
+    } catch (error) {}
 
-        return file;
-    } catch (error) {
-        return file;
-    }
+    return file;
 };
