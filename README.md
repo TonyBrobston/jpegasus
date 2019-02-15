@@ -6,6 +6,7 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 
 ### Demo
 * [Live Demo](https://tonybrobston.github.io/jpegasus-demo)
+
 * [Concise Example Repository](https://github.com/TonyBrobston/jpegasus-demo)
 
 ### Code example
