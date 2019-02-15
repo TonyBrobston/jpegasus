@@ -10,9 +10,9 @@ module.exports.compress = async (file, inputOptions) => {
             const canvas = await scaleService.toCanvas(file, options);
             return qualityService.toFile(file, canvas, options);
         }
+
+        return file;
     } catch (error) {
         return file;
     }
-
-    return file;
 };
