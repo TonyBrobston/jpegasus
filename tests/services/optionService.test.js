@@ -1,4 +1,4 @@
-import optionService from '../../../src/services/config/optionService';
+import optionService from '../../src/services/optionService';
 
 describe('optionService', () => {
     const scenarios = [

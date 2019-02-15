@@ -1,11 +1,11 @@
 import Chance from 'chance';
 
-import canvasService from '../../../src/services/elements/canvasService';
-import exifService from '../../../src/services/formats/exifService';
+import canvasService from '../../src/services/canvasService';
+import exifService from '../../src/services/exifService';
 
 const chance = new Chance();
 
-jest.mock('../../../src/services/formats/exifService');
+jest.mock('../../src/services/exifService');
 
 describe('canvasService', () => {
     const height = chance.natural();

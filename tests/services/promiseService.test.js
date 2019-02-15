@@ -1,6 +1,6 @@
 import Chance from 'chance';
 
-import promiseService from '../../../src/services/timeout/promiseService';
+import promiseService from '../../src/services/promiseService';
 
 const chance = new Chance();
 

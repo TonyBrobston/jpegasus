@@ -1,6 +1,6 @@
 import Chance from 'chance';
 
-import blobService from '../../../src/services/formats/blobService';
+import blobService from '../../src/services/blobService';
 
 const chance = new Chance();
 

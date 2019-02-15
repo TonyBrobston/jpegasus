@@ -1,4 +1,4 @@
-import exifService from '../formats/exifService';
+import exifService from './exifService';
 
 const correctExifRotation = (canvas, orientation, height, width) => {
     const context = canvas.getContext('2d');
