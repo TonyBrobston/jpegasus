@@ -16,10 +16,10 @@ describe('blobService', () => {
         let actualBlob;
 
         beforeAll(() => {
-            actualBlob = blobService.create(file, filename);
+            actualBlob = blobService.addMetadata(file, filename);
         });
 
-        it('should create a blob', () => {
+        it('should addMetadata a blob', () => {
             expect(Date.parse(actualBlob.lastModifiedDate)).not.toBe(NaN);
             expectedBlob.lastModifiedDate = actualBlob.lastModifiedDate;
             expect(actualBlob).toEqual(expectedBlob);

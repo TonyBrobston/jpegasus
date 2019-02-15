@@ -8,5 +8,5 @@ const create = (blob, name) => {
 };
 
 export default {
-    create,
+    addMetadata: create,
 };

@@ -8,7 +8,7 @@
     "url": "https://github.com/TonyBrobston/jpegasus"
   },
   "scripts": {
-    "create": "babel src -d lib",
+    "addMetadata": "babel src -d lib",
     "coverage": "jest --coverage",
     "deploy:major": "npm login && yarn build && npm version major && npm publish",
     "deploy:minor": "npm login && yarn build && npm version minor && npm publish",

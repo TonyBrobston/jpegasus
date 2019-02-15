@@ -62,7 +62,7 @@ describe('imageService', () => {
                 );
             });
 
-            it('should create an image', () => {
+            it('should addMetadata an image', () => {
                 expect(window.Image).toHaveBeenCalledTimes(1);
                 expect(window.Image).toHaveBeenCalledWith();
             });

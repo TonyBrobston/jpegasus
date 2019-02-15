@@ -112,7 +112,7 @@ describe('qualityService', () => {
             beforeAll(() => {
                 canvas.toDataURL.mockReturnValue(base64);
                 base64toblob.mockReturnValue(blob);
-                fileService.create.mockReturnValue(scenario.createdFile);
+                fileService.addMetadata.mockReturnValue(scenario.createdFile);
 
                 actualFile = qualityService.toFile(scenario.file, canvas, scenario.options);
             });
@@ -131,9 +131,9 @@ describe('qualityService', () => {
                 expect(base64toblob).toHaveBeenCalledWith(base64Suffix, 'image/jpeg');
             });
 
-            it('should create a new file', () => {
-                expect(fileService.create).toHaveBeenCalledTimes(1);
-                expect(fileService.create).toHaveBeenCalledWith(blob, scenario.file.name);
+            it('should addMetadata a new file', () => {
+                expect(fileService.addMetadata).toHaveBeenCalledTimes(1);
+                expect(fileService.addMetadata).toHaveBeenCalledWith(blob, scenario.file.name);
             });
 
             it('should return a compressed file', () => {

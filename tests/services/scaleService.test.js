@@ -108,12 +108,12 @@ describe('scaleService', () => {
                 jest.clearAllMocks();
             });
 
-            it('should create an image', () => {
+            it('should addMetadata an image', () => {
                 expect(imageService.create).toHaveBeenCalledTimes(1);
                 expect(imageService.create).toHaveBeenCalledWith(file, scenario.options);
             });
 
-            it('should create a canvas', () => {
+            it('should addMetadata a canvas', () => {
                 expect(canvasService.create).toHaveBeenCalledTimes(1);
                 expect(canvasService.create).toHaveBeenCalledWith(scenario.image, scenario.scale);
             });
