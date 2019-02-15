@@ -11,23 +11,27 @@ describe('imageService', () => {
                 expectedCrossOrigin: 'Anonymous',
                 name: 'Allow CORS',
                 options: {
-                    allowCrossOriginResourceSharing: true
+                    allowCrossOriginResourceSharing: true,
                 },
             },
             {
                 expectedCrossOrigin: undefined,
                 name: 'Do not allow CORS',
                 options: {
-                    allowCrossOriginResourceSharing: false
+                    allowCrossOriginResourceSharing: false,
                 },
             },
         ];
 
         scenarios.forEach((scenario) => {
             const file = new File([1234], chance.string());
-            let image,
-                expectedUrl,
-                actualImageSource;
+            let image;
+
+
+            let expectedUrl;
+
+
+            let actualImageSource;
 
             describe(scenario.name, () => {
                 beforeAll(async () => {
@@ -59,10 +63,11 @@ describe('imageService', () => {
 
                 it('should fire onload on load of image source', () => {
                     expect(image.addEventListener).toHaveBeenCalledTimes(2);
-                    expect(image.addEventListener).toHaveBeenCalledWith('load', expect.any(Function));
+                    expect(image.addEventListener).toHaveBeenCalledWith(
+                        'load', expect.any(Function));
                 });
 
-                it(`should only allow CORS: ${scenario.options.allowCrossOriginResourceSharing}`, () => {
+                it(`should handle CORS`, () => {
                     expect(image.crossOrigin).toBe(scenario.expectedCrossOrigin);
                 });
 
@@ -84,9 +89,13 @@ describe('imageService', () => {
 
     describe('sad path', () => {
         const file = new File([1234], chance.string());
-        let image,
-            expectedError,
-            actualError;
+        let image;
+
+
+        let expectedError;
+
+
+        let actualError;
 
         describe('should reject', () => {
             beforeAll(async () => {
