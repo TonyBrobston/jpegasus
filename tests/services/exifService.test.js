@@ -1,7 +1,7 @@
 import exif from 'exif-js';
 import Chance from 'chance';
 
-import exifService from '../../../src/services/formats/exifService';
+import exifService from '../../src/services/exifService';
 
 jest.mock('exif-js');
 

@@ -1,4 +1,4 @@
-import promiseService from '../timeout/promiseService';
+import promiseService from './promiseService';
 
 const create = async (file, options) => {
     const imagePromise = new Promise((resolve) => {

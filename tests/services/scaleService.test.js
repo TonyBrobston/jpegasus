@@ -1,11 +1,11 @@
 import Chance from 'chance';
 
-import scaleService from '../../../src/services/sizing/scaleService';
-import imageService from '../../../src/services/elements/imageService';
-import canvasService from '../../../src/services/elements/canvasService';
+import scaleService from '../../src/services/scaleService';
+import imageService from '../../src/services/imageService';
+import canvasService from '../../src/services/canvasService';
 
-jest.mock('../../../src/services/elements/imageService');
-jest.mock('../../../src/services/elements/canvasService');
+jest.mock('../../src/services/imageService');
+jest.mock('../../src/services/canvasService');
 
 
 const chance = new Chance();

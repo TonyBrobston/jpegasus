@@ -1,5 +1,5 @@
-import imageService from '../elements/imageService';
-import canvasService from '../elements/canvasService';
+import imageService from './imageService';
+import canvasService from './canvasService';
 
 const determineScale = (image, options) => {
     const height = image.height;

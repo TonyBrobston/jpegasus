@@ -1,11 +1,11 @@
 import Chance from 'chance';
 import base64toblob from 'base64toblob';
 
-import qualityService from '../../../src/services/sizing/qualityService';
-import fileService from '../../../src/services/formats/blobService';
+import qualityService from '../../src/services/qualityService';
+import fileService from '../../src/services/blobService';
 
 jest.mock('base64toblob');
-jest.mock('../../../src/services/formats/blobService');
+jest.mock('../../src/services/blobService');
 
 const chance = new Chance();
 

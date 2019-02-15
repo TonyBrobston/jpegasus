@@ -1,9 +1,9 @@
 import Chance from 'chance';
 
-import promiseService from '../../../src/services/timeout/promiseService';
-import imageService from '../../../src/services/elements/imageService';
+import promiseService from '../../src/services/promiseService';
+import imageService from '../../src/services/imageService';
 
-jest.mock('../../../src/services/timeout/promiseService');
+jest.mock('../../src/services/promiseService');
 
 const chance = new Chance();
 

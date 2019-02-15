@@ -1,6 +1,6 @@
 import base64toblob from 'base64toblob';
 
-import blobService from '../formats/blobService';
+import blobService from './blobService';
 
 const determineQuality = (file, options) => {
     if (options.quality) {
