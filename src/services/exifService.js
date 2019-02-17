@@ -6,23 +6,23 @@ const orientationMarker = 0x0112;
 const byteStuffingMarker = 0xFF00;
 
 const determineOrientation = async (file) => {
-    return new Promise(resolve => {
-
+    return new Promise((resolve) => {
         const reader = new FileReader();
+
         reader.onload = () => resolve((() => {
             const view = new DataView(reader.result);
 
             if (view.getUint16(0, false) != startOfFileMarker) {
                 return;
-
             }
-            const length = view.byteLength;
 
             let offset = 2;
+            const length = view.byteLength;
+
             while (offset < length) {
                 const marker = view.getUint16(offset, false);
-
                 offset += 2;
+
                 if (marker == applicationSegmentOneMarker) {
                     offset += 2;
 
