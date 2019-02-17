@@ -10,6 +10,7 @@ jest.mock('../../src/services/exifService');
 describe('canvasService', () => {
     const height = chance.natural();
     const width = chance.natural();
+    const file = chance.string();
     const image = {
         height,
         width,
@@ -39,7 +40,7 @@ describe('canvasService', () => {
 
     describe('create', () => {
         beforeAll(async () => {
-            actualCanvas = await canvasService.create(image, scale);
+            actualCanvas = await canvasService.create(file, image, scale);
         });
 
         it('should addMetadata a canvasService', () => {
@@ -54,7 +55,7 @@ describe('canvasService', () => {
 
         it('should determine orientation', () => {
             expect(exifService.determineOrientation).toHaveBeenCalledTimes(1);
-            expect(exifService.determineOrientation).toHaveBeenCalledWith(image);
+            expect(exifService.determineOrientation).toHaveBeenCalledWith(file);
         });
 
         it('should draw the image on the context of the imageCanvas', () => {
@@ -119,7 +120,7 @@ describe('canvasService', () => {
                 context.transform.mockClear();
                 exifService.determineOrientation.mockResolvedValue(scenario.exifOrientation);
 
-                actualCanvas = await canvasService.create(image, scale);
+                actualCanvas = await canvasService.create(file, image, scale);
 
                 expect(actualCanvas.height).toBe(scenario.height);
                 expect(actualCanvas.width).toBe(scenario.width);
