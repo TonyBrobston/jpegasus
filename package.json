@@ -50,8 +50,7 @@
     "jest": "^23.6.0"
   },
   "dependencies": {
-    "base64toblob": "^0.0.2",
-    "exif-js": "^2.3.0"
+    "base64toblob": "^0.0.2"
   },
   "jest": {
     "coverageDirectory": ".coverage",
