@@ -1,43 +1,50 @@
-import exif from 'exif-js';
-import Chance from 'chance';
+import path from 'path';
+import fs from 'fs';
 
 import exifService from '../../src/services/exifService';
 
-jest.mock('exif-js');
-
-const chance = new Chance();
-
 describe('exifService', () => {
-    let image;
+    const scenarios = [
+        {
+            expected: 4,
+            file: 'exifOrientationFour.jpg',
+            name: 'should return orientation of 4',
+        },
+        {
+            expected: 1,
+            file: 'exifGps.jpg',
+            name: 'should return orientation of 1 and has exif gps data',
+        },
+        {
+            expected: undefined,
+            file: 'notJpeg.png',
+            name: 'should return because not jpeg',
+        },
+        {
+            expected: undefined,
+            file: 'hasByteStuffing.jpeg',
+            name: 'should break because has byte stuffing',
+        },
+        {
+            expected: undefined,
+            file: 'hasNoExif.jpg',
+            name: 'should exit because has no exif',
+        },
+    ];
 
+    scenarios.forEach((scenario) => {
+        it(scenario.name, async () => {
+            const file = await readFileSystemFileToJavaScriptFile(scenario.file);
 
-    let expectedOrientation;
+            const orientation = await exifService.determineOrientation(file);
 
-
-    let actualOrientation;
-
-    beforeAll(async () => {
-        image = chance.string();
-        expectedOrientation = chance.integer();
-        exif.getTag.mockReturnValue(expectedOrientation);
-        exif.getData.mockImplementation((_, cb) => {
-            cb();
+            expect(orientation).toBe(scenario.expected);
         });
-
-        actualOrientation = await exifService.determineOrientation(image);
-    });
-
-    it('should have called exif getData', () => {
-        expect(exif.getData).toHaveBeenCalledTimes(1);
-        expect(exif.getData).toHaveBeenCalledWith(image, expect.any(Function));
-    });
-
-    it('should have called exif getTag', () => {
-        expect(exif.getTag).toHaveBeenCalledTimes(1);
-        expect(exif.getTag).toHaveBeenCalledWith(image, 'Orientation');
-    });
-
-    it('should have orientation of file', () => {
-        expect(actualOrientation).toBe(expectedOrientation);
     });
 });
+
+const readFileSystemFileToJavaScriptFile = async (imagePath) => {
+    const fullyQualifiedPath = path.resolve(__dirname, `../imagesOfExifVariety/${imagePath}`);
+    const fileAsBuffer = await fs.readFileSync(fullyQualifiedPath);
+    return new File([new Uint8Array(fileAsBuffer)], 'foo');
+};
