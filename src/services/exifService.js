@@ -53,7 +53,7 @@ const determineOrientation = async (file) => {
             }
         })());
 
-        reader.readAsArrayBuffer(file.slice(0, 64 * 1024));
+        reader.readAsArrayBuffer(new Blob([file]).slice(0, 64 * 1024));
     });
 };
 
