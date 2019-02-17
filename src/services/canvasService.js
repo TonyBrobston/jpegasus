@@ -40,11 +40,11 @@ const correctExifRotation = (canvas, orientation, height, width) => {
     return context;
 };
 
-const create = async (image, scale) => {
+const create = async (file, image, scale) => {
     const canvas = document.createElement('canvas');
     const scaledHeight = image.height * scale;
     const scaledWidth = image.width * scale;
-    const orientation = await exifService.determineOrientation(image);
+    const orientation = await exifService.determineOrientation(file);
     const context = correctExifRotation(canvas, orientation, scaledHeight, scaledWidth);
     context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
     return canvas;

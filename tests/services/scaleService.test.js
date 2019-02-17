@@ -115,7 +115,8 @@ describe('scaleService', () => {
 
             it('should addMetadata a canvas', () => {
                 expect(canvasService.create).toHaveBeenCalledTimes(1);
-                expect(canvasService.create).toHaveBeenCalledWith(scenario.image, scenario.scale);
+                expect(canvasService.create).toHaveBeenCalledWith(
+                    file, scenario.image, scenario.scale);
             });
 
             it('should return a scaled canvasService', () => {

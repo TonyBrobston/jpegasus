@@ -22,7 +22,7 @@ const determineScale = (image, options) => {
 const toCanvas = async (file, options) => {
     const image = await imageService.create(file, options);
     const scale = determineScale(image, options);
-    return canvasService.create(image, scale);
+    return canvasService.create(file, image, scale);
 };
 
 export default {
