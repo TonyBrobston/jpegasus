@@ -12,7 +12,7 @@ const determineOrientation = async (file) => {
         reader.onload = () => resolve((() => {
             const view = new DataView(reader.result);
 
-            if (view.getUint16(0, false) != startOfFileMarker) {
+            if (view.getUint16(0, false) !== startOfFileMarker) {
                 return;
             }
 
@@ -23,16 +23,16 @@ const determineOrientation = async (file) => {
                 const marker = view.getUint16(offset, false);
                 offset += 2;
 
-                if (marker == applicationSegmentOneMarker) {
+                if (marker === applicationSegmentOneMarker) {
                     offset += 2;
 
-                    if (view.getUint32(offset, false) != beginOfExifHeaderMarker) {
+                    if (view.getUint32(offset, false) !== beginOfExifHeaderMarker) {
                         return;
                     }
 
                     offset += 6;
 
-                    const little = view.getUint16(offset, false) == byteOrderMarker;
+                    const little = view.getUint16(offset, false) === byteOrderMarker;
 
                     offset += view.getUint32(offset + 4, little);
 
@@ -40,12 +40,12 @@ const determineOrientation = async (file) => {
 
                     offset += 2;
 
-                    for (var i = 0; i < tags; i++) {
-                        if (view.getUint16(offset + (i * 12), little) == orientationMarker) {
+                    for (let i = 0;i < tags;i ++) {
+                        if (view.getUint16(offset + (i * 12), little) === orientationMarker) {
                             return view.getUint16(offset + (i * 12) + 8, little);
                         }
                     }
-                } else if ((marker & byteStuffingMarker) != byteStuffingMarker) {
+                } else if ((marker & byteStuffingMarker) !== byteStuffingMarker) {
                     break;
                 } else {
                     offset += view.getUint16(offset, false);
