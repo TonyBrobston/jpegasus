@@ -1,7 +1,7 @@
 import windowService from '../../src/services/windowService';
 
-describe('asdf', () => {
-    it('asdfa', () => {
+describe('windowService', () => {
+    it('should convert base64 to byteArray', () => {
         const base64 = 'dGVzdA==';
 
         const byteArray = windowService.toByteArray(base64);
