@@ -1,0 +1,23 @@
+{
+  "projectName": "jpegasus",
+  "projectOwner": "TonyBrobston",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mkangjazz",
+      "name": "KANG",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/13721600?v=4",
+      "profile": "https://github.com/mkangjazz",
+      "contributions": [
+        "design"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
