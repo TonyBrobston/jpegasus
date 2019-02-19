@@ -1,0 +1,23 @@
+{
+  "projectName": "jpegasus",
+  "projectOwner": "TonyBrobston",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "buttontate",
+      "name": "Tate Button",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/6607650?v=4",
+      "profile": "https://github.com/buttontate",
+      "contributions": [
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
