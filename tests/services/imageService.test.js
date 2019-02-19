@@ -56,7 +56,7 @@ describe('imageService', () => {
                     jest.clearAllMocks();
                 });
 
-                it('should addMetadata an image', () => {
+                it('should create an image', () => {
                     expect(window.Image).toHaveBeenCalledTimes(1);
                     expect(window.Image).toHaveBeenCalledWith();
                 });

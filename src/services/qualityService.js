@@ -1,5 +1,4 @@
-import base64toblob from 'base64toblob';
-
+import windowService from './windowService';
 import blobService from './blobService';
 
 const determineQuality = (file, options) => {
@@ -17,12 +16,12 @@ const determineQuality = (file, options) => {
     return 1.00;
 };
 
-const toBlob = (originalFile, canvas, options) => {
-    const quality = determineQuality(originalFile, options);
+const toBlob = (file, canvas, options) => {
+    const quality = determineQuality(file, options);
     const dataUrl = canvas.toDataURL('image/jpeg', quality);
     const base64 = dataUrl.split(',')[1];
-    const blob = base64toblob(base64, 'image/jpeg');
-    return blobService.addMetadata(blob, originalFile.name);
+    const byteArray = windowService.toByteArray(base64);
+    return blobService.create(byteArray, 'image/jpeg', file.name);
 };
 
 export default {

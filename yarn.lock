@@ -832,10 +832,6 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-base64toblob@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/base64toblob/-/base64toblob-0.0.2.tgz#16453f87fbe3447ce14edbbe285b46c70b9811b5"
-
 base@^0.11.1:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/base/-/base-0.11.2.tgz#7bde5ced145b6d551a90db87f83c558b4eb48a8f"

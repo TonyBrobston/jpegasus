@@ -8,7 +8,7 @@
     "url": "https://github.com/TonyBrobston/jpegasus"
   },
   "scripts": {
-    "addMetadata": "babel src -d lib",
+    "create": "babel src -d lib",
     "coverage": "jest --coverage",
     "build": "rm -rf lib && babel src -d lib",
     "lint:js": "eslint --fix ./src ./tests",
@@ -43,9 +43,7 @@
     "eslint-config-google": "^0.12.0",
     "jest": "^24.1.0"
   },
-  "dependencies": {
-    "base64toblob": "^0.0.2"
-  },
+  "dependencies": {},
   "jest": {
     "collectCoverageFrom": [
       "<rootDir>/src/**/*.js"

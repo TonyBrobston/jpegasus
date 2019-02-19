@@ -1,12 +1,12 @@
-const addMetadata = (blob, name) => {
-    const blobWithMetadata = blob;
+const create = (byteArray, type, name) => {
+    const blob = new Blob(byteArray, {type});
 
-    blobWithMetadata.lastModifiedDate = new Date();
-    blobWithMetadata.name = name;
+    blob.name = name;
+    blob.lastModifiedDate = new Date();
 
-    return blobWithMetadata;
+    return blob;
 };
 
 export default {
-    addMetadata,
+    create,
 };
