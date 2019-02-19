@@ -43,7 +43,7 @@ describe('canvasService', () => {
             actualCanvas = await canvasService.create(file, image, scale);
         });
 
-        it('should addMetadata a canvasService', () => {
+        it('should create a canvasService', () => {
             expect(document.createElement).toHaveBeenCalledTimes(1);
             expect(document.createElement).toHaveBeenCalledWith('canvas');
         });

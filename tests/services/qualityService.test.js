@@ -1,10 +1,10 @@
 import Chance from 'chance';
-import base64toblob from 'base64toblob';
 
 import qualityService from '../../src/services/qualityService';
+import windowService from '../../src/services/windowService';
 import blobService from '../../src/services/blobService';
 
-jest.mock('base64toblob');
+jest.mock('../../src/services/windowService');
 jest.mock('../../src/services/blobService');
 
 const chance = new Chance();
@@ -13,8 +13,8 @@ describe('qualityService', () => {
     const base64Prefix = chance.string();
     const base64Suffix = chance.string();
     const base64 = `${base64Prefix},${base64Suffix}`;
-    const blob = chance.string();
-    let actualFile;
+    const bytes = chance.string();
+    let actualBlob;
 
     const scenarios = [
         {
@@ -96,10 +96,10 @@ describe('qualityService', () => {
 
             beforeAll(() => {
                 canvas.toDataURL.mockReturnValue(base64);
-                base64toblob.mockReturnValue(blob);
-                blobService.addMetadata.mockReturnValue(scenario.expectedFile);
+                windowService.toByteArray.mockReturnValue(bytes);
+                blobService.create.mockReturnValue(scenario.expectedFile);
 
-                actualFile = qualityService.toBlob(scenario.file, canvas, scenario.options);
+                actualBlob = qualityService.toBlob(scenario.file, canvas, scenario.options);
             });
 
             afterAll(() => {
@@ -111,18 +111,19 @@ describe('qualityService', () => {
                 expect(canvas.toDataURL).toHaveBeenCalledWith('image/jpeg', scenario.quality);
             });
 
-            it('should convert imageCanvas base64 to blob', () => {
-                expect(base64toblob).toHaveBeenCalledTimes(1);
-                expect(base64toblob).toHaveBeenCalledWith(base64Suffix, 'image/jpeg');
+            it('should convert imageCanvas base64 to bytes', () => {
+                expect(windowService.toByteArray).toHaveBeenCalledTimes(1);
+                expect(windowService.toByteArray).toHaveBeenCalledWith(base64Suffix);
             });
 
-            it('should addMetadata a new file', () => {
-                expect(blobService.addMetadata).toHaveBeenCalledTimes(1);
-                expect(blobService.addMetadata).toHaveBeenCalledWith(blob, scenario.file.name);
+            it('should create a new blob', () => {
+                expect(blobService.create).toHaveBeenCalledTimes(1);
+                expect(blobService.create).toHaveBeenCalledWith(
+                    bytes, 'image/jpeg', scenario.file.name);
             });
 
             it('should return a compressed file', () => {
-                expect(actualFile.size).toBe(scenario.expectedFile.size);
+                expect(actualBlob.size).toBe(scenario.expectedFile.size);
             });
         });
     });
