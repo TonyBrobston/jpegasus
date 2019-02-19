@@ -9,7 +9,7 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 [![Peer Dependencies](https://david-dm.org/tonybrobston/jpegasus/peer-status.svg)](https://david-dm.org/tonybrobston/jpegasus?type=peer)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ffcbe17657aabd16ed79/maintainability)](https://codeclimate.com/github/TonyBrobston/jpegasus/maintainability)
 [![Known Vulnerabilities](https://snyk.io/test/github/tonybrobston/jpegasus/badge.svg)](https://snyk.io/test/github/tonybrobston/jpegasus)
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
 
 ## Demo
 * [Live Demo](https://tonybrobston.github.io/jpegasus-demo)
@@ -46,6 +46,6 @@ Thanks goes to these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars1.githubusercontent.com/u/13721600?v=4" width="100px;" alt="KANG"/><br /><sub><b>KANG</b></sub>](https://github.com/mkangjazz)<br />[🎨](#design-mkangjazz "Design") | [<img src="https://avatars1.githubusercontent.com/u/8313853?v=4" width="100px;" alt="lounsbrough"/><br /><sub><b>lounsbrough</b></sub>](https://github.com/lounsbrough)<br />[💻](https://github.com/TonyBrobston/jpegasus/commits?author=lounsbrough "Code") | [<img src="https://avatars3.githubusercontent.com/u/6607650?v=4" width="100px;" alt="Tate Button"/><br /><sub><b>Tate Button</b></sub>](https://github.com/buttontate)<br />[🤔](#ideas-buttontate "Ideas, Planning, & Feedback") |
-| :---: | :---: | :---: |
+| [<img src="https://avatars1.githubusercontent.com/u/13721600?v=4" width="100px;" alt="KANG"/><br /><sub><b>KANG</b></sub>](https://github.com/mkangjazz)<br />[🎨](#design-mkangjazz "Design") | [<img src="https://avatars1.githubusercontent.com/u/8313853?v=4" width="100px;" alt="lounsbrough"/><br /><sub><b>lounsbrough</b></sub>](https://github.com/lounsbrough)<br />[💻](https://github.com/TonyBrobston/jpegasus/commits?author=lounsbrough "Code") | [<img src="https://avatars3.githubusercontent.com/u/6607650?v=4" width="100px;" alt="Tate Button"/><br /><sub><b>Tate Button</b></sub>](https://github.com/buttontate)<br />[🤔](#ideas-buttontate "Ideas, Planning, & Feedback") | [<img src="https://avatars3.githubusercontent.com/u/4724577?v=4" width="100px;" alt="Tony Brobston"/><br /><sub><b>Tony Brobston</b></sub>](https://github.com/TonyBrobston)<br />[💻](https://github.com/TonyBrobston/jpegasus/commits?author=TonyBrobston "Code") |
+| :---: | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
