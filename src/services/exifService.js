@@ -10,17 +10,16 @@ function parseBytes(dataView, resolve) {
     while (offset < dataView.byteLength) {
         const marker = dataView.getUint16(offset, false);
         offset += 2;
-        if (marker === applicationSegmentOneMarker) {
-            offset += 2;
-            if (dataView.getUint32(offset, false) !== beginOfExifHeaderMarker) {
-                resolve(undefined);
-            }
-            offset += 6;
+        if (marker === applicationSegmentOneMarker
+            && dataView.getUint32(offset + 2, false) !== beginOfExifHeaderMarker) {
+            resolve(undefined);
+        } else if (marker === applicationSegmentOneMarker) {
+            offset += 8;
             const little = dataView.getUint16(offset, false) === byteOrderMarker;
             offset += dataView.getUint32(offset + 4, little);
             const tags = dataView.getUint16(offset, little);
             offset += 2;
-            for (let i = 0; i < tags; i++) {
+            for (let i = 0;i < tags;i ++) {
                 if (dataView.getUint16(offset + (i * 12), little) === orientationMarker) {
                     resolve(dataView.getUint16(offset + (i * 12) + 8, little));
                 }
