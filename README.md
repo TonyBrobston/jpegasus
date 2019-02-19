@@ -1,4 +1,5 @@
 # jpegasus
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `Blob` of type `.jpeg`. It's as easy as taking out the trash! 🗑
 
 [![npm version](https://badge.fury.io/js/jpegasus.svg)](https://badge.fury.io/js/jpegasus)
@@ -42,7 +43,6 @@ module.exports = {
   * `quality`: degrades quality of File, values is between `0.01` and `1.00`, defaults to `0.50`.
 
 ## Contributors
-
 Thanks goes to these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->

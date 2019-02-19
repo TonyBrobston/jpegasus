@@ -10,6 +10,15 @@
   "commit": false,
   "contributors": [
     {
+      "login": "lounsbrough",
+      "name": "lounsbrough",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8313853?v=4",
+      "profile": "https://github.com/lounsbrough",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "mkangjazz",
       "name": "KANG",
       "avatar_url": "https://avatars1.githubusercontent.com/u/13721600?v=4",
