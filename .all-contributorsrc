@@ -10,6 +10,15 @@
   "commit": false,
   "contributors": [
     {
+      "login": "TonyBrobston",
+      "name": "Tony Brobston",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4724577?v=4",
+      "profile": "https://github.com/TonyBrobston",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "mkangjazz",
       "name": "KANG",
       "avatar_url": "https://avatars1.githubusercontent.com/u/13721600?v=4",
@@ -34,15 +43,6 @@
       "profile": "https://github.com/buttontate",
       "contributions": [
         "ideas"
-      ]
-    },
-    {
-      "login": "TonyBrobston",
-      "name": "Tony Brobston",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/4724577?v=4",
-      "profile": "https://github.com/TonyBrobston",
-      "contributions": [
-        "code"
       ]
     }
   ],
