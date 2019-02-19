@@ -10,7 +10,6 @@
   "scripts": {
     "build": "babel src -d lib",
     "coverage": "jest --coverage",
-    "build": "rm -rf lib && babel src -d lib",
     "lint:js": "eslint --fix ./src ./tests",
     "test": "yarn coverage && yarn lint:js",
     "unit": "jest"
