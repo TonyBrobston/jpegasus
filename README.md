@@ -17,7 +17,7 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 
 ## Code example
 
-```
+```js
 const jpegasus = require('Jpegasus');
 
 const processFile = (file) => {
