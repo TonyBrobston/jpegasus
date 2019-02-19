@@ -1,4 +1,5 @@
 # jpegasus
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `Blob` of type `.jpeg`. It's as easy as taking out the trash! 🗑
 
 [![npm version](https://badge.fury.io/js/jpegasus.svg)](https://badge.fury.io/js/jpegasus)
@@ -39,3 +40,15 @@ module.exports = {
   * `maxHeight`: the max height in pixels of the compressed output File, defaults to `16250`.
   * `maxWidth`: the max width in pixels of the compressed output File, defaults to `16250`.
   * `quality`: degrades quality of File, values is between `0.01` and `1.00`, defaults to `0.50`.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars3.githubusercontent.com/u/6607650?v=4" width="100px;" alt="Tate Button"/><br /><sub><b>Tate Button</b></sub>](https://github.com/buttontate)<br />[🤔](#ideas-buttontate "Ideas, Planning, & Feedback") |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
