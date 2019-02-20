@@ -1,6 +1,6 @@
 {
   "name": "jpegasus",
-  "version": "1.9.23",
+  "version": "1.9.3",
   "description": "A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `File` of type `.jpeg`.",
   "main": "./lib/index.js",
   "repository": {
@@ -40,7 +40,6 @@
     "babel-eslint": "^10.0.1",
     "chance": "^1.0.18",
     "eslint": "^5.14.1",
-    "eslint-config-devine": "^2.0.1",
     "eslint-config-google": "^0.12.0",
     "jest": "^24.1.0"
   },
@@ -62,6 +61,7 @@
     }
   },
   "peerDependencies": {
-    "babel-runtime": "^6.26.0"
+    "babel-runtime": "^6.26.0",
+    "core-js": "^2.6.5"
   }
 }
