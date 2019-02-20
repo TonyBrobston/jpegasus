@@ -1,6 +1,6 @@
 {
   "name": "jpegasus",
-  "version": "1.9.31",
+  "version": "1.9.32",
   "description": "A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `File` of type `.jpeg`.",
   "main": "./lib/index.js",
   "repository": {
@@ -32,9 +32,7 @@
   ],
   "author": "Tony Brobston",
   "license": "MIT",
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
