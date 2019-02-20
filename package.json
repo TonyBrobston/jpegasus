@@ -8,7 +8,7 @@
     "url": "https://github.com/TonyBrobston/jpegasus"
   },
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src --out-dir lib",
     "coverage": "jest --coverage",
     "lint:js": "eslint --fix ./src ./tests",
     "test": "yarn coverage && yarn lint:js",
