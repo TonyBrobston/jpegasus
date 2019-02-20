@@ -32,6 +32,9 @@
   ],
   "author": "Tony Brobston",
   "license": "MIT",
+  "dependencies": {
+    
+  },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
@@ -62,6 +65,7 @@
   },
   "peerDependencies": {
     "babel-runtime": "^6.26.0",
-    "core-js": "^2.6.5"
+    "core-js": "^2.6.5",
+    "regenerator-runtime": "^0.13.1"
   }
 }
