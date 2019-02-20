@@ -10,7 +10,6 @@
   "scripts": {
     "build": "babel src -d lib",
     "coverage": "jest --coverage",
-    "build": "rm -rf lib && babel src -d lib",
     "lint:js": "eslint --fix ./src ./tests",
     "test": "yarn coverage && yarn lint:js",
     "unit": "jest"
@@ -34,12 +33,14 @@
   "author": "Tony Brobston",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.1",
     "babel-eslint": "^10.0.1",
     "chance": "^1.0.18",
     "eslint": "^5.14.1",
+    "eslint-config-devine": "^2.0.1",
     "eslint-config-google": "^0.12.0",
     "jest": "^24.1.0"
   },
