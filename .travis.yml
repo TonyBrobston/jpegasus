@@ -5,6 +5,10 @@ before_install:
 - pip install --user codecov
 after_success:
 - codecov --file .coverage/lcov.info --disable search
+install:
+- yarn install
+script:
+- yarn test
 deploy:
   provider: script
   skip_cleanup: true
