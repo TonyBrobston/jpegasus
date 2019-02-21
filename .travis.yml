@@ -5,14 +5,10 @@ before_install:
 - pip install --user codecov
 after_success:
 - codecov --file .coverage/lcov.info --disable search
-before_deploy:
-- npm version patch
 deploy:
-  provider: npm
-  email: anthonybrobston@gmail.com
-  api_key:
-    secure: MXQDyFhOmuLgDWPOxrbTE2KsbK89R3j1B9eQopavpdqT/q/BUaT7T5zcQUkwY/oyJ/HXfSWhumFfPDbP+Qul8m2qxQqaTxcRVcA4t+02SF0EiVTtWyaFtof8qTGEJTxv6k7srhdFaeuv5VTV2cRZgsueHOQ1aghFgoAvwywucfWOK4yoXmK06m67TlL4YuYCQRZ/Hai9EsNZzIltgqxeOIZgpouDQDwy0ftL8sL5excpOxKRQWNndnaJLic29ekZocOAmgHTd0S4K51ZHP+s0iS4JLO08sXd3mVtZFMqk5JEZMe/sOnoNLJQyCANTIr28jslmXAG78XyVpLJHzguv/wdEY94PdF5yJPVwI7ZEUnINNc7XEnBmsgJl1jlzFC985emgVSk6vuzAK/eP6Qg75GRyz43INWBul+BUafpFsPRnYhN9CXCfwdmpdwNZ/iKFkQjtRO6sDqBADRGUuDylLyOK6PWqiDur7Vpa3CwnOEf2WaBdbXWZ/sVLGEvfVnIgH8yPQkDxQGVJNtR3eN6y1eZ6O8bZlB4W+hM2t6+YYN6+YbbhRFyIeC0CuI5jeqHNtr2bzFn+X82OOe/3XcwmTf+X8hPCH/Nb+R4jZP/aGalu9iFnW1PYc4J7VhnwGgDDarbMWvbvmG7NQ8zdQXaVrA817LbJwNiu1q2mm2xr8M=
-  on:
-    tags: true
-    branch: master
+  provider: script
   skip_cleanup: true
+  script: .travis/pu.sh
+  on:
+    branch: master
+    tags: true
