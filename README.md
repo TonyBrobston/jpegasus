@@ -37,8 +37,8 @@ module.exports = {
 * First parameter: JavaScript `File`
 * Second parameter: Object of `options`
   * `allowCrossOriginResourceSharing`: a boolean that determines if CORS should be allowed, defaults to `false`.
-  * `maxHeight`: the max height in pixels of the compressed output File, defaults to `16250`.
-  * `maxWidth`: the max width in pixels of the compressed output File, defaults to `16250`.
+  * `maxHeight`: the max height in pixels of the compressed output File, defaults to `image's original height`.
+  * `maxWidth`: the max width in pixels of the compressed output File, defaults to `image's original width`.
   * `quality`: degrades quality of File, values is between `0.01` and `1.00`, defaults to `0.50`.
 
 ## Contributors

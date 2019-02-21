@@ -9,6 +9,8 @@
   },
   "scripts": {
     "build": "babel src -d lib",
+    "version": "yarn build && git add .",
+    "postversion": "git push && git push --tags",
     "coverage": "jest --coverage",
     "lint:js": "eslint --fix ./src ./tests",
     "test": "yarn coverage && yarn lint:js",

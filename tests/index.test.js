@@ -37,7 +37,7 @@ describe('index', async () => {
             jest.clearAllMocks();
         });
 
-        it('should override default options', () => {
+        it('should override default inputOptions', () => {
             expect(optionService.override).toHaveBeenCalledTimes(1);
             expect(optionService.override).toHaveBeenCalledWith(inputOptions);
         });

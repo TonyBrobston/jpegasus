@@ -6,27 +6,27 @@ import exifService from '../../src/services/exifService';
 describe('exifService', () => {
     const scenarios = [
         {
-            expected: 4,
+            expectedOptions: 4,
             file: 'exifOrientationFour.jpg',
             name: 'should return orientation of 4',
         },
         {
-            expected: 1,
+            expectedOptions: 1,
             file: 'exifGps.jpg',
             name: 'should return orientation of 1 and has exif gps data',
         },
         {
-            expected: undefined,
+            expectedOptions: undefined,
             file: 'notJpeg.png',
             name: 'should return because not jpeg',
         },
         {
-            expected: undefined,
+            expectedOptions: undefined,
             file: 'hasByteStuffing.jpeg',
             name: 'should break because has byte stuffing',
         },
         {
-            expected: undefined,
+            expectedOptions: undefined,
             file: 'hasNoExif.jpg',
             name: 'should exit because has no exif',
         },
@@ -38,7 +38,7 @@ describe('exifService', () => {
 
             const orientation = await exifService.determineOrientation(file);
 
-            expect(orientation).toBe(scenario.expected);
+            expect(orientation).toBe(scenario.expectedOptions);
         });
     });
 });

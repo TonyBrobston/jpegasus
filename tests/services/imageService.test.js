@@ -10,14 +10,14 @@ describe('imageService', () => {
             {
                 expectedCrossOrigin: 'Anonymous',
                 name: 'Allow CORS',
-                options: {
+                inputOptions: {
                     allowCrossOriginResourceSharing: true,
                 },
             },
             {
                 expectedCrossOrigin: undefined,
                 name: 'Do not allow CORS',
-                options: {
+                inputOptions: {
                     allowCrossOriginResourceSharing: false,
                 },
             },
@@ -49,7 +49,7 @@ describe('imageService', () => {
                         return expectedUrl;
                     });
 
-                    actualImageSource = await imageService.create(file, scenario.options);
+                    actualImageSource = await imageService.create(file, scenario.inputOptions);
                 });
 
                 afterAll(() => {
