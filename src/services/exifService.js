@@ -19,7 +19,7 @@ function parseBytes(dataView, resolve) {
             offset += dataView.getUint32(offset + 4, little);
             const tags = dataView.getUint16(offset, little);
             offset += 2;
-            for (let i = 0;i < tags;i ++) {
+            for (let i = 0; i < tags; i ++) {
                 if (dataView.getUint16(offset + (i * 12), little) === orientationMarker) {
                     resolve(dataView.getUint16(offset + (i * 12) + 8, little));
                 }

@@ -7,53 +7,53 @@ const chance = new Chance();
 describe('scenarios', () => {
     const scenarios = [
         {
-            expected: true,
+            expectedOptions: true,
             file: new File([chance.natural()], chance.string(), {
                 type: 'image/jpeg',
             }),
             scenario: 'file is valid jpeg',
         },
         {
-            expected: true,
+            expectedOptions: true,
             file: new File([chance.natural()], chance.string(), {
                 type: 'image/gif',
             }),
             scenario: 'file is valid gif',
         },
         {
-            expected: true,
+            expectedOptions: true,
             file: new File([chance.natural()], chance.string(), {
                 type: 'image/png',
             }),
             scenario: 'file is valid gpng',
         },
         {
-            expected: false,
+            expectedOptions: false,
             file: chance.string(),
             scenario: 'file of string',
         },
         {
-            expected: false,
+            expectedOptions: false,
             file: new File([], chance.string()),
             scenario: 'file with no size',
         },
         {
-            expected: false,
+            expectedOptions: false,
             file: {},
             scenario: 'file of empty object',
         },
         {
-            expected: false,
+            expectedOptions: false,
             file: undefined,
             scenario: 'file of undefined',
         },
         {
-            expected: false,
+            expectedOptions: false,
             file: null,
             scenario: 'file of null',
         },
         {
-            expected: false,
+            expectedOptions: false,
             file: {
                 size: chance.natural(),
                 type: chance.string(),
@@ -61,7 +61,7 @@ describe('scenarios', () => {
             scenario: 'a File that\'s type does not start with image',
         },
         {
-            expected: false,
+            expectedOptions: false,
             file: {
                 size: chance.natural(),
                 type: 'image/tiff',
@@ -74,7 +74,7 @@ describe('scenarios', () => {
         it(`should not allow ${scenario.scenario}`, () => {
             const isValid = fileService.validate(scenario.file);
 
-            expect(isValid).toBe(scenario.expected);
+            expect(isValid).toBe(scenario.expectedOptions);
         });
     });
 });

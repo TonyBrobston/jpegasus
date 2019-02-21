@@ -21,8 +21,8 @@ describe('scaleService', () => {
                 height: chance.natural(),
                 width: chance.natural(),
             },
-            name: 'no options',
-            options: {},
+            name: 'no inputOptions',
+            inputOptions: {},
             scale: 1.00,
         },
         {
@@ -31,7 +31,7 @@ describe('scaleService', () => {
                 width: 3000,
             },
             name: 'maxHeight scale',
-            options: {
+            inputOptions: {
                 maxHeight: 1200,
             },
             scale: 0.30,
@@ -42,7 +42,7 @@ describe('scaleService', () => {
                 width: 3000,
             },
             name: 'maxWidth scale',
-            options: {
+            inputOptions: {
                 maxWidth: 1200,
             },
             scale: 0.40,
@@ -53,7 +53,7 @@ describe('scaleService', () => {
                 width: 1000,
             },
             name: 'no scale, height < maxHeight',
-            options: {
+            inputOptions: {
                 maxHeight: 1200,
             },
             scale: 1.00,
@@ -64,7 +64,7 @@ describe('scaleService', () => {
                 width: 1000,
             },
             name: 'no scale, width < maxWidth',
-            options: {
+            inputOptions: {
                 maxWidth: 1200,
             },
             scale: 1.00,
@@ -75,7 +75,7 @@ describe('scaleService', () => {
                 width: 800,
             },
             name: 'maxHeight scale, width < height',
-            options: {
+            inputOptions: {
                 maxHeight: 600,
                 maxWidth: 600,
             },
@@ -87,7 +87,7 @@ describe('scaleService', () => {
                 width: 1200,
             },
             name: 'maxWidth scale, height < width',
-            options: {
+            inputOptions: {
                 maxHeight: 600,
                 maxWidth: 600,
             },
@@ -101,7 +101,7 @@ describe('scaleService', () => {
                 imageService.create.mockResolvedValue(scenario.image);
                 canvasService.create.mockReturnValue(expectedCanvas);
 
-                actualCanvas = await scaleService.toCanvas(file, scenario.options);
+                actualCanvas = await scaleService.toCanvas(file, scenario.inputOptions);
             });
 
             afterAll(() => {
@@ -110,7 +110,7 @@ describe('scaleService', () => {
 
             it('should create an image', () => {
                 expect(imageService.create).toHaveBeenCalledTimes(1);
-                expect(imageService.create).toHaveBeenCalledWith(file, scenario.options);
+                expect(imageService.create).toHaveBeenCalledWith(file, scenario.inputOptions);
             });
 
             it('should create a canvas', () => {

@@ -25,8 +25,8 @@ describe('qualityService', () => {
                 name: chance.string(),
                 size: 100,
             },
-            name: 'no options',
-            options: {},
+            name: 'no inputOptions',
+            inputOptions: {},
             quality: 1.00,
         },
         {
@@ -38,7 +38,7 @@ describe('qualityService', () => {
                 size: 75,
             },
             name: 'quality overrides targetFileSize',
-            options: {
+            inputOptions: {
                 quality: 0.75,
                 targetFileSize: 10,
             },
@@ -53,7 +53,7 @@ describe('qualityService', () => {
                 size: 100,
             },
             name: 'targetFileSize < file.size',
-            options: {
+            inputOptions: {
                 targetFileSize: 10,
             },
             quality: 0.10,
@@ -67,7 +67,7 @@ describe('qualityService', () => {
                 size: 10,
             },
             name: 'file.size < targetFileSize',
-            options: {
+            inputOptions: {
                 targetFileSize: 100,
             },
             quality: 1.00,
@@ -81,7 +81,7 @@ describe('qualityService', () => {
                 size: 100,
             },
             name: 'file got bigger',
-            options: {
+            inputOptions: {
                 targetFileSize: 100,
             },
             quality: 1.00,
@@ -99,7 +99,7 @@ describe('qualityService', () => {
                 windowService.toByteArray.mockReturnValue(bytes);
                 blobService.create.mockReturnValue(scenario.expectedFile);
 
-                actualBlob = qualityService.toBlob(scenario.file, canvas, scenario.options);
+                actualBlob = qualityService.toBlob(scenario.file, canvas, scenario.inputOptions);
             });
 
             afterAll(() => {
