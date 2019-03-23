@@ -18,10 +18,9 @@ create_npm_version_and_publish() {
 }
 
 push_version_update_to_git() {
-  git checkout master
   git add package.json
   git commit -m "Bumping package.json version number to $TRAVIS_TAG"
-  git push master
+  git push origin HEAD:master
 }
 
 setup_git_config
