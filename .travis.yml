@@ -12,7 +12,7 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: sh .travis/pu.sh
+  script: sh .travis/buildAndDeploy.sh
   on:
     branch: master
     tags: true
