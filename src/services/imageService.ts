@@ -1,4 +1,6 @@
-const create = async (file, options) => {
+import {Options} from "../../lib/types/Options";
+
+const create = async (blob: Blob, options: Options) => {
     return new Promise((resolve, reject) => {
         const image = new Image();
         if (options.allowCrossOriginResourceSharing) {
@@ -10,7 +12,7 @@ const create = async (file, options) => {
         image.addEventListener('error', (error) => {
             reject(error);
         });
-        image.src = URL.createObjectURL(file);
+        image.src = URL.createObjectURL(blob);
     });
 };
 

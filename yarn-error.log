@@ -26,7 +26,7 @@ npm manifest:
     "name": "jpegasus",
     "version": "1.9.23",
     "description": "A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `File` of type `.jpeg`.",
-    "main": "./lib/index.js",
+    "main": "./lib/index.ts",
     "repository": {
       "type": "git",
       "url": "https://github.com/TonyBrobston/jpegasus"

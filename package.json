@@ -8,7 +8,7 @@
     "url": "https://github.com/TonyBrobston/jpegasus"
   },
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "tsc",
     "version": "yarn build && git add .",
     "postversion": "git push && git push --tags",
     "coverage": "jest --coverage",
@@ -36,15 +36,13 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.1",
-    "babel-eslint": "^10.0.1",
+    "@types/chance": "^1.0.1",
+    "@types/jest": "^24.0.11",
     "chance": "^1.0.18",
     "eslint": "^5.14.1",
     "eslint-config-google": "^0.12.0",
-    "jest": "^24.1.0"
+    "jest": "^24.1.0",
+    "typescript": "^3.4.1"
   },
   "jest": {
     "collectCoverageFrom": [

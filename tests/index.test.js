@@ -4,7 +4,7 @@ import fileService from '../src/services/fileService';
 import optionService from '../src/services/optionService';
 import scaleService from '../src/services/scaleService';
 import qualityService from '../src/services/qualityService';
-import index from '../src/index';
+import index from '../src';
 
 jest.mock('../src/services/fileService');
 jest.mock('../src/services/optionService');
