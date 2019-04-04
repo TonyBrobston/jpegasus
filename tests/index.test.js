@@ -27,7 +27,7 @@ describe('index', async () => {
         fileService.validate.mockReturnValue(true);
         optionService.override.mockReturnValue(options);
         scaleService.toCanvas.mockResolvedValue(canvas);
-        qualityService.toBlob.mockReturnValue(expectedCompressedBlob);
+        qualityService.toFile.mockReturnValue(expectedCompressedBlob);
 
         beforeAll(async () => {
             actualCompressedFile = await index.compress(file, inputOptions);
@@ -48,8 +48,8 @@ describe('index', async () => {
         });
 
         it('should convert file to file and reduce quality', () => {
-            expect(qualityService.toBlob).toHaveBeenCalledTimes(1);
-            expect(qualityService.toBlob).toHaveBeenCalledWith(file, canvas, options);
+            expect(qualityService.toFile).toHaveBeenCalledTimes(1);
+            expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, options);
         });
 
         it('should return a compressed file', () => {

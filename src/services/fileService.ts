@@ -1,4 +1,4 @@
-const validate = (file: Blob) => {
+const validate = (file: File) => {
     const isNotNull = file !== null;
     const isAnObject = typeof file === 'object';
     const hasSize = file && file.size > 0;

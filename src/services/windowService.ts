@@ -13,6 +13,7 @@ const toByteArray = (base64) => {
 
         const byteArray = new Uint8Array(bytesAsCharCodes);
 
+        // @ts-ignore
         byteArrays.push(byteArray);
     }
 

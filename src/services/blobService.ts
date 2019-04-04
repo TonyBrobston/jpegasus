@@ -1,10 +1,5 @@
-const create = (byteArray, type, name) => {
-    const blob = new Blob(byteArray, {type});
-
-    blob.name = name;
-    blob.lastModifiedDate = new Date();
-
-    return blob;
+const create = (byteArray: BlobPart[], type: string, name: string) => {
+    return new File(byteArray, name, {type});
 };
 
 export default {

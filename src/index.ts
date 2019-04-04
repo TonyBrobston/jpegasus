@@ -4,15 +4,15 @@ import scaleService from './services/scaleService';
 import qualityService from './services/qualityService';
 import {Options} from './types/Options'
 
-export const compress = async (blob: Blob, inputOptions: Options) => {
+export const compress = async (file: File, inputOptions: Options) => {
     try {
-        if (fileService.validate(blob)) {
+        if (fileService.validate(file)) {
             const options = optionService.override(inputOptions);
-            const canvas = await scaleService.toCanvas(blob, options);
-            return qualityService.toBlob(blob, canvas, options);
+            const canvas = await scaleService.toCanvas(file, options);
+            return qualityService.toFile(file, canvas, options);
         }
     } catch (error) {}
 
-    return blob;
+    return file;
 };
 

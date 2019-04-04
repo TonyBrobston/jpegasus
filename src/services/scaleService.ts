@@ -1,15 +1,21 @@
 import imageService from './imageService';
 import canvasService from './canvasService';
-import {Options} from "../../lib/types/Options";
+import {Options} from '../types/Options';
 
-const determineScale = (image, options) => {
+const determineScale = (image: any, options: Options) => {
     const height = image.height;
     const width = image.width;
     const maxHeight = options.maxHeight;
     const maxWidth = options.maxWidth;
-    const heightCanBeScaled = height > maxHeight;
+    let heightCanBeScaled = false;
+    if (maxHeight) {
+        heightCanBeScaled = height > maxHeight;
+    }
     const heightIsLargest = height > width;
-    const widthCanBeScaled = width > maxWidth;
+    let widthCanBeScaled = false;
+    if (maxWidth) {
+        widthCanBeScaled = width > maxWidth;
+    }
 
     if (maxHeight && heightCanBeScaled && heightIsLargest) {
         return maxHeight / height;
@@ -20,10 +26,10 @@ const determineScale = (image, options) => {
     return 1.00;
 };
 
-const toCanvas = async (blob: Blob, options: Options) => {
-    const image = await imageService.create(blob, options);
+const toCanvas = async (file: File, options: Options) => {
+    const image = await imageService.create(file, options);
     const scale = determineScale(image, options);
-    return canvasService.create(blob, image, scale);
+    return canvasService.create(file, image, scale);
 };
 
 export default {

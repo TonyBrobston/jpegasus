@@ -99,7 +99,7 @@ describe('qualityService', () => {
                 windowService.toByteArray.mockReturnValue(bytes);
                 blobService.create.mockReturnValue(scenario.expectedFile);
 
-                actualBlob = qualityService.toBlob(scenario.file, canvas, scenario.inputOptions);
+                actualBlob = qualityService.toFile(scenario.file, canvas, scenario.inputOptions);
             });
 
             afterAll(() => {

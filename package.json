@@ -8,7 +8,7 @@
     "url": "https://github.com/TonyBrobston/jpegasus"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf lib && tsc",
     "version": "yarn build && git add .",
     "postversion": "git push && git push --tags",
     "coverage": "jest --coverage",
@@ -62,7 +62,6 @@
     }
   },
   "peerDependencies": {
-    "babel-runtime": "^6.26.0",
     "core-js": "^3.0.0",
     "regenerator-runtime": "^0.13.2"
   }
