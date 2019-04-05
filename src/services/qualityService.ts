@@ -1,6 +1,6 @@
 import blobService from './blobService';
-import windowService from './windowService';
 import {Options} from '../types/Options';
+import windowService from './windowService';
 
 const toFile = (file: File, canvas: any, options: Options) => {
     const quality = options.quality ? options.quality : 1.00;
