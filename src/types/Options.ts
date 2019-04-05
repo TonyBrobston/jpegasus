@@ -3,5 +3,4 @@ export interface Options {
     quality?: number;
     maxHeight?: number;
     maxWidth?: number;
-    targetFileSize?: number;
 }

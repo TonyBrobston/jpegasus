@@ -7,15 +7,6 @@ const determineQuality = (file: File, options: Options) => {
         return options.quality;
     }
 
-    const targetFileSize = options.targetFileSize;
-    if (targetFileSize) {
-        const qualityCanBeLess = targetFileSize < file.size;
-
-        if (targetFileSize && qualityCanBeLess) {
-            return targetFileSize / file.size;
-        }
-    }
-
     return 1.00;
 };
 

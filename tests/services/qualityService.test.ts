@@ -13,78 +13,25 @@ describe('qualityService', () => {
     const base64Prefix = chance.string();
     const base64Suffix = chance.string();
     const base64 = `${base64Prefix},${base64Suffix}`;
-    const bytes = chance.string();
+    const bytes = Blob[chance.string()];
     let actualBlob;
 
     const scenarios = [
         {
-            expectedFile: {
-                size: 100,
-            },
-            file: {
-                name: chance.string(),
-                size: 100,
-            },
+            expectedFile: new File(['a'], chance.string()),
+            file: new File([], chance.string()),
             name: 'no inputOptions',
             inputOptions: {},
             quality: 1.00,
         },
         {
-            expectedFile: {
-                size: 100,
-            },
-            file: {
-                name: chance.string(),
-                size: 75,
-            },
-            name: 'quality overrides targetFileSize',
+            expectedFile: new File(['a'], chance.string()),
+            file: new File([], chance.string()),
+            name: 'quality overrides default',
             inputOptions: {
-                quality: 0.75,
-                targetFileSize: 10,
+                quality: 0.75
             },
             quality: 0.75,
-        },
-        {
-            expectedFile: {
-                size: 10,
-            },
-            file: {
-                name: chance.string(),
-                size: 100,
-            },
-            name: 'targetFileSize < file.size',
-            inputOptions: {
-                targetFileSize: 10,
-            },
-            quality: 0.10,
-        },
-        {
-            expectedFile: {
-                size: 10,
-            },
-            file: {
-                name: chance.string(),
-                size: 10,
-            },
-            name: 'file.size < targetFileSize',
-            inputOptions: {
-                targetFileSize: 100,
-            },
-            quality: 1.00,
-        },
-        {
-            expectedFile: {
-                size: 1000,
-            },
-            file: {
-                name: chance.string(),
-                size: 100,
-            },
-            name: 'file got bigger',
-            inputOptions: {
-                targetFileSize: 100,
-            },
-            quality: 1.00,
         },
     ];
 
@@ -96,8 +43,8 @@ describe('qualityService', () => {
 
             beforeAll(() => {
                 canvas.toDataURL.mockReturnValue(base64);
-                windowService.toByteArray.mockReturnValue(bytes);
-                blobService.create.mockReturnValue(scenario.expectedFile);
+                windowService.toByteArray = jest.fn(() => bytes);
+                blobService.create = jest.fn(() => scenario.expectedFile);
 
                 actualBlob = qualityService.toFile(scenario.file, canvas, scenario.inputOptions);
             });
