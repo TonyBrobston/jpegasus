@@ -36,7 +36,7 @@ const determineOrientation = async (file: File) => {
     return new Promise((resolve) => {
         const reader = new FileReader();
         reader.onload = () => {
-            const dataView = new DataView(<SharedArrayBuffer | ArrayBuffer>reader.result);
+            const dataView = new DataView(<SharedArrayBuffer | ArrayBuffer> reader.result);
             if (dataView.getUint16(0, false) !== startOfFileMarker) {
                 resolve(undefined);
             }

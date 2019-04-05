@@ -22,7 +22,12 @@ describe('index', () => {
         });
         const expectedCompressedBlob = new File([chance.string()], chance.string());
         const inputOptions = {};
-        const options = chance.string();
+        const options = {
+            allowCrossOriginResourceSharing: true,
+            quality: 0.05,
+            maxHeight: 1000,
+            maxWidth: 1000,
+        };
         const canvas = document.createElement('canvas');
         fileService.validate = jest.fn(() => true);
         optionService.override = jest.fn(() => options);

@@ -12,8 +12,8 @@
     "version": "yarn build && git add .",
     "postversion": "git push && git push --tags",
     "coverage": "jest --coverage",
-    "lint:js": "eslint --fix ./src ./tests",
-    "test": "yarn coverage && yarn lint:js",
+    "lint:ts": "tslint -c tslint.json 'src/**/*.ts' 'tests/**/*.test.ts'",
+    "test": "yarn coverage && yarn lint:ts",
     "unit": "npx jest"
   },
   "keywords": [
@@ -40,11 +40,10 @@
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.0",
     "chance": "^1.0.18",
-    "eslint": "^5.14.1",
-    "eslint-config-google": "^0.12.0",
     "jest": "^24.1.0",
     "ts-jest": "^24.0.1",
     "ts-node": "^8.0.3",
+    "tslint": "^5.15.0",
     "typescript": "^3.4.1"
   },
   "peerDependencies": {

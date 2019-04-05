@@ -6,7 +6,6 @@ describe('optionService', () => {
             expectedOptions: {
                 allowCrossOriginResourceSharing: false,
                 quality: 0.5,
-                readImageFileTimeout: 5000,
             },
             name: 'should not override any inputOptions',
             inputOptions: {},
@@ -17,7 +16,6 @@ describe('optionService', () => {
                 maxHeight: 5,
                 maxWidth: 4,
                 quality: 0.75,
-                readImageFileTimeout: 2500,
             },
             name: 'should override all inputOptions',
             inputOptions: {
@@ -25,14 +23,12 @@ describe('optionService', () => {
                 maxHeight: 5,
                 maxWidth: 4,
                 quality: 0.75,
-                readImageFileTimeout: 2500,
             },
         },
         {
             expectedOptions: {
                 allowCrossOriginResourceSharing: true,
                 quality: 0.5,
-                readImageFileTimeout: 5000,
             },
             name: 'should override only allowCrossOriginResourceSharing',
             inputOptions: {

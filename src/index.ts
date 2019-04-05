@@ -1,8 +1,8 @@
 import fileService from './services/fileService';
 import optionService from './services/optionService';
-import scaleService from './services/scaleService';
 import qualityService from './services/qualityService';
-import {Options} from './types/Options'
+import scaleService from './services/scaleService';
+import {Options} from './types/Options';
 
 export const compress = async (file: File, inputOptions: Options = {}) => {
     try {
@@ -15,4 +15,3 @@ export const compress = async (file: File, inputOptions: Options = {}) => {
 
     return file;
 };
-
