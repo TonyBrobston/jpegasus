@@ -23,11 +23,10 @@ describe('index', () => {
         const expectedCompressedBlob = new File([chance.string()], chance.string());
         const inputOptions = {};
         const options = chance.string();
-        const canvas = chance.string();
+        const canvas = document.createElement('canvas');;
         fileService.validate = jest.fn(() => true);
         optionService.override = jest.fn(() => options);
-        // @ts-ignore
-        scaleService.toCanvas = jest.fn(() => canvas);
+        scaleService.toCanvas = jest.fn(() => Promise.resolve(canvas));
         qualityService.toFile = jest.fn(() => expectedCompressedBlob);
 
         beforeAll(async () => {
