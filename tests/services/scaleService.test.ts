@@ -1,8 +1,8 @@
 import {Chance} from 'chance';
 
-import scaleService from '../../src/services/scaleService';
-import imageService from '../../src/services/imageService';
 import canvasService from '../../src/services/canvasService';
+import imageService from '../../src/services/imageService';
+import scaleService from '../../src/services/scaleService';
 
 jest.mock('../../src/services/imageService');
 jest.mock('../../src/services/canvasService');
@@ -20,8 +20,8 @@ describe('scaleService', () => {
                 height: chance.natural(),
                 width: chance.natural(),
             },
-            name: 'no inputOptions',
             inputOptions: {},
+            name: 'no inputOptions',
             scale: 1.00,
         },
         {
@@ -29,10 +29,10 @@ describe('scaleService', () => {
                 height: 4000,
                 width: 3000,
             },
-            name: 'maxHeight scale',
             inputOptions: {
                 maxHeight: 1200,
             },
+            name: 'maxHeight scale',
             scale: 0.30,
         },
         {
@@ -40,10 +40,10 @@ describe('scaleService', () => {
                 height: 4000,
                 width: 3000,
             },
-            name: 'maxWidth scale',
             inputOptions: {
                 maxWidth: 1200,
             },
+            name: 'maxWidth scale',
             scale: 0.40,
         },
         {
@@ -51,10 +51,10 @@ describe('scaleService', () => {
                 height: 1000,
                 width: 1000,
             },
-            name: 'no scale, height < maxHeight',
             inputOptions: {
                 maxHeight: 1200,
             },
+            name: 'no scale, height < maxHeight',
             scale: 1.00,
         },
         {
@@ -62,10 +62,10 @@ describe('scaleService', () => {
                 height: 1000,
                 width: 1000,
             },
-            name: 'no scale, width < maxWidth',
             inputOptions: {
                 maxWidth: 1200,
             },
+            name: 'no scale, width < maxWidth',
             scale: 1.00,
         },
         {
@@ -73,11 +73,11 @@ describe('scaleService', () => {
                 height: 1200,
                 width: 800,
             },
-            name: 'maxHeight scale, width < height',
             inputOptions: {
                 maxHeight: 600,
                 maxWidth: 600,
             },
+            name: 'maxHeight scale, width < height',
             scale: 0.50,
         },
         {
@@ -85,11 +85,11 @@ describe('scaleService', () => {
                 height: 800,
                 width: 1200,
             },
-            name: 'maxWidth scale, height < width',
             inputOptions: {
                 maxHeight: 600,
                 maxWidth: 600,
             },
+            name: 'maxWidth scale, height < width',
             scale: 0.50,
         },
     ];

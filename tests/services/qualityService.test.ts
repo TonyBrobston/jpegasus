@@ -1,8 +1,8 @@
 import {Chance} from 'chance';
 
+import blobService from '../../src/services/blobService';
 import qualityService from '../../src/services/qualityService';
 import windowService from '../../src/services/windowService';
-import blobService from '../../src/services/blobService';
 
 jest.mock('../../src/services/windowService');
 jest.mock('../../src/services/blobService');
@@ -20,17 +20,17 @@ describe('qualityService', () => {
         {
             expectedFile: new File(['a'], chance.string()),
             file: new File([], chance.string()),
-            name: 'no inputOptions',
             inputOptions: {},
+            name: 'no inputOptions',
             quality: 1.00,
         },
         {
             expectedFile: new File(['a'], chance.string()),
             file: new File([], chance.string()),
-            name: 'quality overrides default',
             inputOptions: {
-                quality: 0.75
+                quality: 0.75,
             },
+            name: 'quality overrides default',
             quality: 0.75,
         },
     ];

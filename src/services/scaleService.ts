@@ -1,5 +1,5 @@
-import imageService from './imageService';
 import canvasService from './canvasService';
+import imageService from './imageService';
 import {Options} from '../types/Options';
 
 const determineScale = (image: any, options: Options) => {

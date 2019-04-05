@@ -6,6 +6,7 @@ const chance = new Chance();
 
 describe('imageService', () => {
     const globalAny:any = global;
+    const windowAny:any = global;
 
     describe('happy path', () => {
         const scenarios = [
@@ -39,7 +40,7 @@ describe('imageService', () => {
                             map[event] = cb;
                         }),
                     };
-                    window['Image'] = jest.fn(() => image);
+                    windowAny.Image = jest.fn(() => image);
                     expectedUrl = chance.url();
                     globalAny.URL.createObjectURL = jest.fn();
                     globalAny.URL.createObjectURL = jest.fn(() => {
@@ -100,7 +101,7 @@ describe('imageService', () => {
                         map[event] = cb;
                     }),
                 };
-                window['Image'] = jest.fn(() => image);
+                windowAny.Image = jest.fn(() => image);
                 globalAny.URL.createObjectURL = jest.fn();
                 expectedError = chance.string();
                 globalAny.URL.createObjectURL = jest.fn(() => {
