@@ -4,7 +4,7 @@ import scaleService from './services/scaleService';
 import qualityService from './services/qualityService';
 import {Options} from './types/Options'
 
-export const compress = async (file: File, inputOptions: Options) => {
+export const compress = async (file: File, inputOptions: Options = {}) => {
     try {
         if (fileService.validate(file)) {
             const options = optionService.override(inputOptions);

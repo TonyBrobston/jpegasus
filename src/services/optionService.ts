@@ -1,6 +1,6 @@
 import {Options} from '../types/Options'
 
-const override = (inputOptions: Options) => {
+const override = (inputOptions: any) => {
     return {
         allowCrossOriginResourceSharing: false,
         quality: 0.5,
