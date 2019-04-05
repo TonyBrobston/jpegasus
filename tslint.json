@@ -6,7 +6,9 @@
     "jsRules": {},
     "rules": {
         "quotemark": ["single"],
-        "one-variable-per-declaration": false
+        "one-variable-per-declaration": false,
+        "no-bitwise": false,
+        "interface-name": [true, "never-prefix"]
     },
     "rulesDirectory": []
 }

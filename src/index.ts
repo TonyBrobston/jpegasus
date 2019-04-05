@@ -11,7 +11,9 @@ export const compress = async (file: File, inputOptions: Options = {}) => {
             const canvas = await scaleService.toCanvas(file, options);
             return qualityService.toFile(file, canvas, options);
         }
-    } catch (error) {}
+    } catch (error) {
+        return file;
+    }
 
     return file;
 };
