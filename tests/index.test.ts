@@ -1,5 +1,5 @@
 import {Chance} from 'chance';
-expectedFile
+
 import fileService from '../src/services/fileService';
 import optionService from '../src/services/optionService';
 import scaleService from '../src/services/scaleService';
@@ -23,7 +23,7 @@ describe('index', () => {
         const expectedCompressedBlob = new File([chance.string()], chance.string());
         const inputOptions = {};
         const options = chance.string();
-        const canvas = document.createElement('canvas');;
+        const canvas = document.createElement('canvas');
         fileService.validate = jest.fn(() => true);
         optionService.override = jest.fn(() => options);
         scaleService.toCanvas = jest.fn(() => Promise.resolve(canvas));
