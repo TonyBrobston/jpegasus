@@ -5,6 +5,8 @@ import imageService from '../../src/services/imageService';
 const chance = new Chance();
 
 describe('imageService', () => {
+    const globalAny:any = global;
+
     describe('happy path', () => {
         const scenarios = [
             {
@@ -24,14 +26,10 @@ describe('imageService', () => {
         ];
 
         scenarios.forEach((scenario) => {
-            const file = new File([1234], chance.string());
-            let image;
-
-
-            let expectedUrl;
-
-
-            let actualImageSource;
+            const file = new File([chance.string()], chance.string());
+            let image,
+                expectedUrl,
+                actualImageSource;
 
             describe(scenario.name, () => {
                 beforeAll(async () => {
@@ -41,10 +39,11 @@ describe('imageService', () => {
                             map[event] = cb;
                         }),
                     };
-                    window.Image = jest.fn(() => image);
+                    window['Image'] = jest.fn(() => image);
                     expectedUrl = chance.url();
-                    global.URL.createObjectURL = jest.fn();
-                    global.URL.createObjectURL.mockImplementation(() => {
+                    globalAny.URL.createObjectURL = jest.fn();
+                    globalAny.URL.createObjectURL = jest.fn(() => {
+                        // @ts-ignore
                         map.load();
                         return expectedUrl;
                     });
@@ -57,8 +56,8 @@ describe('imageService', () => {
                 });
 
                 it('should create an image', () => {
-                    expect(window.Image).toHaveBeenCalledTimes(1);
-                    expect(window.Image).toHaveBeenCalledWith();
+                    expect(window['Image']).toHaveBeenCalledTimes(1);
+                    expect(window['Image']).toHaveBeenCalledWith();
                 });
 
                 it('should fire onload on load of image source', () => {
@@ -72,8 +71,8 @@ describe('imageService', () => {
                 });
 
                 it('should have called URL createObjectURL', () => {
-                    expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
-                    expect(global.URL.createObjectURL).toHaveBeenCalledWith(file);
+                    expect(globalAny.URL.createObjectURL).toHaveBeenCalledTimes(1);
+                    expect(globalAny.URL.createObjectURL).toHaveBeenCalledWith(file);
                 });
 
                 it('should return correct url', () => {
@@ -88,14 +87,10 @@ describe('imageService', () => {
     });
 
     describe('sad path', () => {
-        const file = new File([1234], chance.string());
-        let image;
-
-
-        let expectedError;
-
-
-        let actualError;
+        const file = new File([chance.string()], chance.string());
+        let image,
+            expectedError,
+            actualError;
 
         describe('should reject', () => {
             beforeAll(async () => {
@@ -105,10 +100,11 @@ describe('imageService', () => {
                         map[event] = cb;
                     }),
                 };
-                window.Image = jest.fn(() => image);
-                global.URL.createObjectURL = jest.fn();
+                window['Image'] = jest.fn(() => image);
+                globalAny.URL.createObjectURL = jest.fn();
                 expectedError = chance.string();
-                global.URL.createObjectURL.mockImplementation(() => {
+                globalAny.URL.createObjectURL = jest.fn(() => {
+                    // @ts-ignore
                     map.error(expectedError);
                 });
 
