@@ -8,29 +8,24 @@ describe('scenarios', () => {
     const scenarios = [
         {
             expectedOptions: true,
-            file: new File([chance.natural()], chance.string(), {
+            file: new File([chance.string()], chance.string(), {
                 type: 'image/jpeg',
             }),
             scenario: 'file is valid jpeg',
         },
         {
             expectedOptions: true,
-            file: new File([chance.natural()], chance.string(), {
+            file: new File([chance.string()], chance.string(), {
                 type: 'image/gif',
             }),
             scenario: 'file is valid gif',
         },
         {
             expectedOptions: true,
-            file: new File([chance.natural()], chance.string(), {
+            file: new File([chance.string()], chance.string(), {
                 type: 'image/png',
             }),
             scenario: 'file is valid gpng',
-        },
-        {
-            expectedOptions: false,
-            file: chance.string(),
-            scenario: 'file of string',
         },
         {
             expectedOptions: false,
@@ -39,33 +34,16 @@ describe('scenarios', () => {
         },
         {
             expectedOptions: false,
-            file: {},
-            scenario: 'file of empty object',
-        },
-        {
-            expectedOptions: false,
-            file: undefined,
-            scenario: 'file of undefined',
-        },
-        {
-            expectedOptions: false,
-            file: null,
-            scenario: 'file of null',
-        },
-        {
-            expectedOptions: false,
-            file: {
-                size: chance.natural(),
+            file: new File([chance.string()], chance.string(), {
                 type: chance.string(),
-            },
+            }),
             scenario: 'a File that\'s type does not start with image',
         },
         {
             expectedOptions: false,
-            file: {
-                size: chance.natural(),
+            file: new File([chance.string()], chance.string(), {
                 type: 'image/tiff',
-            },
+            }),
             scenario: 'a File that\'s type is image/tiff',
         },
     ];
