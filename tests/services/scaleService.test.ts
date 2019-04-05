@@ -7,12 +7,11 @@ import canvasService from '../../src/services/canvasService';
 jest.mock('../../src/services/imageService');
 jest.mock('../../src/services/canvasService');
 
-
 const chance = new Chance();
 
 describe('scaleService', () => {
-    const file = chance.string();
-    const expectedCanvas = chance.string();
+    const file = new File([chance.string()], chance.string());
+    const expectedCanvas = document.createElement('canvas');
     let actualCanvas;
 
     const scenarios = [
@@ -98,8 +97,8 @@ describe('scaleService', () => {
     scenarios.forEach((scenario) => {
         describe(scenario.name, () => {
             beforeAll(async () => {
-                imageService.create.mockResolvedValue(scenario.image);
-                canvasService.create.mockReturnValue(expectedCanvas);
+                imageService.create = jest.fn(() => Promise.resolve(scenario.image));
+                canvasService.create = jest.fn(() => Promise.resolve(expectedCanvas));
 
                 actualCanvas = await scaleService.toCanvas(file, scenario.inputOptions);
             });
