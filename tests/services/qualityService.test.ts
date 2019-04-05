@@ -1,4 +1,4 @@
-import Chance from 'chance';
+import {Chance} from 'chance';
 
 import qualityService from '../../src/services/qualityService';
 import windowService from '../../src/services/windowService';

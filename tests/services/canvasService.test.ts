@@ -1,4 +1,4 @@
-import Chance from 'chance';
+import {Chance} from 'chance';
 
 import canvasService from '../../src/services/canvasService';
 import exifService from '../../src/services/exifService';

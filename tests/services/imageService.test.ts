@@ -1,4 +1,4 @@
-import Chance from 'chance';
+import {Chance} from 'chance';
 
 import imageService from '../../src/services/imageService';
 
