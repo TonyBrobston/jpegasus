@@ -2,6 +2,7 @@ import {Chance} from 'chance';
 
 import canvasService from '../../src/services/canvasService';
 import exifService from '../../src/services/exifService';
+import {createTransformer} from "ts-jest";
 
 const chance = new Chance();
 
@@ -10,7 +11,7 @@ jest.mock('../../src/services/exifService');
 describe('canvasService', () => {
     const height = chance.natural();
     const width = chance.natural();
-    const file = chance.string();
+    const file = new File([chance.string()], chance.string());
     const image = {
         height,
         width,
@@ -21,22 +22,26 @@ describe('canvasService', () => {
     });
     const scaledHeight = height * scale;
     const scaledWidth = width * scale;
+    const transform = jest.fn(() => null);
+    const drawImage = jest.fn(() => null);
+    const contextReturn = {
+        drawImage,
+        transform
+    };
+    const getContext = jest.fn(() => contextReturn);
     const canvas = {
-        getContext: jest.fn(),
+        getContext,
+        height: scaledHeight,
+        width: scaledWidth
     };
     const expectedOrientation = chance.integer();
 
     let actualCanvas;
 
-    document.createElement = jest.fn();
-    document.createElement.mockReturnValue(canvas);
-    const context = {
-        drawImage: jest.fn(),
-        transform: jest.fn(),
-    };
+    // @ts-ignore
+    document.createElement = jest.fn(() => canvas);
 
-    canvas.getContext.mockReturnValue(context);
-    exifService.determineOrientation.mockResolvedValue(expectedOrientation);
+    exifService.determineOrientation = jest.fn(() => Promise.resolve(expectedOrientation));
 
     describe('create', () => {
         beforeAll(async () => {
@@ -49,8 +54,8 @@ describe('canvasService', () => {
         });
 
         it('should get a imageCanvas context', () => {
-            expect(canvas.getContext).toHaveBeenCalledTimes(1);
-            expect(canvas.getContext).toHaveBeenCalledWith('2d');
+            expect(getContext).toHaveBeenCalledTimes(1);
+            expect(getContext).toHaveBeenCalledWith('2d');
         });
 
         it('should determine orientation', () => {
@@ -59,8 +64,8 @@ describe('canvasService', () => {
         });
 
         it('should draw the image on the context of the imageCanvas', () => {
-            expect(context.drawImage).toHaveBeenCalledTimes(1);
-            expect(context.drawImage).toHaveBeenCalledWith(image, 0, 0, scaledWidth, scaledHeight);
+            expect(drawImage).toHaveBeenCalledTimes(1);
+            expect(drawImage).toHaveBeenCalledWith(image, 0, 0, scaledWidth, scaledHeight);
         });
 
         it('should return a canvasService', () => {
@@ -117,16 +122,16 @@ describe('canvasService', () => {
 
         expectedRotationScenarios.forEach((scenario) => {
             it(`should correct orientation ${scenario.exifOrientation}`, async () => {
-                context.transform.mockClear();
-                exifService.determineOrientation.mockResolvedValue(scenario.exifOrientation);
+                transform.mockClear();
+                exifService.determineOrientation = jest.fn(() => Promise.resolve(scenario.exifOrientation));
 
                 actualCanvas = await canvasService.create(file, image, scale);
 
                 expect(actualCanvas.height).toBe(scenario.height);
                 expect(actualCanvas.width).toBe(scenario.width);
 
-                expect(context.transform).toHaveBeenCalledTimes(1);
-                expect(context.transform).toHaveBeenCalledWith(...scenario.parameters);
+                expect(transform).toHaveBeenCalledTimes(1);
+                expect(transform).toHaveBeenCalledWith(...scenario.parameters);
             });
         });
     });
