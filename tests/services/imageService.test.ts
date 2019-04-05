@@ -1,28 +1,27 @@
 import {Chance} from 'chance';
-
 import imageService from '../../src/services/imageService';
 
 const chance = new Chance();
 
 describe('imageService', () => {
-    const globalAny:any = global;
-    const windowAny:any = global;
+    const globalAny: any = global;
+    const windowAny: any = global;
 
     describe('happy path', () => {
         const scenarios = [
             {
                 expectedCrossOrigin: 'Anonymous',
-                name: 'Allow CORS',
                 inputOptions: {
                     allowCrossOriginResourceSharing: true,
                 },
+                name: 'Allow CORS',
             },
             {
                 expectedCrossOrigin: undefined,
-                name: 'Do not allow CORS',
                 inputOptions: {
                     allowCrossOriginResourceSharing: false,
                 },
+                name: 'Do not allow CORS',
             },
         ];
 

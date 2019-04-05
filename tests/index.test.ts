@@ -1,10 +1,10 @@
 import {Chance} from 'chance';
 
+import {compress} from '../src/index';
 import fileService from '../src/services/fileService';
 import optionService from '../src/services/optionService';
-import scaleService from '../src/services/scaleService';
 import qualityService from '../src/services/qualityService';
-import {compress} from '../src/index';
+import scaleService from '../src/services/scaleService';
 
 jest.mock('../src/services/fileService');
 jest.mock('../src/services/optionService');
@@ -24,9 +24,9 @@ describe('index', () => {
         const inputOptions = {};
         const options = {
             allowCrossOriginResourceSharing: true,
-            quality: 0.05,
             maxHeight: 1000,
             maxWidth: 1000,
+            quality: 0.05,
         };
         const canvas = document.createElement('canvas');
         fileService.validate = jest.fn(() => true);

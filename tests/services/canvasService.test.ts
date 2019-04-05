@@ -2,7 +2,6 @@ import {Chance} from 'chance';
 
 import canvasService from '../../src/services/canvasService';
 import exifService from '../../src/services/exifService';
-import {createTransformer} from "ts-jest";
 
 const chance = new Chance();
 
@@ -26,13 +25,13 @@ describe('canvasService', () => {
     const drawImage = jest.fn(() => null);
     const contextReturn = {
         drawImage,
-        transform
+        transform,
     };
     const getContext = jest.fn(() => contextReturn);
     const canvas = {
         getContext,
         height: scaledHeight,
-        width: scaledWidth
+        width: scaledWidth,
     };
     const expectedOrientation = chance.integer();
 

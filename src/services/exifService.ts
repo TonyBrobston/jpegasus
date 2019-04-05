@@ -1,9 +1,9 @@
-const startOfFileMarker = 0xFFD8;
 const applicationSegmentOneMarker = 0xFFE1;
 const beginOfExifHeaderMarker = 0x45786966;
 const byteOrderMarker = 0x4949;
-const orientationMarker = 0x0112;
 const byteStuffingMarker = 0xFF00;
+const orientationMarker = 0x0112;
+const startOfFileMarker = 0xFFD8;
 
 function parseBytes(dataView: DataView, resolve) {
     let offset = 2;
