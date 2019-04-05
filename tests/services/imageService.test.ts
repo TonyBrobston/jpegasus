@@ -57,8 +57,8 @@ describe('imageService', () => {
                 });
 
                 it('should create an image', () => {
-                    expect(window['Image']).toHaveBeenCalledTimes(1);
-                    expect(window['Image']).toHaveBeenCalledWith();
+                    expect(windowAny.Image).toHaveBeenCalledTimes(1);
+                    expect(windowAny.Image).toHaveBeenCalledWith();
                 });
 
                 it('should fire onload on load of image source', () => {
