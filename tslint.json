@@ -10,7 +10,7 @@
         "one-variable-per-declaration": false,
         "no-bitwise": false,
         "interface-name": [true, "never-prefix"],
-        "typedef": [true, "call-signature", "arrow-call-signature", "parameter", "arrow-parameter", "property-declaration", "variable-declaration", "member-variable-declaration", "object-destructuring", "array-destructuring"]
+        "typedef": [true, "call-signature", "arrow-call-signature", "parameter", "arrow-parameter", "property-declaration", "member-variable-declaration", "object-destructuring", "array-destructuring"]
     },
     "rulesDirectory": []
 }
