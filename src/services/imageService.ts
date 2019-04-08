@@ -1,6 +1,6 @@
 import {Options} from "../types/Options";
 
-const create = async (file: File, options: Options):Promise<HTMLImageElement> => {
+const create = async (file: File, options: Options): Promise<HTMLImageElement> => {
     return new Promise((resolve, reject) => {
         const image = new Image();
         if (options.allowCrossOriginResourceSharing) {

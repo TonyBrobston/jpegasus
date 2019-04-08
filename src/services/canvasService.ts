@@ -47,10 +47,10 @@ const create = async (file: File, image: HTMLImageElement, scale: number) => {
         const orientation = await exifService.determineOrientation(file);
         setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth);
         correctExifRotation(context, orientation, scaledHeight, scaledWidth);
-        context && context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
+        context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
         return canvas;
     } else {
-        throw 'Could not get CanvasRenderingContext2D from HTMLCanvasElement.'
+        throw new Error('Could not get CanvasRenderingContext2D from HTMLCanvasElement.');
     }
 };
 

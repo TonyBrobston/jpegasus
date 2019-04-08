@@ -32,7 +32,7 @@ function parseBytes(dataView: DataView, resolve) {
     }
 }
 
-const determineOrientation = async (file: File):Promise<number> => {
+const determineOrientation = async (file: File): Promise<number> => {
     return new Promise((resolve) => {
         const reader = new FileReader();
         reader.onload = () => {
