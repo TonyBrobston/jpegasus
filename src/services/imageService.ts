@@ -1,4 +1,4 @@
-import {Options} from "../types/Options";
+import {Options} from '../types/Options';
 
 const create = async (file: File, options: Options): Promise<HTMLImageElement> => {
     return new Promise((resolve, reject) => {
