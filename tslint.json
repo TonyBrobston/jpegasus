@@ -6,7 +6,7 @@
     "jsRules": {},
     "rules": {
         "comment-type": [true],
-        "quotemark": ["single"],
+        "quotemark": [true, "single"],
         "one-variable-per-declaration": false,
         "no-bitwise": false,
         "interface-name": [true, "never-prefix"],
