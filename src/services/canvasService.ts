@@ -38,7 +38,7 @@ const correctExifRotation = (context: CanvasRenderingContext2D, orientation: num
     }
 };
 
-const create = async (file: File, image: any, scale: number) => {
+const create = async (file: File, image: HTMLImageElement, scale: number) => {
     const canvas = document.createElement('canvas');
     const scaledHeight = image.height * scale;
     const scaledWidth = image.width * scale;
