@@ -3,7 +3,7 @@ import imageService from './imageService';
 
 import {Options} from '../types/Options';
 
-const determineScale = (image: any, options: Options) => {
+const determineScale = (image: HTMLImageElement, options: Options) => {
     const height = image.height;
     const width = image.width;
     const maxHeight = options.maxHeight;
