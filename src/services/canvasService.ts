@@ -10,7 +10,7 @@ function setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth) {
     }
 }
 
-const correctExifRotation = (context: CanvasRenderingContext2D | null, orientation: number | undefined, height: number, width: number) => {
+const correctExifRotation = (context: CanvasTransform | null, orientation: number | undefined, height: number, width: number) => {
     //todo: test context null
     if (context) {
         switch (orientation) {
