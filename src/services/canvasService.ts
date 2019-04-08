@@ -1,6 +1,6 @@
 import exifService from './exifService';
 
-function setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth) {
+function setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth): void {
     if (orientation > 4 && orientation < 9) {
         canvas.width = scaledHeight;
         canvas.height = scaledWidth;

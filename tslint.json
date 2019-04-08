@@ -5,10 +5,12 @@
     ],
     "jsRules": {},
     "rules": {
+        "comment-type": [true],
         "quotemark": ["single"],
         "one-variable-per-declaration": false,
         "no-bitwise": false,
-        "interface-name": [true, "never-prefix"]
+        "interface-name": [true, "never-prefix"],
+        "typedef": [true, "call-signature"]
     },
     "rulesDirectory": []
 }

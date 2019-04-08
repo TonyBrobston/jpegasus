@@ -5,7 +5,7 @@ const byteStuffingMarker = 0xFF00;
 const orientationMarker = 0x0112;
 const startOfFileMarker = 0xFFD8;
 
-function parseBytes(dataView: DataView, resolve) {
+function parseBytes(dataView: DataView, resolve): void {
     let offset = 2;
     while (offset < dataView.byteLength) {
         const marker = dataView.getUint16(offset, false);
