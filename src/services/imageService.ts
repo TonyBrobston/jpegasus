@@ -9,7 +9,7 @@ const create = async (file: File, options: Options): Promise<HTMLImageElement> =
         image.addEventListener('load', () => {
             resolve(image);
         });
-        image.addEventListener('error', (error) => {
+        image.addEventListener('error', (error: ErrorEvent) => {
             reject(error);
         });
         image.src = URL.createObjectURL(file);

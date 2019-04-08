@@ -1,6 +1,7 @@
 import exifService from './exifService';
 
-function setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth): void {
+const setCanvasDimensions =
+    (canvas: HTMLCanvasElement, orientation: number, scaledHeight: number, scaledWidth: number): void => {
     if (orientation > 4 && orientation < 9) {
         canvas.width = scaledHeight;
         canvas.height = scaledWidth;
@@ -8,9 +9,9 @@ function setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth): vo
         canvas.width = scaledWidth;
         canvas.height = scaledHeight;
     }
-}
+};
 
-const correctExifRotation = (context: CanvasTransform, orientation: number, height: number, width: number) => {
+const correctExifRotation = (context: CanvasTransform, orientation: number, height: number, width: number): void => {
     switch (orientation) {
     case 2:
         context.transform(- 1, 0, 0, 1, width, 0);
@@ -38,7 +39,7 @@ const correctExifRotation = (context: CanvasTransform, orientation: number, heig
     }
 };
 
-const create = async (file: File, image: HTMLImageElement, scale: number) => {
+const create = async (file: File, image: HTMLImageElement, scale: number): Promise<HTMLCanvasElement> => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     if (context) {

@@ -35,7 +35,7 @@ function parseBytes(dataView: DataView, resolve): void {
 const determineOrientation = async (file: File): Promise<number> => {
     return new Promise((resolve) => {
         const reader = new FileReader();
-        reader.onload = () => {
+        reader.onload = (): void => {
             const dataView = new DataView(reader.result as SharedArrayBuffer | ArrayBuffer);
             if (dataView.getUint16(0, false) !== startOfFileMarker) {
                 resolve(1);
