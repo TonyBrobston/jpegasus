@@ -13,7 +13,7 @@
     "postversion": "git push && git push --tags",
     "coverage": "jest --coverage",
     "lint:ts": "tslint -c tslint.json 'src/**/*.ts' 'tests/**/*.test.ts'",
-    "test": "yarn coverage && yarn lint:ts",
+    "test": "yarn lint:ts && yarn coverage",
     "unit": "npx jest"
   },
   "keywords": [
