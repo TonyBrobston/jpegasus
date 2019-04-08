@@ -8,15 +8,9 @@ const determineScale = (image: HTMLImageElement, options: Options) => {
     const width = image.width;
     const maxHeight = options.maxHeight;
     const maxWidth = options.maxWidth;
-    let heightCanBeScaled = false;
-    if (maxHeight) {
-        heightCanBeScaled = height > maxHeight;
-    }
+    const heightCanBeScaled = maxHeight && height > maxHeight;
     const heightIsLargest = height > width;
-    let widthCanBeScaled = false;
-    if (maxWidth) {
-        widthCanBeScaled = width > maxWidth;
-    }
+    const widthCanBeScaled = maxWidth && width > maxWidth;
 
     if (maxHeight && heightCanBeScaled && heightIsLargest) {
         return maxHeight / height;
