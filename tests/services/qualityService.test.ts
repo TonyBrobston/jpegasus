@@ -37,12 +37,10 @@ describe('qualityService', () => {
 
     scenarios.forEach((scenario) => {
         describe(scenario.name, () => {
-            const canvas = {
-                toDataURL: jest.fn(),
-            };
+            const canvas = document.createElement('canvas');
 
             beforeAll(() => {
-                canvas.toDataURL.mockReturnValue(base64);
+                canvas.toDataURL = jest.fn(() => base64);
                 windowService.toByteArray = jest.fn(() => bytes);
                 blobService.create = jest.fn(() => scenario.expectedFile);
 
