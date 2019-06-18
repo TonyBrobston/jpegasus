@@ -96,8 +96,13 @@ describe('scaleService', () => {
 
     scenarios.forEach((scenario) => {
         describe(scenario.name, () => {
+            let image;
+
             beforeAll(async () => {
-                imageService.create = jest.fn(() => Promise.resolve(scenario.image));
+                image = document.createElement('img');
+                image.height = scenario.image.height;
+                image.width = scenario.image.width;
+                imageService.create = jest.fn(() => Promise.resolve(image));
                 canvasService.create = jest.fn(() => Promise.resolve(expectedCanvas));
 
                 actualCanvas = await scaleService.toCanvas(file, scenario.inputOptions);
@@ -115,7 +120,7 @@ describe('scaleService', () => {
             it('should create a canvas', () => {
                 expect(canvasService.create).toHaveBeenCalledTimes(1);
                 expect(canvasService.create).toHaveBeenCalledWith(
-                    file, scenario.image, scenario.scale);
+                    file, image, scenario.scale);
             });
 
             it('should return a scaled canvasService', () => {
