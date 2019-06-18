@@ -35,7 +35,7 @@ describe('qualityService', () => {
         },
     ];
 
-    scenarios.forEach((scenario) => {
+    scenarios.forEach((scenario: object) => {
         describe(scenario.name, () => {
             const canvas = document.createElement('canvas');
 

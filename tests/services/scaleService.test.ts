@@ -94,7 +94,7 @@ describe('scaleService', () => {
         },
     ];
 
-    scenarios.forEach((scenario) => {
+    scenarios.forEach((scenario: object) => {
         describe(scenario.name, () => {
             let image;
 
