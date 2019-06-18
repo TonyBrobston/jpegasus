@@ -13,7 +13,7 @@ jest.mock('../src/services/qualityService');
 
 const chance = new Chance();
 
-describe('index', async () => {
+describe('index', () => {
     describe(`happy path`, () => {
         let actualCompressedFile;
 
