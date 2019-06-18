@@ -118,7 +118,7 @@ describe('canvasService', () => {
             },
         ];
 
-        expectedRotationScenarios.forEach((scenario) => {
+        expectedRotationScenarios.forEach((scenario: any) => {
             it(`should correct orientation ${scenario.exifOrientation}`, async () => {
                 transform.mockClear();
                 exifService.determineOrientation = jest.fn(() => Promise.resolve(scenario.exifOrientation));
