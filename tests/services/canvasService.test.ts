@@ -11,10 +11,9 @@ describe('canvasService', () => {
     const height = chance.natural();
     const width = chance.natural();
     const file = new File([chance.string()], chance.string());
-    const image = {
-        height,
-        width,
-    };
+    const image = document.createElement('img');
+    image.height = height;
+    image.width = width;
     const scale = chance.integer({
         max: 1.00,
         min: 0.01,
