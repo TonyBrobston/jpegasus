@@ -1,6 +1,6 @@
 import {Chance} from 'chance';
 
-import {compress} from '../src/index';
+import compress from '../src/index';
 import fileService from '../src/services/fileService';
 import optionService from '../src/services/optionService';
 import qualityService from '../src/services/qualityService';
