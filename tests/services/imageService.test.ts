@@ -95,11 +95,10 @@ describe('imageService', () => {
         describe('should reject', () => {
             beforeAll(async () => {
                 const map = {};
-                image = {
-                    addEventListener: jest.fn((event, cb) => {
-                        map[event] = cb;
-                    }),
-                };
+                image = document.createElement('img');
+                image.addEventListener =  jest.fn((event, cb) => {
+                    map[event] = cb;
+                });
                 windowAny.Image = jest.fn(() => image);
                 globalAny.URL.createObjectURL = jest.fn();
                 expectedError = chance.string();
