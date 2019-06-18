@@ -14,6 +14,6 @@ module.exports = function(api) {
                     useBuiltIns: 'usage',
                 },
             ],
-        ]
+        ],
     };
 };
