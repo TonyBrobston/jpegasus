@@ -8,7 +8,6 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 [![Dev Dependencies](https://david-dm.org/tonybrobston/jpegasus/dev-status.svg)](https://david-dm.org/tonybrobston/jpegasus?type=dev)
 [![Peer Dependencies](https://david-dm.org/tonybrobston/jpegasus/peer-status.svg)](https://david-dm.org/tonybrobston/jpegasus?type=peer)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ffcbe17657aabd16ed79/maintainability)](https://codeclimate.com/github/TonyBrobston/jpegasus/maintainability)
-[![Known Vulnerabilities](https://snyk.io/test/github/tonybrobston/jpegasus/badge.svg)](https://snyk.io/test/github/tonybrobston/jpegasus)
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg)](#contributors)
 
 ## Demo
