@@ -1,5 +1,5 @@
-const create = (byteArray: BlobPart[], type: string, name: string): File => {
-    return new File(byteArray, name, {type});
+const create = (bytes: Uint8Array[], type: string, name: string): File => {
+    return new File(bytes, name, {type});
 };
 
 export default {

@@ -6,18 +6,17 @@ const chance = new Chance();
 
 describe('blobService', () => {
     describe('create', () => {
-        const byte = chance.string();
-        const byteArray = [byte];
+        const bytes =  Uint8Array.from([chance.integer()]);
         const type = 'image/jpeg';
         const name = chance.string();
-        let actualFile;
+        let actualFile: File;
 
         beforeAll(() => {
-            actualFile = blobService.create(byteArray, type, name);
+            actualFile = blobService.create([bytes], type, name);
         });
 
         it('should create a blob with size', () => {
-            expect(actualFile.size).toBe(byte.toString().length);
+            expect(actualFile.size).toBe(bytes.toString().length);
         });
 
         it('should create a blob with type', () => {

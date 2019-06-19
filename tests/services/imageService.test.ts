@@ -17,7 +17,7 @@ describe('imageService', () => {
                 name: 'Allow CORS',
             },
             {
-                expectedCrossOrigin: undefined,
+                expectedCrossOrigin: '',
                 inputOptions: {
                     allowCrossOriginResourceSharing: false,
                 },
@@ -27,18 +27,18 @@ describe('imageService', () => {
 
         scenarios.forEach((scenario) => {
             const file = new File([chance.string()], chance.string());
-            let image,
-                expectedUrl,
-                actualImageSource;
+            let image: HTMLImageElement,
+                expectedUrl: string,
+                actualImageSource: HTMLImageElement;
 
             describe(scenario.name, () => {
                 beforeAll(async () => {
                     const map = {};
-                    image = {
-                        addEventListener: jest.fn((event, cb) => {
-                            map[event] = cb;
-                        }),
-                    };
+                    image = document.createElement('img');
+                    image.addEventListener = jest.fn((event, cb) => {
+                        // @ts-ignore
+                        map[event] = cb;
+                    });
                     windowAny.Image = jest.fn(() => image);
                     expectedUrl = chance.url();
                     globalAny.URL.createObjectURL = jest.fn();
@@ -88,15 +88,16 @@ describe('imageService', () => {
 
     describe('sad path', () => {
         const file = new File([chance.string()], chance.string());
-        let image,
-            expectedError,
-            actualError;
+        let image: HTMLImageElement,
+            expectedError: string,
+            actualError: any;
 
         describe('should reject', () => {
             beforeAll(async () => {
                 const map = {};
                 image = document.createElement('img');
-                image.addEventListener =  jest.fn((event, cb) => {
+                image.addEventListener = jest.fn((event, cb) => {
+                    // @ts-ignore
                     map[event] = cb;
                 });
                 windowAny.Image = jest.fn(() => image);

@@ -13,8 +13,8 @@ describe('qualityService', () => {
     const base64Prefix = chance.string();
     const base64Suffix = chance.string();
     const base64 = `${base64Prefix},${base64Suffix}`;
-    const bytes = Blob[chance.string()];
-    let actualBlob;
+    const bytes = Uint8Array.from([chance.integer()]);
+    let actualBlob: File;
 
     const scenarios = [
         {
@@ -41,7 +41,7 @@ describe('qualityService', () => {
 
             beforeAll(() => {
                 canvas.toDataURL = jest.fn(() => base64);
-                windowService.toByteArray = jest.fn(() => bytes);
+                windowService.toByteArray = jest.fn().mockReturnValue(bytes);
                 blobService.create = jest.fn(() => scenario.expectedFile);
 
                 actualBlob = qualityService.toFile(scenario.file, canvas, scenario.inputOptions);
