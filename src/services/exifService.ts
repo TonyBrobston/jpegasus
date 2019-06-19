@@ -5,7 +5,7 @@ const byteStuffingMarker = 0xFF00;
 const orientationMarker = 0x0112;
 const startOfFileMarker = 0xFFD8;
 
-const parseBytes = (dataView: DataView, resolve): void => {
+const parseBytes = (dataView: DataView, resolve: (uint16: number) => void): void => {
     let offset = 2;
     while (offset < dataView.byteLength) {
         const marker = dataView.getUint16(offset, false);
@@ -33,7 +33,7 @@ const parseBytes = (dataView: DataView, resolve): void => {
 };
 
 const determineOrientation = async (file: File): Promise<number> => {
-    return new Promise((resolve) => {
+    return new Promise((resolve: (orientation: number) => void): void => {
         const reader = new FileReader();
         reader.onload = (): void => {
             const dataView = new DataView(reader.result as SharedArrayBuffer | ArrayBuffer);
