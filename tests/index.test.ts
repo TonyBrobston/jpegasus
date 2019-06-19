@@ -1,6 +1,7 @@
 import {Chance} from 'chance';
 
-import compress from '../src/index';
+// @ts-ignore
+import index from '../src/index';
 import fileService from '../src/services/fileService';
 import optionService from '../src/services/optionService';
 import qualityService from '../src/services/qualityService';
@@ -35,7 +36,7 @@ describe('index', () => {
         qualityService.toFile = jest.fn(() => expectedCompressedBlob);
 
         beforeAll(async () => {
-            actualCompressedFile = await compress(file, inputOptions);
+            actualCompressedFile = await index.compress(file, inputOptions);
         });
 
         afterAll(() => {
@@ -67,7 +68,7 @@ describe('index', () => {
             const expectedFile = new File([chance.string()], chance.string());
             fileService.validate = jest.fn(() => false);
 
-            const actualFile = await compress(expectedFile);
+            const actualFile = await index.compress(expectedFile);
 
             expect(actualFile).toBe(expectedFile);
         });
@@ -81,7 +82,7 @@ describe('index', () => {
                 throw new Error();
             });
 
-            const actualFile = await compress(expectedFile);
+            const actualFile = await index.compress(expectedFile);
 
             expect(actualFile).toBe(expectedFile);
         });
