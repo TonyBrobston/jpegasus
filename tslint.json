@@ -5,7 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
-        "comment-type": [true],
+        "comment-type": [false],
         "quotemark": [true, "single"],
         "one-variable-per-declaration": false,
         "no-bitwise": false,

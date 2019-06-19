@@ -35,10 +35,12 @@ describe('imageService', () => {
                 beforeAll(async () => {
                     const map = {};
                     image = document.createElement('img');
-                    image.addEventListener = jest.fn((event: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void => {
-                        // @ts-ignore
-                        map[event] = listener;
-                    });
+                    image.addEventListener = jest.fn(
+                        (event: string, listener: EventListenerOrEventListenerObject): void => {
+                            // @ts-ignore
+                            map[event] = listener;
+                        },
+                    );
                     windowAny.Image = jest.fn(() => image);
                     expectedUrl = chance.url();
                     globalAny.URL.createObjectURL = jest.fn();
@@ -96,10 +98,12 @@ describe('imageService', () => {
             beforeAll(async () => {
                 const map = {};
                 image = document.createElement('img');
-                image.addEventListener = jest.fn((event: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void => {
-                    // @ts-ignore
-                    map[event] = listener;
-                });
+                image.addEventListener = jest.fn(
+                    (event: string, listener: EventListenerOrEventListenerObject): void => {
+                        // @ts-ignore
+                        map[event] = listener;
+                    },
+                );
                 windowAny.Image = jest.fn(() => image);
                 globalAny.URL.createObjectURL = jest.fn();
                 expectedError = chance.string();
