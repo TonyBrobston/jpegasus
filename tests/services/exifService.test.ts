@@ -43,7 +43,7 @@ describe('exifService', () => {
     });
 });
 
-const readFileSystemFileToJavaScriptFile = async (imagePath) => {
+const readFileSystemFileToJavaScriptFile = async (imagePath: string) => {
     const fullyQualifiedPath = path.resolve(__dirname, `../imagesOfExifVariety/${imagePath}`);
     const fileAsBuffer = await fs.readFileSync(fullyQualifiedPath);
     return new File([new Uint8Array(fileAsBuffer)], 'foo');

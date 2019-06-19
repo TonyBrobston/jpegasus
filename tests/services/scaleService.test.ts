@@ -12,7 +12,7 @@ const chance = new Chance();
 describe('scaleService', () => {
     const file = new File([chance.string()], chance.string());
     const expectedCanvas = document.createElement('canvas');
-    let actualCanvas;
+    let actualCanvas: HTMLCanvasElement;
 
     const scenarios = [
         {
@@ -96,7 +96,7 @@ describe('scaleService', () => {
 
     scenarios.forEach((scenario: any) => {
         describe(scenario.name, () => {
-            let image;
+            let image: HTMLImageElement;
 
             beforeAll(async () => {
                 image = document.createElement('img');
