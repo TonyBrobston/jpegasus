@@ -48,7 +48,7 @@ describe('scenarios', () => {
         },
     ];
 
-    scenarios.forEach((scenario) => {
+    scenarios.forEach((scenario: any) => {
         it(`should not allow ${scenario.scenario}`, () => {
             const isValid = fileService.validate(scenario.file);
 

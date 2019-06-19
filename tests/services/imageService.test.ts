@@ -25,7 +25,7 @@ describe('imageService', () => {
             },
         ];
 
-        scenarios.forEach((scenario) => {
+        scenarios.forEach((scenario: any) => {
             const file = new File([chance.string()], chance.string());
             let image: HTMLImageElement,
                 expectedUrl: string,
@@ -35,7 +35,7 @@ describe('imageService', () => {
                 beforeAll(async () => {
                     const map = {};
                     image = document.createElement('img');
-                    image.addEventListener = jest.fn((event, cb) => {
+                    image.addEventListener = jest.fn((event: string, cb) => {
                         // @ts-ignore
                         map[event] = cb;
                     });
@@ -96,7 +96,7 @@ describe('imageService', () => {
             beforeAll(async () => {
                 const map = {};
                 image = document.createElement('img');
-                image.addEventListener = jest.fn((event, cb) => {
+                image.addEventListener = jest.fn((event: string, cb) => {
                     // @ts-ignore
                     map[event] = cb;
                 });

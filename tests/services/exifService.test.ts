@@ -32,7 +32,7 @@ describe('exifService', () => {
         },
     ];
 
-    scenarios.forEach((scenario) => {
+    scenarios.forEach((scenario: any) => {
         it(scenario.name, async () => {
             const file = await readFileSystemFileToJavaScriptFile(scenario.file);
 
@@ -43,7 +43,7 @@ describe('exifService', () => {
     });
 });
 
-const readFileSystemFileToJavaScriptFile = async (imagePath: string) => {
+const readFileSystemFileToJavaScriptFile = async (imagePath: string): Promise<File> => {
     const fullyQualifiedPath = path.resolve(__dirname, `../imagesOfExifVariety/${imagePath}`);
     const fileAsBuffer = await fs.readFileSync(fullyQualifiedPath);
     return new File([new Uint8Array(fileAsBuffer)], 'foo');
