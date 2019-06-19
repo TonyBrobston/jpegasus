@@ -13,7 +13,7 @@ describe('canvasService', () => {
     const scale = chance.floating({
         fixed: 2,
         max: 1.00,
-        min: 0.01
+        min: 0.01,
     });
     const scaledHeight = image.height * scale;
     const scaledWidth = image.width * scale;
@@ -44,8 +44,8 @@ describe('canvasService', () => {
         const transform = jest.fn();
         const canvas = document.createElement('canvas');
         canvas.getContext = jest.fn().mockReturnValue({
+            drawImage: jest.fn(),
             transform,
-            drawImage: jest.fn()
         });
         document.createElement = jest.fn().mockReturnValue(canvas);
 
