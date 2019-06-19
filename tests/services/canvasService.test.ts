@@ -34,10 +34,9 @@ describe('canvasService', () => {
     };
     const expectedOrientation = chance.integer();
 
-    let actualCanvas;
+    let actualCanvas: HTMLCanvasElement;
 
-    // @ts-ignore
-    document.createElement = jest.fn(() => canvas);
+    document.createElement = jest.fn().mockReturnValue(canvas);
 
     exifService.determineOrientation = jest.fn(() => Promise.resolve(expectedOrientation));
 
