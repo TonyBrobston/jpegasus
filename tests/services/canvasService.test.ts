@@ -109,4 +109,18 @@ describe('canvasService', () => {
             });
         });
     });
+
+    describe('cannot read context', () => {
+        it('should throw if context is falsy', async () => {
+            const canvas = document.createElement('canvas');
+            canvas.getContext = jest.fn().mockReturnValue(null);
+            document.createElement = jest.fn().mockReturnValue(canvas);
+
+            try {
+                await canvasService.create(file, image, scale);
+            } catch (error) {
+                expect(error.message).toBe('Could not get CanvasRenderingContext2D from HTMLCanvasElement.');
+            }
+        });
+    });
 });
