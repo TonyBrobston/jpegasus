@@ -6,7 +6,7 @@
     ],
     "module": "commonjs",
     "target": "es2015",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "outDir": "./lib",
     "declaration": true,
     "strict": true

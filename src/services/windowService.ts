@@ -1,4 +1,4 @@
-const toByteArray = (base64) => {
+const toByteArray = (base64: string): Uint8Array[] => {
     const bytes = window.atob(base64);
     const byteArrays = [];
 
@@ -13,7 +13,6 @@ const toByteArray = (base64) => {
 
         const byteArray = new Uint8Array(bytesAsCharCodes);
 
-        // @ts-ignore
         byteArrays.push(byteArray);
     }
 
