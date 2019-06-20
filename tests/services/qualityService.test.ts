@@ -1,11 +1,11 @@
 import {Chance} from 'chance';
 
-import blobService from '../../src/services/blobService';
+import blobService from '../../src/services/fileService';
 import qualityService from '../../src/services/qualityService';
 import windowService from '../../src/services/windowService';
 
 jest.mock('../../src/services/windowService');
-jest.mock('../../src/services/blobService');
+jest.mock('../../src/services/fileService');
 
 const chance = new Chance();
 
