@@ -10,6 +10,8 @@ jest.mock('../../src/services/exifService');
 describe('canvasService', () => {
     const file = new File([chance.string()], chance.string());
     const image = document.createElement('img');
+    image.width = chance.natural();
+    image.height = chance.natural();
     const scale = chance.floating({
         fixed: 2,
         max: 1.00,
@@ -35,8 +37,8 @@ describe('canvasService', () => {
         });
 
         it('should return a canvasService', () => {
-            expect(actualCanvas.height).toBe(scaledHeight);
-            expect(actualCanvas.width).toBe(scaledWidth);
+            expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
+            expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
         });
     });
 
@@ -106,8 +108,8 @@ describe('canvasService', () => {
 
                 actualCanvas = await canvasService.create(file, image, scale);
 
-                expect(actualCanvas.height).toBe(scenario.height);
-                expect(actualCanvas.width).toBe(scenario.width);
+                expect(actualCanvas.height).toBe(Math.floor(scenario.height));
+                expect(actualCanvas.width).toBe(Math.floor(scenario.width));
 
                 expect(transform).toHaveBeenCalledTimes(1);
                 expect(transform).toHaveBeenCalledWith(...scenario.parameters);
