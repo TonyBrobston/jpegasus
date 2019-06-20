@@ -10,8 +10,6 @@ jest.mock('../../src/services/exifService');
 describe('canvasService', () => {
     const file = new File([chance.string()], chance.string());
     const image = document.createElement('img');
-    image.width = chance.natural();
-    image.height = chance.natural();
     const scale = chance.floating({
         fixed: 2,
         max: 1.00,
