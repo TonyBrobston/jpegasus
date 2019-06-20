@@ -33,20 +33,18 @@ describe('imageService', () => {
 
             describe(scenario.name, () => {
                 beforeAll(async () => {
-                    const map = {};
+                    const map = new Map();
                     image = document.createElement('img');
                     image.addEventListener = jest.fn(
                         (event: string, listener: EventListenerOrEventListenerObject): void => {
-                            // @ts-ignore
-                            map[event] = listener;
+                            map.set(event, listener);
                         },
                     );
                     windowAny.Image = jest.fn(() => image);
                     expectedUrl = chance.url();
                     globalAny.URL.createObjectURL = jest.fn();
                     globalAny.URL.createObjectURL = jest.fn(() => {
-                        // @ts-ignore
-                        map.load();
+                        map.get('load')();
                         return expectedUrl;
                     });
 
@@ -96,20 +94,18 @@ describe('imageService', () => {
 
         describe('should reject', () => {
             beforeAll(async () => {
-                const map = {};
+                const map = new Map();
                 image = document.createElement('img');
                 image.addEventListener = jest.fn(
                     (event: string, listener: EventListenerOrEventListenerObject): void => {
-                        // @ts-ignore
-                        map[event] = listener;
+                        map.set(event, listener);
                     },
                 );
                 windowAny.Image = jest.fn(() => image);
                 globalAny.URL.createObjectURL = jest.fn();
                 expectedError = chance.string();
                 globalAny.URL.createObjectURL = jest.fn(() => {
-                    // @ts-ignore
-                    map.error(expectedError);
+                    map.get('error')(expectedError);
                 });
 
                 try {

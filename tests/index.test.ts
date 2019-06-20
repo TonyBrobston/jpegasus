@@ -1,6 +1,5 @@
 import {Chance} from 'chance';
 
-// @ts-ignore
 import {compress} from '../src/index';
 import fileService from '../src/services/fileService';
 import optionService from '../src/services/optionService';
