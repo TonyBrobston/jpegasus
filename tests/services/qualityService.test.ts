@@ -35,7 +35,13 @@ describe('qualityService', () => {
         },
     ];
 
-    scenarios.forEach((scenario: any) => {
+    scenarios.forEach((scenario: {
+        expectedFile: File,
+        file: File,
+        inputOptions: {},
+        name: string,
+        quality: number,
+    }) => {
         describe(scenario.name, () => {
             const canvas = document.createElement('canvas');
 

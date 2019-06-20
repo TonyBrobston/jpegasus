@@ -32,7 +32,11 @@ describe('exifService', () => {
         },
     ];
 
-    scenarios.forEach((scenario: any) => {
+    scenarios.forEach((scenario: {
+        expectedOrientation: number,
+        file: string,
+        name: string,
+    }) => {
         it(scenario.name, async () => {
             const file = await readFileSystemFileToJavaScriptFile(scenario.file);
 

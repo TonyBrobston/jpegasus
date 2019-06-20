@@ -37,7 +37,11 @@ describe('optionService', () => {
         },
     ];
 
-    scenarios.forEach((scenario: any) => {
+    scenarios.forEach((scenario: {
+        expectedOptions: {},
+        inputOptions: {},
+        name: string,
+    }) => {
         it(scenario.name, () => {
             const mergedOptions = optionService.override(scenario.inputOptions);
 

@@ -94,7 +94,15 @@ describe('scaleService', () => {
         },
     ];
 
-    scenarios.forEach((scenario: any) => {
+    scenarios.forEach((scenario: {
+        image: {
+            height: number,
+            width: number,
+        },
+        inputOptions: {},
+        name: string,
+        scale: number,
+    }) => {
         describe(scenario.name, () => {
             let image: HTMLImageElement;
 

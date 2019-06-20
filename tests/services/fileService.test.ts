@@ -11,45 +11,49 @@ describe('scenarios', () => {
             file: new File([chance.string()], chance.string(), {
                 type: 'image/jpeg',
             }),
-            scenario: 'file is valid jpeg',
+            name: 'file is valid jpeg',
         },
         {
             expectedOptions: true,
             file: new File([chance.string()], chance.string(), {
                 type: 'image/gif',
             }),
-            scenario: 'file is valid gif',
+            name: 'file is valid gif',
         },
         {
             expectedOptions: true,
             file: new File([chance.string()], chance.string(), {
                 type: 'image/png',
             }),
-            scenario: 'file is valid gpng',
+            name: 'file is valid gpng',
         },
         {
             expectedOptions: false,
             file: new File([], chance.string()),
-            scenario: 'file with no size',
+            name: 'file with no size',
         },
         {
             expectedOptions: false,
             file: new File([chance.string()], chance.string(), {
                 type: chance.string(),
             }),
-            scenario: 'a File that\'s type does not start with image',
+            name: 'a File that\'s type does not start with image',
         },
         {
             expectedOptions: false,
             file: new File([chance.string()], chance.string(), {
                 type: 'image/tiff',
             }),
-            scenario: 'a File that\'s type is image/tiff',
+            name: 'a File that\'s type is image/tiff',
         },
     ];
 
-    scenarios.forEach((scenario: any) => {
-        it(`should not allow ${scenario.scenario}`, () => {
+    scenarios.forEach((scenario: {
+        expectedOptions: boolean,
+        file: File,
+        name: string,
+    }) => {
+        it(`should not allow ${scenario.name}`, () => {
             const isValid = fileService.validate(scenario.file);
 
             expect(isValid).toBe(scenario.expectedOptions);

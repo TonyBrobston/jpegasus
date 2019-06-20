@@ -25,7 +25,13 @@ describe('imageService', () => {
             },
         ];
 
-        scenarios.forEach((scenario: any) => {
+        scenarios.forEach((scenario: {
+            expectedCrossOrigin: string,
+            inputOptions: {
+                allowCrossOriginResourceSharing: boolean,
+            },
+            name: string,
+        }) => {
             const file = new File([chance.string()], chance.string());
             let image: HTMLImageElement,
                 expectedUrl: string,
@@ -90,7 +96,7 @@ describe('imageService', () => {
         const file = new File([chance.string()], chance.string());
         let image: HTMLImageElement,
             expectedError: string,
-            actualError: any;
+            actualError: string;
 
         describe('should reject', () => {
             beforeAll(async () => {
