@@ -47,7 +47,7 @@ describe('canvasService', () => {
             drawImage: jest.fn(),
             transform,
         });
-        document.createElement = jest.fn().mockReturnValue(canvas);
+        document.createElement = jest.fn(() => canvas);
 
         const expectedRotationScenarios = [
             {
@@ -118,8 +118,8 @@ describe('canvasService', () => {
     describe('cannot read context', () => {
         it('should throw if context is falsy', async () => {
             const canvas = document.createElement('canvas');
-            canvas.getContext = jest.fn().mockReturnValue(null);
-            document.createElement = jest.fn().mockReturnValue(canvas);
+            canvas.getContext = jest.fn(() => null);
+            document.createElement = jest.fn(() => canvas);
 
             try {
                 await canvasService.create(file, image, scale);
