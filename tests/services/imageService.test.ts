@@ -5,7 +5,6 @@ const chance = new Chance();
 
 describe('imageService', () => {
     const globalAny: any = global;
-    const windowAny: any = global;
 
     describe('happy path', () => {
         const scenarios = [
@@ -46,7 +45,7 @@ describe('imageService', () => {
                             map.set(event, listener);
                         },
                     );
-                    windowAny.Image = jest.fn(() => image);
+                    globalAny.Image = jest.fn(() => image);
                     expectedUrl = chance.url();
                     globalAny.URL.createObjectURL = jest.fn();
                     globalAny.URL.createObjectURL = jest.fn(() => {
@@ -62,8 +61,8 @@ describe('imageService', () => {
                 });
 
                 it('should create an image', () => {
-                    expect(windowAny.Image).toHaveBeenCalledTimes(1);
-                    expect(windowAny.Image).toHaveBeenCalledWith();
+                    expect(globalAny.Image).toHaveBeenCalledTimes(1);
+                    expect(globalAny.Image).toHaveBeenCalledWith();
                 });
 
                 it('should fire onload on load of image source', () => {
@@ -107,7 +106,7 @@ describe('imageService', () => {
                         map.set(event, listener);
                     },
                 );
-                windowAny.Image = jest.fn(() => image);
+                globalAny.Image = jest.fn(() => image);
                 globalAny.URL.createObjectURL = jest.fn();
                 expectedError = chance.string();
                 globalAny.URL.createObjectURL = jest.fn(() => {
