@@ -1,6 +1,7 @@
 import exifService from './exifService';
 
-function setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth) {
+const setCanvasDimensions =
+    (canvas: HTMLCanvasElement, orientation: number, scaledHeight: number, scaledWidth: number): void => {
     if (orientation > 4 && orientation < 9) {
         canvas.width = scaledHeight;
         canvas.height = scaledWidth;
@@ -8,9 +9,9 @@ function setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth) {
         canvas.width = scaledWidth;
         canvas.height = scaledHeight;
     }
-}
+};
 
-const correctExifRotation = (context, orientation, height, width) => {
+const correctExifRotation = (context: CanvasTransform, orientation: number, height: number, width: number): void => {
     switch (orientation) {
     case 2:
         context.transform(- 1, 0, 0, 1, width, 0);
@@ -38,16 +39,20 @@ const correctExifRotation = (context, orientation, height, width) => {
     }
 };
 
-const create = async (file, image, scale) => {
+const create = async (file: File, image: HTMLImageElement, scale: number): Promise<HTMLCanvasElement> => {
     const canvas = document.createElement('canvas');
-    const scaledHeight = image.height * scale;
-    const scaledWidth = image.width * scale;
-    const orientation = await exifService.determineOrientation(file);
-    setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth);
     const context = canvas.getContext('2d');
-    correctExifRotation(context, orientation, scaledHeight, scaledWidth);
-    context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
-    return canvas;
+    if (context) {
+        const scaledHeight = image.height * scale;
+        const scaledWidth = image.width * scale;
+        const orientation = await exifService.determineOrientation(file);
+        setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth);
+        correctExifRotation(context, orientation, scaledHeight, scaledWidth);
+        context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
+        return canvas;
+    } else {
+        throw new Error('Could not get CanvasRenderingContext2D from HTMLCanvasElement.');
+    }
 };
 
 export default {

@@ -8,13 +8,13 @@
     "url": "https://github.com/TonyBrobston/jpegasus"
   },
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "rm -rf lib && tsc",
     "version": "yarn build && git add .",
     "postversion": "git push && git push --tags",
     "coverage": "jest --coverage",
-    "lint:js": "eslint --fix ./src ./tests",
-    "test": "yarn coverage && yarn lint:js",
-    "unit": "jest"
+    "lint:ts": "tslint --fix -c tslint.json 'src/**/*.ts' 'tests/**/*.test.ts'",
+    "test": "yarn lint:ts && yarn coverage",
+    "unit": "npx jest"
   },
   "keywords": [
     "javascript",
@@ -36,35 +36,18 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.1",
-    "babel-eslint": "^10.0.1",
+    "@types/chance": "^1.0.1",
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.0",
     "chance": "^1.0.18",
-    "eslint": "5.16.0",
-    "eslint-config-google": "^0.12.0",
-    "jest": "24.8.0"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "<rootDir>/src/**/*.js"
-    ],
-    "coverageDirectory": ".coverage",
-    "testMatch": [
-      "<rootDir>/tests/**/*.test.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    }
+    "jest": "^24.1.0",
+    "jest-canvas-mock": "^2.1.0",
+    "ts-jest": "^24.0.1",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.17.0",
+    "typescript": "^3.4.1"
   },
   "peerDependencies": {
-    "babel-runtime": "^6.26.0",
     "core-js": "^3.0.0",
     "regenerator-runtime": "^0.13.2"
   }

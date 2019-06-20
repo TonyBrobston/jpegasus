@@ -1,51 +1,55 @@
-import Chance from 'chance';
-
+import {Chance} from 'chance';
 import imageService from '../../src/services/imageService';
 
 const chance = new Chance();
 
 describe('imageService', () => {
+    const globalAny: any = global;
+
     describe('happy path', () => {
         const scenarios = [
             {
                 expectedCrossOrigin: 'Anonymous',
-                name: 'Allow CORS',
                 inputOptions: {
                     allowCrossOriginResourceSharing: true,
                 },
+                name: 'Allow CORS',
             },
             {
-                expectedCrossOrigin: undefined,
-                name: 'Do not allow CORS',
+                expectedCrossOrigin: '',
                 inputOptions: {
                     allowCrossOriginResourceSharing: false,
                 },
+                name: 'Do not allow CORS',
             },
         ];
 
-        scenarios.forEach((scenario) => {
-            const file = new File([1234], chance.string());
-            let image;
-
-
-            let expectedUrl;
-
-
-            let actualImageSource;
+        scenarios.forEach((scenario: {
+            expectedCrossOrigin: string,
+            inputOptions: {
+                allowCrossOriginResourceSharing: boolean,
+            },
+            name: string,
+        }) => {
+            const file = new File([chance.string()], chance.string());
+            let image: HTMLImageElement,
+                expectedUrl: string,
+                actualImageSource: HTMLImageElement;
 
             describe(scenario.name, () => {
                 beforeAll(async () => {
-                    const map = {};
-                    image = {
-                        addEventListener: jest.fn((event, cb) => {
-                            map[event] = cb;
-                        }),
-                    };
-                    window.Image = jest.fn(() => image);
+                    const map = new Map();
+                    image = document.createElement('img');
+                    image.addEventListener = jest.fn(
+                        (event: string, listener: EventListenerOrEventListenerObject): void => {
+                            map.set(event, listener);
+                        },
+                    );
+                    globalAny.Image = jest.fn(() => image);
                     expectedUrl = chance.url();
-                    global.URL.createObjectURL = jest.fn();
-                    global.URL.createObjectURL.mockImplementation(() => {
-                        map.load();
+                    globalAny.URL.createObjectURL = jest.fn();
+                    globalAny.URL.createObjectURL = jest.fn(() => {
+                        map.get('load')();
                         return expectedUrl;
                     });
 
@@ -57,8 +61,8 @@ describe('imageService', () => {
                 });
 
                 it('should create an image', () => {
-                    expect(window.Image).toHaveBeenCalledTimes(1);
-                    expect(window.Image).toHaveBeenCalledWith();
+                    expect(globalAny.Image).toHaveBeenCalledTimes(1);
+                    expect(globalAny.Image).toHaveBeenCalledWith();
                 });
 
                 it('should fire onload on load of image source', () => {
@@ -72,8 +76,8 @@ describe('imageService', () => {
                 });
 
                 it('should have called URL createObjectURL', () => {
-                    expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
-                    expect(global.URL.createObjectURL).toHaveBeenCalledWith(file);
+                    expect(globalAny.URL.createObjectURL).toHaveBeenCalledTimes(1);
+                    expect(globalAny.URL.createObjectURL).toHaveBeenCalledWith(file);
                 });
 
                 it('should return correct url', () => {
@@ -88,28 +92,25 @@ describe('imageService', () => {
     });
 
     describe('sad path', () => {
-        const file = new File([1234], chance.string());
-        let image;
-
-
-        let expectedError;
-
-
-        let actualError;
+        const file = new File([chance.string()], chance.string());
+        let image: HTMLImageElement,
+            expectedError: string,
+            actualError: string;
 
         describe('should reject', () => {
             beforeAll(async () => {
-                const map = {};
-                image = {
-                    addEventListener: jest.fn((event, cb) => {
-                        map[event] = cb;
-                    }),
-                };
-                window.Image = jest.fn(() => image);
-                global.URL.createObjectURL = jest.fn();
+                const map = new Map();
+                image = document.createElement('img');
+                image.addEventListener = jest.fn(
+                    (event: string, listener: EventListenerOrEventListenerObject): void => {
+                        map.set(event, listener);
+                    },
+                );
+                globalAny.Image = jest.fn(() => image);
+                globalAny.URL.createObjectURL = jest.fn();
                 expectedError = chance.string();
-                global.URL.createObjectURL.mockImplementation(() => {
-                    map.error(expectedError);
+                globalAny.URL.createObjectURL = jest.fn(() => {
+                    map.get('error')(expectedError);
                 });
 
                 try {

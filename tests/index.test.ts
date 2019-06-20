@@ -1,10 +1,10 @@
-import Chance from 'chance';
+import {Chance} from 'chance';
 
+import {compress} from '../src/index';
 import fileService from '../src/services/fileService';
 import optionService from '../src/services/optionService';
-import scaleService from '../src/services/scaleService';
 import qualityService from '../src/services/qualityService';
-import index from '../src/index';
+import scaleService from '../src/services/scaleService';
 
 jest.mock('../src/services/fileService');
 jest.mock('../src/services/optionService');
@@ -15,22 +15,27 @@ const chance = new Chance();
 
 describe('index', () => {
     describe(`happy path`, () => {
-        let actualCompressedFile;
+        let actualCompressedFile: File;
 
-        const file = new File([chance.natural()], chance.string(), {
+        const file = new File([chance.string()], chance.string(), {
             type: 'image/jpeg',
         });
-        const canvas = chance.string();
-        const expectedCompressedBlob = new File([chance.natural()], chance.string());
-        const inputOptions = chance.string();
-        const options = chance.string();
-        fileService.validate.mockReturnValue(true);
-        optionService.override.mockReturnValue(options);
-        scaleService.toCanvas.mockResolvedValue(canvas);
-        qualityService.toBlob.mockReturnValue(expectedCompressedBlob);
+        const expectedCompressedBlob = new File([chance.string()], chance.string());
+        const inputOptions = {};
+        const options = {
+            allowCrossOriginResourceSharing: true,
+            maxHeight: 1000,
+            maxWidth: 1000,
+            quality: 0.05,
+        };
+        const canvas = document.createElement('canvas');
+        fileService.validate = jest.fn(() => true);
+        optionService.override = jest.fn(() => options);
+        scaleService.toCanvas = jest.fn(() => Promise.resolve(canvas));
+        qualityService.toFile = jest.fn(() => expectedCompressedBlob);
 
         beforeAll(async () => {
-            actualCompressedFile = await index.compress(file, inputOptions);
+            actualCompressedFile = await compress(file, inputOptions);
         });
 
         afterAll(() => {
@@ -48,35 +53,35 @@ describe('index', () => {
         });
 
         it('should convert file to file and reduce quality', () => {
-            expect(qualityService.toBlob).toHaveBeenCalledTimes(1);
-            expect(qualityService.toBlob).toHaveBeenCalledWith(file, canvas, options);
+            expect(qualityService.toFile).toHaveBeenCalledTimes(1);
+            expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, options);
         });
 
         it('should return a compressed file', () => {
-            expect(actualCompressedFile).toBe(expectedCompressedBlob);
+            expect(actualCompressedFile).toEqual(expectedCompressedBlob);
         });
     });
 
     describe('sad path', () => {
         it('is invalid file', async () => {
-            const expectedFile = chance.string();
-            fileService.validate.mockReturnValue(false);
+            const expectedFile = new File([chance.string()], chance.string());
+            fileService.validate = jest.fn(() => false);
 
-            const actualFile = await index.compress(expectedFile);
+            const actualFile = await compress(expectedFile);
 
             expect(actualFile).toBe(expectedFile);
         });
 
         it('something throws', async () => {
-            const expectedFile = new File([chance.natural()], chance.string(), {
+            const expectedFile = new File([chance.string()], chance.string(), {
                 type: `image/${chance.pickone(['jpeg', 'gif', 'png'])}`,
             });
 
-            fileService.validate.mockImplementation(() => {
+            fileService.validate = jest.fn(() => {
                 throw new Error();
             });
 
-            const actualFile = await index.compress(expectedFile);
+            const actualFile = await compress(expectedFile);
 
             expect(actualFile).toBe(expectedFile);
         });

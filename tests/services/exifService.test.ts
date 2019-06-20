@@ -1,49 +1,53 @@
-import path from 'path';
-import fs from 'fs';
+import * as fs from 'fs';
+import * as path from 'path';
 
 import exifService from '../../src/services/exifService';
 
 describe('exifService', () => {
     const scenarios = [
         {
-            expectedOptions: 4,
+            expectedOrientation: 4,
             file: 'exifOrientationFour.jpg',
             name: 'should return orientation of 4',
         },
         {
-            expectedOptions: 1,
+            expectedOrientation: 1,
             file: 'exifGps.jpg',
             name: 'should return orientation of 1 and has exif gps data',
         },
         {
-            expectedOptions: undefined,
+            expectedOrientation: 1,
             file: 'notJpeg.png',
-            name: 'should return because not jpeg',
+            name: 'should return orientation 1 because not jpeg',
         },
         {
-            expectedOptions: undefined,
+            expectedOrientation: 1,
             file: 'hasByteStuffing.jpeg',
-            name: 'should break because has byte stuffing',
+            name: 'should return orientation 1 because has byte stuffing',
         },
         {
-            expectedOptions: undefined,
+            expectedOrientation: 1,
             file: 'hasNoExif.jpg',
-            name: 'should exit because has no exif',
+            name: 'should return orientation 1 because has no exif',
         },
     ];
 
-    scenarios.forEach((scenario) => {
+    scenarios.forEach((scenario: {
+        expectedOrientation: number,
+        file: string,
+        name: string,
+    }) => {
         it(scenario.name, async () => {
             const file = await readFileSystemFileToJavaScriptFile(scenario.file);
 
             const orientation = await exifService.determineOrientation(file);
 
-            expect(orientation).toBe(scenario.expectedOptions);
+            expect(orientation).toBe(scenario.expectedOrientation);
         });
     });
 });
 
-const readFileSystemFileToJavaScriptFile = async (imagePath) => {
+const readFileSystemFileToJavaScriptFile = async (imagePath: string): Promise<File> => {
     const fullyQualifiedPath = path.resolve(__dirname, `../imagesOfExifVariety/${imagePath}`);
     const fileAsBuffer = await fs.readFileSync(fullyQualifiedPath);
     return new File([new Uint8Array(fileAsBuffer)], 'foo');

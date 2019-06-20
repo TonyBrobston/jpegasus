@@ -6,10 +6,9 @@ describe('optionService', () => {
             expectedOptions: {
                 allowCrossOriginResourceSharing: false,
                 quality: 0.5,
-                readImageFileTimeout: 5000,
             },
-            name: 'should not override any inputOptions',
             inputOptions: {},
+            name: 'should not override any inputOptions',
         },
         {
             expectedOptions: {
@@ -17,31 +16,32 @@ describe('optionService', () => {
                 maxHeight: 5,
                 maxWidth: 4,
                 quality: 0.75,
-                readImageFileTimeout: 2500,
             },
-            name: 'should override all inputOptions',
             inputOptions: {
                 allowCrossOriginResourceSharing: true,
                 maxHeight: 5,
                 maxWidth: 4,
                 quality: 0.75,
-                readImageFileTimeout: 2500,
             },
+            name: 'should override all inputOptions',
         },
         {
             expectedOptions: {
                 allowCrossOriginResourceSharing: true,
                 quality: 0.5,
-                readImageFileTimeout: 5000,
             },
-            name: 'should override only allowCrossOriginResourceSharing',
             inputOptions: {
                 allowCrossOriginResourceSharing: true,
             },
+            name: 'should override only allowCrossOriginResourceSharing',
         },
     ];
 
-    scenarios.forEach((scenario) => {
+    scenarios.forEach((scenario: {
+        expectedOptions: {},
+        inputOptions: {},
+        name: string,
+    }) => {
         it(scenario.name, () => {
             const mergedOptions = optionService.override(scenario.inputOptions);
 

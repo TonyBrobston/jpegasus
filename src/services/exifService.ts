@@ -1,18 +1,18 @@
-const startOfFileMarker = 0xFFD8;
 const applicationSegmentOneMarker = 0xFFE1;
 const beginOfExifHeaderMarker = 0x45786966;
 const byteOrderMarker = 0x4949;
-const orientationMarker = 0x0112;
 const byteStuffingMarker = 0xFF00;
+const orientationMarker = 0x0112;
+const startOfFileMarker = 0xFFD8;
 
-function parseBytes(dataView, resolve) {
+const parseBytes = (dataView: DataView, resolve: (uint16: number) => void): void => {
     let offset = 2;
     while (offset < dataView.byteLength) {
         const marker = dataView.getUint16(offset, false);
         offset += 2;
         if (marker === applicationSegmentOneMarker
             && dataView.getUint32(offset + 2, false) !== beginOfExifHeaderMarker) {
-            resolve(undefined);
+            resolve(1);
         } else if (marker === applicationSegmentOneMarker) {
             offset += 8;
             const little = dataView.getUint16(offset, false) === byteOrderMarker;
@@ -25,20 +25,20 @@ function parseBytes(dataView, resolve) {
                 }
             }
         } else if ((marker & byteStuffingMarker) !== byteStuffingMarker) {
-            resolve(undefined);
+            resolve(1);
         } else {
             offset += dataView.getUint16(offset, false);
         }
     }
-}
+};
 
-const determineOrientation = async (file) => {
-    return new Promise((resolve) => {
+const determineOrientation = async (file: File): Promise<number> => {
+    return new Promise((resolve: (orientation: number) => void): void => {
         const reader = new FileReader();
-        reader.onload = () => {
-            const dataView = new DataView(reader.result);
+        reader.onload = (): void => {
+            const dataView = new DataView(reader.result as SharedArrayBuffer | ArrayBuffer);
             if (dataView.getUint16(0, false) !== startOfFileMarker) {
-                resolve(undefined);
+                resolve(1);
             }
             parseBytes(dataView, resolve);
         };

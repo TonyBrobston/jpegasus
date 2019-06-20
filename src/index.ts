@@ -1,16 +1,19 @@
 import fileService from './services/fileService';
 import optionService from './services/optionService';
-import scaleService from './services/scaleService';
 import qualityService from './services/qualityService';
+import scaleService from './services/scaleService';
+import {Options} from './types/Options';
 
-module.exports.compress = async (file, inputOptions) => {
+export const compress = async (file: File, inputOptions: Options = {}): Promise<File> => {
     try {
         if (fileService.validate(file)) {
             const options = optionService.override(inputOptions);
             const canvas = await scaleService.toCanvas(file, options);
-            return qualityService.toBlob(file, canvas, options);
+            return qualityService.toFile(file, canvas, options);
         }
-    } catch (error) {}
+    } catch (error) {
+        return file;
+    }
 
     return file;
 };
