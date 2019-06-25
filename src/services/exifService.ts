@@ -34,15 +34,19 @@ const parseBytes = (dataView: DataView, resolve: (uint16: number) => void): void
 
 const determineOrientation = async (file: File): Promise<number> => {
     return new Promise((resolve: (orientation: number) => void): void => {
-        const reader = new FileReader();
-        reader.onload = (): void => {
-            const dataView = new DataView(reader.result as SharedArrayBuffer | ArrayBuffer);
-            if (dataView.getUint16(0, false) !== startOfFileMarker) {
-                resolve(1);
-            }
-            parseBytes(dataView, resolve);
-        };
-        reader.readAsArrayBuffer(new Blob([file]).slice(0, 64 * 1024));
+        try {
+            const reader = new FileReader();
+            reader.onload = (): void => {
+                const dataView = new DataView(reader.result as SharedArrayBuffer | ArrayBuffer);
+                if (dataView.getUint16(0, false) !== startOfFileMarker) {
+                    resolve(1);
+                }
+                parseBytes(dataView, resolve);
+            };
+            reader.readAsArrayBuffer(new Blob([file]).slice(0, 64 * 1024));
+        } catch (error) {
+            resolve(1);
+        }
     });
 };
 
