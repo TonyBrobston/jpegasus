@@ -6,8 +6,12 @@ const validate = (file: File): boolean => {
     return isNotNull && isAnObject && hasSize && isValidType;
 };
 
-const create = (bytes: Uint8Array[], type: string, name: string): File => {
-    return new File(bytes, name, {type});
+const create = (bytes: Uint8Array[], type: string, name: string): File|Blob => {
+    try {
+        return new File(bytes, name, {type});
+    } catch (error) {
+        return new Blob(bytes, {type});
+    }
 };
 
 export default {

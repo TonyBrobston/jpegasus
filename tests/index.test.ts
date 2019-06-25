@@ -15,7 +15,7 @@ const chance = new Chance();
 
 describe('index', () => {
     describe(`happy path`, () => {
-        let actualCompressedFile: File;
+        let actualCompressedFile: File|Blob;
 
         const file = new File([chance.string()], chance.string(), {
             type: 'image/jpeg',

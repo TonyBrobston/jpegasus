@@ -14,7 +14,7 @@ describe('qualityService', () => {
     const base64Suffix = chance.string();
     const base64 = `${base64Prefix},${base64Suffix}`;
     const bytes = Uint8Array.from([chance.integer()]);
-    let actualBlob: File;
+    let actualBlob: File|Blob;
 
     const scenarios = [
         {
