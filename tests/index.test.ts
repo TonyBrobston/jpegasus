@@ -2,12 +2,10 @@ import {Chance} from 'chance';
 
 import {compress} from '../src/index';
 import fileService from '../src/services/fileService';
-import optionService from '../src/services/optionService';
 import qualityService from '../src/services/qualityService';
 import scaleService from '../src/services/scaleService';
 
 jest.mock('../src/services/fileService');
-jest.mock('../src/services/optionService');
 jest.mock('../src/services/scaleService');
 jest.mock('../src/services/qualityService');
 
@@ -21,16 +19,15 @@ describe('index', () => {
             type: 'image/jpeg',
         });
         const expectedCompressedBlob = new File([chance.string()], chance.string());
-        const inputOptions = {};
-        const options = {
+        const inputOptions = {
             allowCrossOriginResourceSharing: true,
             maxHeight: 1000,
             maxWidth: 1000,
             quality: 0.05,
+            returnOriginalOnFailure: true,
         };
         const canvas = document.createElement('canvas');
         fileService.validate = jest.fn(() => true);
-        optionService.override = jest.fn(() => options);
         scaleService.toCanvas = jest.fn(() => Promise.resolve(canvas));
         qualityService.toFile = jest.fn(() => expectedCompressedBlob);
 
@@ -42,19 +39,14 @@ describe('index', () => {
             jest.clearAllMocks();
         });
 
-        it('should override default inputOptions', () => {
-            expect(optionService.override).toHaveBeenCalledTimes(1);
-            expect(optionService.override).toHaveBeenCalledWith(inputOptions);
-        });
-
         it('should convert file to canvasService and scale', async () => {
             expect(scaleService.toCanvas).toHaveBeenCalledTimes(1);
-            expect(scaleService.toCanvas).toHaveBeenCalledWith(file, options);
+            expect(scaleService.toCanvas).toHaveBeenCalledWith(file, inputOptions);
         });
 
         it('should convert file to file and reduce quality', () => {
             expect(qualityService.toFile).toHaveBeenCalledTimes(1);
-            expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, options);
+            expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, inputOptions);
         });
 
         it('should return a compressed file', () => {
@@ -72,7 +64,7 @@ describe('index', () => {
             expect(actualFile).toBe(expectedFile);
         });
 
-        it('something throws', async () => {
+        it('something throws and return original on failure', async () => {
             const expectedFile = new File([chance.string()], chance.string(), {
                 type: `image/${chance.pickone(['jpeg', 'gif', 'png'])}`,
             });
@@ -81,9 +73,45 @@ describe('index', () => {
                 throw new Error();
             });
 
-            const actualFile = await compress(expectedFile);
+            const actualFile = await compress(expectedFile, {
+                returnOriginalOnFailure: true,
+            });
 
             expect(actualFile).toBe(expectedFile);
+        });
+
+        it('something throws and rethrow', async () => {
+            const expectedFile = new File([chance.string()], chance.string(), {
+                type: `image/${chance.pickone(['jpeg', 'gif', 'png'])}`,
+            });
+            const errorMessage = chance.string();
+
+            fileService.validate = jest.fn(() => {
+                throw new Error(errorMessage);
+            });
+
+            await expect(compress(expectedFile, {
+                returnOriginalOnFailure: false,
+            })).rejects.toThrow();
+        });
+
+        it('something throws and rethrow with message', async () => {
+            const expectedFile = new File([chance.string()], chance.string(), {
+                type: `image/${chance.pickone(['jpeg', 'gif', 'png'])}`,
+            });
+            const errorMessage = chance.string();
+
+            fileService.validate = jest.fn(() => {
+                throw new Error(errorMessage);
+            });
+
+            try {
+                await compress(expectedFile, {
+                    returnOriginalOnFailure: false,
+                });
+            } catch (error) {
+                expect(error.message).toBe(errorMessage);
+            }
         });
     });
 });

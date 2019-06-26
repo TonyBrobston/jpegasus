@@ -129,5 +129,13 @@ describe('canvasService', () => {
                 expect(error.message).toBe('Could not get CanvasRenderingContext2D from HTMLCanvasElement.');
             }
         });
+
+        it('should throw with message if context is falsy', async () => {
+            const canvas = document.createElement('canvas');
+            canvas.getContext = jest.fn(() => null);
+            document.createElement = jest.fn(() => canvas);
+
+            await expect(canvasService.create(file, image, scale)).rejects.toThrow();
+        });
     });
 });

@@ -6,6 +6,7 @@ describe('optionService', () => {
             expectedOptions: {
                 allowCrossOriginResourceSharing: false,
                 quality: 0.5,
+                returnOriginalOnFailure: true,
             },
             inputOptions: {},
             name: 'should not override any inputOptions',
@@ -16,12 +17,14 @@ describe('optionService', () => {
                 maxHeight: 5,
                 maxWidth: 4,
                 quality: 0.75,
+                returnOriginalOnFailure: false,
             },
             inputOptions: {
                 allowCrossOriginResourceSharing: true,
                 maxHeight: 5,
                 maxWidth: 4,
                 quality: 0.75,
+                returnOriginalOnFailure: false,
             },
             name: 'should override all inputOptions',
         },
@@ -29,6 +32,7 @@ describe('optionService', () => {
             expectedOptions: {
                 allowCrossOriginResourceSharing: true,
                 quality: 0.5,
+                returnOriginalOnFailure: true,
             },
             inputOptions: {
                 allowCrossOriginResourceSharing: true,
