@@ -5,14 +5,18 @@ import scaleService from './services/scaleService';
 import {Options} from './types/Options';
 
 export const compress = async (file: File, inputOptions: Options = {}): Promise<File|Blob> => {
+    const options = optionService.override(inputOptions);
+
     try {
         if (fileService.validate(file)) {
-            const options = optionService.override(inputOptions);
             const canvas = await scaleService.toCanvas(file, options);
             return qualityService.toFile(file, canvas, options);
         }
     } catch (error) {
-        return file;
+        if (options.returnOriginalOnFailure) {
+            return file;
+        }
+        throw error;
     }
 
     return file;

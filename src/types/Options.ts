@@ -3,4 +3,5 @@ export interface Options {
     quality?: number;
     maxHeight?: number;
     maxWidth?: number;
+    returnOriginalOnFailure?: boolean;
 }
