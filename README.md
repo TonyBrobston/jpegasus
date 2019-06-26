@@ -1,5 +1,5 @@
 # jpegasus
-A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `Blob` of type `.jpeg`. It's as easy as taking out the trash! 🗑
+A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `File` of type `.jpeg`. It's as easy as taking out the trash! 🗑
 
 [![npm version](https://badge.fury.io/js/jpegasus.svg)](https://badge.fury.io/js/jpegasus)
 [![Build Status](https://travis-ci.com/TonyBrobston/jpegasus.svg?branch=master)](https://travis-ci.org/TonyBrobston/jpegasus)
