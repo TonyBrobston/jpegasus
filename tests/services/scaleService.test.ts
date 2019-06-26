@@ -98,7 +98,7 @@ describe('scaleService', () => {
                 width: 1200,
             },
             inputOptions: {
-                scaleImageBy: 0.59
+                scaleImageBy: 0.59,
             },
             name: 'scale dimensions by',
             scale: 0.59,
@@ -110,7 +110,7 @@ describe('scaleService', () => {
             },
             inputOptions: {
                 maxHeight: 1200,
-                scaleImageBy: 2.00
+                scaleImageBy: 2.00,
             },
             name: 'scale dimensions by, limit to maxHeight',
             scale: 1.2,
@@ -122,7 +122,7 @@ describe('scaleService', () => {
             },
             inputOptions: {
                 maxWidth: 1200,
-                scaleImageBy: 2.00
+                scaleImageBy: 2.00,
             },
             name: 'scale dimensions by, limit to maxWidth',
             scale: 1.2,

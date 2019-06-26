@@ -5,7 +5,7 @@ const override = (inputOptions: Options): Options => {
         allowCrossOriginResourceSharing: false,
         quality: 0.5,
         returnOriginalOnFailure: true,
-        scaleImageBy: undefined,
+        scaleImageBy: 1.00,
         ...inputOptions,
     };
 };
