@@ -92,6 +92,41 @@ describe('scaleService', () => {
             name: 'maxWidth scale, height < width',
             scale: 0.50,
         },
+        {
+            image: {
+                height: 800,
+                width: 1200,
+            },
+            inputOptions: {
+                scaleImageBy: 0.59
+            },
+            name: 'scale dimensions by',
+            scale: 0.59,
+        },
+        {
+            image: {
+                height: 1000,
+                width: 500,
+            },
+            inputOptions: {
+                maxHeight: 1200,
+                scaleImageBy: 2.00
+            },
+            name: 'scale dimensions by, limit to maxHeight',
+            scale: 1.2,
+        },
+        {
+            image: {
+                height: 1000,
+                width: 500,
+            },
+            inputOptions: {
+                maxWidth: 1200,
+                scaleImageBy: 2.00
+            },
+            name: 'scale dimensions by, limit to maxWidth',
+            scale: 1.2,
+        },
     ];
 
     scenarios.forEach((scenario: {

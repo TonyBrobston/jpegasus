@@ -4,4 +4,5 @@ export interface Options {
     maxHeight?: number;
     maxWidth?: number;
     returnOriginalOnFailure?: boolean;
+    scaleImageBy?: number;
 }

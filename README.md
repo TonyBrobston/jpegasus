@@ -41,6 +41,7 @@ module.exports = {
   * `maxWidth`: the max width in pixels of the compressed output File, defaults to `image's original width`.
   * `quality`: degrades quality of File, values is between `0.01` and `1.00`, defaults to `0.50`.
   * `returnOriginalOnFailure`: a boolean that determines if `jpegasus` should return the original `File` on failure or if it should throw and the let the consumer handle the failure, defaults to `true`.
+  * `scaleImageBy`: a decimal to scale up or down the image width and height by, defaults to `1.00`.
 
 ## Contributors
 Thanks goes to these wonderful people:
