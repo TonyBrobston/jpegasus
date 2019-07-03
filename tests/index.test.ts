@@ -25,6 +25,7 @@ describe('index', () => {
             maxWidth: 1000,
             quality: 0.05,
             returnOriginalOnFailure: true,
+            scaleImageBy: 1.00,
         };
         const canvas = document.createElement('canvas');
         fileService.validate = jest.fn(() => true);

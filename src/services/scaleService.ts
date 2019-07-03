@@ -12,7 +12,11 @@ const determineScale = (image: HTMLImageElement, options: Options): number => {
     const heightIsLargest = height > width;
     const widthNeedsScaledDown = maxWidth && width > maxWidth;
 
-    if (options.scaleImageBy && !options.maxHeight && !options.maxWidth) {
+    if (options.scaleImageBy && options.maxWidth && options.scaleImageBy * width > options.maxWidth) {
+        return maxWidth / width;
+    } else if (options.scaleImageBy && options.maxHeight && options.scaleImageBy * height > options.maxHeight) {
+        return maxHeight / height;
+    } else if (options.scaleImageBy && !options.maxHeight && !options.maxWidth) {
         return options.scaleImageBy;
     } else if (maxHeight && heightNeedScaledDown && heightIsLargest) {
         return maxHeight / height;
