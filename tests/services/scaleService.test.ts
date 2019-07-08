@@ -95,14 +95,14 @@ describe('scaleService', () => {
         },
         {
             image: {
-                height: 800,
-                width: 1200,
+                height: 400,
+                width: 400,
             },
             inputOptions: {
-                scaleImageBy: 0.59,
+                scaleImageBy: 0.5,
             } as Options,
             name: 'scale dimensions by',
-            scale: 0.59,
+            scale: 0.5,
         },
         {
             image: {
@@ -127,6 +127,30 @@ describe('scaleService', () => {
             } as Options,
             name: 'scale dimensions by, limit to maxWidth',
             scale: 1.2,
+        },
+        {
+            image: {
+                height: 400,
+                width: 400,
+            },
+            inputOptions: {
+                maxHeight: 900,
+                scaleImageBy: 0.5,
+            } as Options,
+            name: 'scale dimensions by, do not limit to maxHeight',
+            scale: 0.5,
+        },
+        {
+            image: {
+                height: 400,
+                width: 400,
+            },
+            inputOptions: {
+                maxWidth: 900,
+                scaleImageBy: 0.5,
+            } as Options,
+            name: 'scale dimensions by, do not limit to maxWidth',
+            scale: 0.5,
         },
     ];
 
