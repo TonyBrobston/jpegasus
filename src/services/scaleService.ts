@@ -3,22 +3,20 @@ import imageService from './imageService';
 
 import {Options} from '../types/Options';
 
-const determineScale = (image: HTMLImageElement, options: Options): number => {
+const determineScale = (image: HTMLImageElement, {maxHeight, maxWidth, scaleImageBy}: Options): number => {
     const height = image.height;
     const width = image.width;
-    const maxHeight = options.maxHeight;
-    const maxWidth = options.maxWidth;
     const heightNeedScaledDown = maxHeight && height > maxHeight;
     const heightIsLargest = height > width;
     const widthNeedsScaledDown = maxWidth && width > maxWidth;
 
-    if (options.scaleImageBy && maxWidth && options.maxWidth && options.scaleImageBy * width > options.maxWidth) {
+    if (scaleImageBy && maxWidth && maxWidth && scaleImageBy * width > maxWidth) {
         return maxWidth / width;
-    } else if (options.scaleImageBy && maxHeight && options.maxHeight
-        && options.scaleImageBy * height > options.maxHeight) {
+    } else if (scaleImageBy && maxHeight && maxHeight
+        && scaleImageBy * height > maxHeight) {
         return maxHeight / height;
-    } else if (options.scaleImageBy && !options.maxHeight && !options.maxWidth) {
-        return options.scaleImageBy;
+    } else if (scaleImageBy && !maxHeight && !maxWidth) {
+        return scaleImageBy;
     } else if (maxHeight && heightNeedScaledDown && heightIsLargest) {
         return maxHeight / height;
     } else if (maxWidth && widthNeedsScaledDown) {
