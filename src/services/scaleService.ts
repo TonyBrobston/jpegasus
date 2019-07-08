@@ -1,21 +1,20 @@
+import {Options} from '../types/Options';
 import canvasService from './canvasService';
 import imageService from './imageService';
 
-import {Options} from '../types/Options';
+const determineScale = ({height, width}: HTMLImageElement, {maxHeight, maxWidth, scaleImageBy}: Options): number => {
+    if (scaleImageBy) {
+        const scaledHeight = scaleImageBy * height;
+        const scaledWidth = scaleImageBy * width;
+        const heightIsGreaterThanWidth = height > width;
 
-const determineScale = (image: HTMLImageElement, options: Options): number => {
-    const height = image.height;
-    const width = image.width;
-    const maxHeight = options.maxHeight;
-    const maxWidth = options.maxWidth;
-    const heightCanBeScaled = maxHeight && height > maxHeight;
-    const heightIsLargest = height > width;
-    const widthCanBeScaled = maxWidth && width > maxWidth;
+        if (heightIsGreaterThanWidth && maxHeight && (scaledHeight > maxHeight)) {
+            return maxHeight / height;
+        } else if (maxWidth && (scaledWidth > maxWidth)) {
+            return maxWidth / width;
+        }
 
-    if (maxHeight && heightCanBeScaled && heightIsLargest) {
-        return maxHeight / height;
-    } else if (maxWidth && widthCanBeScaled) {
-        return maxWidth / width;
+        return scaleImageBy;
     }
 
     return 1.00;
