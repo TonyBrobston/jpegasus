@@ -4,19 +4,17 @@ import imageService from './imageService';
 
 const determineScale = ({height, width}: HTMLImageElement, {maxHeight, maxWidth, scaleImageBy}: Options): number => {
     if (scaleImageBy) {
-        if (maxHeight && scaleImageBy * height > maxHeight) {
+        const scaledHeight = scaleImageBy * height;
+        const scaledWidth = scaleImageBy * width;
+        const heightIsGreaterThanWidth = height > width;
+
+        if (heightIsGreaterThanWidth && maxHeight && (scaledHeight > maxHeight)) {
             return maxHeight / height;
-        } else if (maxWidth &&  scaleImageBy * width > maxWidth) {
+        } else if (maxWidth && (scaledWidth > maxWidth)) {
             return maxWidth / width;
         }
 
         return scaleImageBy;
-    } else {
-        if (maxHeight && height > maxHeight && height > width) {
-            return maxHeight / height;
-        } else if (maxWidth && width > maxWidth) {
-            return maxWidth / width;
-        }
     }
 
     return 1.00;

@@ -21,7 +21,9 @@ describe('scaleService', () => {
                 height: chance.natural(),
                 width: chance.natural(),
             },
-            inputOptions: {} as Options,
+            inputOptions: {
+                scaleImageBy: 1.00,
+            } as Options,
             name: 'no inputOptions',
             scale: 1.00,
         },
@@ -32,6 +34,7 @@ describe('scaleService', () => {
             },
             inputOptions: {
                 maxHeight: 1200,
+                scaleImageBy: 1.00,
             } as Options,
             name: 'maxHeight scale',
             scale: 0.30,
@@ -43,6 +46,7 @@ describe('scaleService', () => {
             },
             inputOptions: {
                 maxWidth: 1200,
+                scaleImageBy: 1.00,
             } as Options,
             name: 'maxWidth scale',
             scale: 0.40,
@@ -54,6 +58,7 @@ describe('scaleService', () => {
             },
             inputOptions: {
                 maxHeight: 1200,
+                scaleImageBy: 1.00,
             } as Options,
             name: 'no scale, height < maxHeight',
             scale: 1.00,
@@ -65,6 +70,7 @@ describe('scaleService', () => {
             },
             inputOptions: {
                 maxWidth: 1200,
+                scaleImageBy: 1.00,
             } as Options,
             name: 'no scale, width < maxWidth',
             scale: 1.00,
@@ -77,6 +83,7 @@ describe('scaleService', () => {
             inputOptions: {
                 maxHeight: 600,
                 maxWidth: 600,
+                scaleImageBy: 1.00,
             } as Options,
             name: 'maxHeight scale, width < height',
             scale: 0.50,
@@ -89,6 +96,7 @@ describe('scaleService', () => {
             inputOptions: {
                 maxHeight: 600,
                 maxWidth: 600,
+                scaleImageBy: 1.00,
             } as Options,
             name: 'maxWidth scale, height < width',
             scale: 0.50,
@@ -96,6 +104,7 @@ describe('scaleService', () => {
         {
             image: {
                 height: 400,
+                scaleImageBy: 1.00,
                 width: 400,
             },
             inputOptions: {
