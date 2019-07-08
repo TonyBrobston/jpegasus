@@ -22,9 +22,19 @@ describe('scaleService', () => {
                 width: chance.natural(),
             },
             inputOptions: {
-                scaleImageBy: 1.00,
             } as Options,
             name: 'no inputOptions',
+            scale: 1.00,
+        },
+        {
+            image: {
+                height: chance.natural(),
+                width: chance.natural(),
+            },
+            inputOptions: {
+                scaleImageBy: 1.00,
+            } as Options,
+            name: 'default scaleImageBy inputOptions',
             scale: 1.00,
         },
         {
