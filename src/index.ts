@@ -11,11 +11,14 @@ export const compress = async (file: File, inputOptions: InputOptions = {}): Pro
         if (fileService.validate(file)) {
             const canvas = await scaleService.toCanvas(file, options);
             return qualityService.toFile(file, canvas, options);
+        } else if (!options.returnOriginalOnFailure) {
+            throw new Error('The File you have entered is not valid.');
         }
     } catch (error) {
         if (options.returnOriginalOnFailure) {
             return file;
         }
+
         throw error;
     }
 
