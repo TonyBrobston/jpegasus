@@ -2,6 +2,7 @@ import {Chance} from 'chance';
 
 import {compress} from '../src/index';
 import fileService from '../src/services/fileService';
+import optionService from '../src/services/optionService';
 import qualityService from '../src/services/qualityService';
 import scaleService from '../src/services/scaleService';
 
@@ -42,12 +43,12 @@ describe('index', () => {
 
         it('should convert file to canvasService and scale', async () => {
             expect(scaleService.toCanvas).toHaveBeenCalledTimes(1);
-            expect(scaleService.toCanvas).toHaveBeenCalledWith(file, inputOptions);
+            expect(scaleService.toCanvas).toHaveBeenCalledWith(file, optionService.override(inputOptions));
         });
 
         it('should convert file to file and reduce quality', () => {
             expect(qualityService.toFile).toHaveBeenCalledTimes(1);
-            expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, inputOptions);
+            expect(qualityService.toFile).toHaveBeenCalledWith(file, canvas, optionService.override(inputOptions));
         });
 
         it('should return a compressed file', () => {
@@ -63,6 +64,29 @@ describe('index', () => {
             const actualFile = await compress(expectedFile);
 
             expect(actualFile).toBe(expectedFile);
+        });
+
+        it('is invalid file and throw', async () => {
+            const expectedFile = new File([chance.string()], chance.string());
+            fileService.validate = jest.fn(() => false);
+
+            await expect(compress(expectedFile, {
+                returnOriginalOnFailure: false,
+            })).rejects.toThrow();
+        });
+
+        it('is invalid file and throw with message', async () => {
+            const expectedFile = new File([chance.string()], chance.string());
+            const errorMessage = 'Could not compress File. The File you have entered is not valid.';
+            fileService.validate = jest.fn(() => false);
+
+            try {
+                await compress(expectedFile, {
+                    returnOriginalOnFailure: false,
+                });
+            } catch (error) {
+                expect(error.message).toBe(errorMessage);
+            }
         });
 
         it('something throws and return original on failure', async () => {
