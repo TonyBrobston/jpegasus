@@ -3,21 +3,17 @@ import canvasService from './canvasService';
 import imageService from './imageService';
 
 const determineScale = ({height, width}: HTMLImageElement, {maxHeight, maxWidth, scaleImageBy}: Options): number => {
-    if (scaleImageBy) {
-        const scaledHeight = scaleImageBy * height;
-        const scaledWidth = scaleImageBy * width;
-        const heightIsGreaterThanWidth = height > width;
+    const scaledHeight = scaleImageBy * height;
+    const scaledWidth = scaleImageBy * width;
+    const heightIsGreaterThanWidth = height > width;
 
-        if (heightIsGreaterThanWidth && maxHeight && (scaledHeight > maxHeight)) {
-            return maxHeight / height;
-        } else if (maxWidth && (scaledWidth > maxWidth)) {
-            return maxWidth / width;
-        }
-
-        return scaleImageBy;
+    if (heightIsGreaterThanWidth && maxHeight && (scaledHeight > maxHeight)) {
+        return maxHeight / height;
+    } else if (maxWidth && (scaledWidth > maxWidth)) {
+        return maxWidth / width;
     }
 
-    return 1.00;
+    return scaleImageBy;
 };
 
 const toCanvas = async (file: File, options: Options): Promise<HTMLCanvasElement> => {

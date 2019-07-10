@@ -1,5 +1,7 @@
 import {Chance} from 'chance';
 import imageService from '../../src/services/imageService';
+import optionService from '../../src/services/optionService';
+import {InputOptions} from '../../src/types/InputOptions';
 
 const chance = new Chance();
 
@@ -12,23 +14,21 @@ describe('imageService', () => {
                 expectedCrossOrigin: 'Anonymous',
                 inputOptions: {
                     allowCrossOriginResourceSharing: true,
-                },
+                } as InputOptions,
                 name: 'Allow CORS',
             },
             {
                 expectedCrossOrigin: '',
                 inputOptions: {
                     allowCrossOriginResourceSharing: false,
-                },
+                } as InputOptions,
                 name: 'Do not allow CORS',
             },
         ];
 
         scenarios.forEach((scenario: {
             expectedCrossOrigin: string,
-            inputOptions: {
-                allowCrossOriginResourceSharing: boolean,
-            },
+            inputOptions: InputOptions,
             name: string,
         }) => {
             const file = new File([chance.string()], chance.string());
@@ -53,7 +53,7 @@ describe('imageService', () => {
                         return expectedUrl;
                     });
 
-                    actualImageSource = await imageService.create(file, scenario.inputOptions);
+                    actualImageSource = await imageService.create(file, optionService.override(scenario.inputOptions));
                 });
 
                 afterAll(() => {
@@ -114,7 +114,7 @@ describe('imageService', () => {
                 });
 
                 try {
-                    await imageService.create(file, {});
+                    await imageService.create(file, optionService.override({}));
                 } catch (error) {
                     actualError = error;
                 }

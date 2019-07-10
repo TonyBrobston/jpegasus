@@ -2,6 +2,7 @@ import {Chance} from 'chance';
 
 import canvasService from '../../src/services/canvasService';
 import imageService from '../../src/services/imageService';
+import optionService from '../../src/services/optionService';
 import scaleService from '../../src/services/scaleService';
 import {Options} from '../../src/types/Options';
 
@@ -21,20 +22,10 @@ describe('scaleService', () => {
                 height: chance.natural(),
                 width: chance.natural(),
             },
-            inputOptions: {
-            } as Options,
-            name: 'no inputOptions',
-            scale: 1.00,
-        },
-        {
-            image: {
-                height: chance.natural(),
-                width: chance.natural(),
-            },
-            inputOptions: {
+            name: 'default scaleImageBy inputOptions',
+            options: {
                 scaleImageBy: 1.00,
             } as Options,
-            name: 'default scaleImageBy inputOptions',
             scale: 1.00,
         },
         {
@@ -42,11 +33,11 @@ describe('scaleService', () => {
                 height: 4000,
                 width: 3000,
             },
-            inputOptions: {
+            name: 'maxHeight scale',
+            options: {
                 maxHeight: 1200,
                 scaleImageBy: 1.00,
             } as Options,
-            name: 'maxHeight scale',
             scale: 0.30,
         },
         {
@@ -54,11 +45,11 @@ describe('scaleService', () => {
                 height: 4000,
                 width: 3000,
             },
-            inputOptions: {
+            name: 'maxWidth scale',
+            options: {
                 maxWidth: 1200,
                 scaleImageBy: 1.00,
             } as Options,
-            name: 'maxWidth scale',
             scale: 0.40,
         },
         {
@@ -66,11 +57,11 @@ describe('scaleService', () => {
                 height: 1000,
                 width: 1000,
             },
-            inputOptions: {
+            name: 'no scale, height < maxHeight',
+            options: {
                 maxHeight: 1200,
                 scaleImageBy: 1.00,
             } as Options,
-            name: 'no scale, height < maxHeight',
             scale: 1.00,
         },
         {
@@ -78,11 +69,11 @@ describe('scaleService', () => {
                 height: 1000,
                 width: 1000,
             },
-            inputOptions: {
+            name: 'no scale, width < maxWidth',
+            options: {
                 maxWidth: 1200,
                 scaleImageBy: 1.00,
             } as Options,
-            name: 'no scale, width < maxWidth',
             scale: 1.00,
         },
         {
@@ -90,12 +81,12 @@ describe('scaleService', () => {
                 height: 1200,
                 width: 800,
             },
-            inputOptions: {
+            name: 'maxHeight scale, width < height',
+            options: {
                 maxHeight: 600,
                 maxWidth: 600,
                 scaleImageBy: 1.00,
             } as Options,
-            name: 'maxHeight scale, width < height',
             scale: 0.50,
         },
         {
@@ -103,12 +94,12 @@ describe('scaleService', () => {
                 height: 800,
                 width: 1200,
             },
-            inputOptions: {
+            name: 'maxWidth scale, height < width',
+            options: {
                 maxHeight: 600,
                 maxWidth: 600,
                 scaleImageBy: 1.00,
             } as Options,
-            name: 'maxWidth scale, height < width',
             scale: 0.50,
         },
         {
@@ -117,10 +108,10 @@ describe('scaleService', () => {
                 scaleImageBy: 1.00,
                 width: 400,
             },
-            inputOptions: {
+            name: 'scale dimensions by',
+            options: {
                 scaleImageBy: 0.5,
             } as Options,
-            name: 'scale dimensions by',
             scale: 0.5,
         },
         {
@@ -128,11 +119,11 @@ describe('scaleService', () => {
                 height: 1000,
                 width: 500,
             },
-            inputOptions: {
+            name: 'scale dimensions by, limit to maxHeight',
+            options: {
                 maxHeight: 1200,
                 scaleImageBy: 2.00,
             } as Options,
-            name: 'scale dimensions by, limit to maxHeight',
             scale: 1.2,
         },
         {
@@ -140,11 +131,11 @@ describe('scaleService', () => {
                 height: 500,
                 width: 1000,
             },
-            inputOptions: {
+            name: 'scale dimensions by, limit to maxWidth',
+            options: {
                 maxWidth: 1200,
                 scaleImageBy: 2.00,
             } as Options,
-            name: 'scale dimensions by, limit to maxWidth',
             scale: 1.2,
         },
         {
@@ -152,11 +143,11 @@ describe('scaleService', () => {
                 height: 400,
                 width: 400,
             },
-            inputOptions: {
+            name: 'scale dimensions by, do not limit to maxHeight',
+            options: {
                 maxHeight: 900,
                 scaleImageBy: 0.5,
             } as Options,
-            name: 'scale dimensions by, do not limit to maxHeight',
             scale: 0.5,
         },
         {
@@ -164,11 +155,11 @@ describe('scaleService', () => {
                 height: 400,
                 width: 400,
             },
-            inputOptions: {
+            name: 'scale dimensions by, do not limit to maxWidth',
+            options: {
                 maxWidth: 900,
                 scaleImageBy: 0.5,
             } as Options,
-            name: 'scale dimensions by, do not limit to maxWidth',
             scale: 0.5,
         },
     ];
@@ -178,7 +169,7 @@ describe('scaleService', () => {
             height: number,
             width: number,
         },
-        inputOptions: Options,
+        options: Options,
         name: string,
         scale: number,
     }) => {
@@ -192,7 +183,7 @@ describe('scaleService', () => {
                 imageService.create = jest.fn(() => Promise.resolve(image));
                 canvasService.create = jest.fn(() => Promise.resolve(expectedCanvas));
 
-                actualCanvas = await scaleService.toCanvas(file, scenario.inputOptions);
+                actualCanvas = await scaleService.toCanvas(file, scenario.options);
             });
 
             afterAll(() => {
@@ -201,7 +192,7 @@ describe('scaleService', () => {
 
             it('should create an image', () => {
                 expect(imageService.create).toHaveBeenCalledTimes(1);
-                expect(imageService.create).toHaveBeenCalledWith(file, scenario.inputOptions);
+                expect(imageService.create).toHaveBeenCalledWith(file, scenario.options);
             });
 
             it('should create a canvas', () => {

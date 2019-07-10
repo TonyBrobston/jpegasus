@@ -1,4 +1,6 @@
 import optionService from '../../src/services/optionService';
+import {InputOptions} from '../../src/types/InputOptions';
+import {Options} from '../../src/types/Options';
 
 describe('optionService', () => {
     const scenarios = [
@@ -8,8 +10,8 @@ describe('optionService', () => {
                 quality: 0.5,
                 returnOriginalOnFailure: true,
                 scaleImageBy: 1.00,
-            },
-            inputOptions: {},
+            } as Options,
+            inputOptions: {} as InputOptions,
             name: 'should not override any inputOptions',
         },
         {
@@ -20,7 +22,7 @@ describe('optionService', () => {
                 quality: 0.75,
                 returnOriginalOnFailure: false,
                 scaleImageBy: 0.49,
-            },
+            } as Options,
             inputOptions: {
                 allowCrossOriginResourceSharing: true,
                 maxHeight: 5,
@@ -28,7 +30,7 @@ describe('optionService', () => {
                 quality: 0.75,
                 returnOriginalOnFailure: false,
                 scaleImageBy: 0.49,
-            },
+            } as InputOptions,
             name: 'should override all inputOptions',
         },
         {
@@ -37,11 +39,30 @@ describe('optionService', () => {
                 quality: 0.5,
                 returnOriginalOnFailure: true,
                 scaleImageBy: 1.00,
-            },
+            } as Options,
             inputOptions: {
                 allowCrossOriginResourceSharing: true,
-            },
+            } as InputOptions,
             name: 'should override only allowCrossOriginResourceSharing',
+        },
+        {
+            expectedOptions: {
+                allowCrossOriginResourceSharing: false,
+                maxHeight: undefined,
+                maxWidth: undefined,
+                quality:  0.5,
+                returnOriginalOnFailure: true,
+                scaleImageBy: 1.00,
+            } as Options,
+            inputOptions: {
+                allowCrossOriginResourceSharing: undefined,
+                maxHeight: undefined,
+                maxWidth: undefined,
+                quality: undefined,
+                returnOriginalOnFailure: undefined,
+                scaleImageBy: undefined,
+            } as InputOptions,
+            name: 'should return defaults if everything is undefined',
         },
     ];
 

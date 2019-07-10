@@ -1,8 +1,10 @@
 import {Chance} from 'chance';
 
 import fileService from '../../src/services/fileService';
+import optionService from '../../src/services/optionService';
 import qualityService from '../../src/services/qualityService';
 import windowService from '../../src/services/windowService';
+import {InputOptions} from '../../src/types/InputOptions';
 
 jest.mock('../../src/services/windowService');
 jest.mock('../../src/services/fileService');
@@ -20,16 +22,16 @@ describe('qualityService', () => {
         {
             expectedFile: new File(['a'], chance.string()),
             file: new File([], chance.string()),
-            inputOptions: {},
+            inputOptions: {} as InputOptions,
             name: 'no inputOptions',
-            quality: 1.00,
+            quality: 0.50,
         },
         {
             expectedFile: new File(['a'], chance.string()),
             file: new File([], chance.string()),
             inputOptions: {
                 quality: 0.75,
-            },
+            } as InputOptions,
             name: 'quality overrides default',
             quality: 0.75,
         },
@@ -50,7 +52,8 @@ describe('qualityService', () => {
                 windowService.toByteArray = jest.fn().mockReturnValue(bytes);
                 fileService.create = jest.fn(() => scenario.expectedFile);
 
-                actualBlob = qualityService.toFile(scenario.file, canvas, scenario.inputOptions);
+                actualBlob = qualityService.toFile(scenario.file, canvas,
+                    optionService.override(scenario.inputOptions));
             });
 
             afterAll(() => {
