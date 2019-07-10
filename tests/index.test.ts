@@ -77,7 +77,7 @@ describe('index', () => {
 
         it('is invalid file and throw with message', async () => {
             const expectedFile = new File([chance.string()], chance.string());
-            const errorMessage = 'Could not compress File. The File you have entered is not valid.';
+            const errorMessage = 'The File you have entered is not valid.';
             fileService.validate = jest.fn(() => false);
 
             try {
