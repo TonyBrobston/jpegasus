@@ -1,8 +1,8 @@
-export interface InputOptions {
+import {SharedOptions} from './SharedOptions';
+
+export interface InputOptions extends SharedOptions {
     allowCrossOriginResourceSharing?: boolean;
     quality?: number;
-    maxHeight?: number;
-    maxWidth?: number;
     returnOriginalOnFailure?: boolean;
     scaleImageBy?: number;
 }
