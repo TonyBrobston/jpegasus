@@ -1,8 +1,8 @@
-export interface Options {
+import {SharedOptions} from './SharedOptions';
+
+export interface Options extends SharedOptions {
     allowCrossOriginResourceSharing: boolean;
     quality: number;
-    maxHeight?: number;
-    maxWidth?: number;
     returnOriginalOnFailure: boolean;
     scaleImageBy: number;
 }

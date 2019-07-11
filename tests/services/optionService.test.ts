@@ -45,25 +45,6 @@ describe('optionService', () => {
             } as InputOptions,
             name: 'should override only allowCrossOriginResourceSharing',
         },
-        {
-            expectedOptions: {
-                allowCrossOriginResourceSharing: false,
-                maxHeight: undefined,
-                maxWidth: undefined,
-                quality:  0.5,
-                returnOriginalOnFailure: true,
-                scaleImageBy: 1.00,
-            } as Options,
-            inputOptions: {
-                allowCrossOriginResourceSharing: undefined,
-                maxHeight: undefined,
-                maxWidth: undefined,
-                quality: undefined,
-                returnOriginalOnFailure: undefined,
-                scaleImageBy: undefined,
-            } as InputOptions,
-            name: 'should return defaults if everything is undefined',
-        },
     ];
 
     scenarios.forEach((scenario: {
