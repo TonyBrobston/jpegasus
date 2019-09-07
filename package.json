@@ -42,16 +42,16 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@types/chance": "^1.0.1",
-    "@types/jest": "^24.0.11",
-    "@types/node": "^11.13.0",
+    "@types/chance": "^1.0.6",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.4",
     "chance": "^1.0.18",
-    "jest": "^24.1.0",
-    "jest-canvas-mock": "^2.1.0",
-    "ts-jest": "^24.0.1",
-    "ts-node": "^8.0.3",
-    "tslint": "^5.17.0",
-    "typescript": "^3.4.1"
+    "jest": "^24.9.0",
+    "jest-canvas-mock": "^2.1.1",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.19.0",
+    "typescript": "^3.6.2"
   },
   "peerDependencies": {
     "core-js": "^3.0.0",
