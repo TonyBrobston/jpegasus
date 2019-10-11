@@ -1,5 +1,8 @@
 /lib/
 /node_modules/
+/jpegasus-demo/
 .coverage
 .idea
 .npmrc
+/cypress/screenshots/
+/cypress/videos/
