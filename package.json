@@ -13,7 +13,8 @@
     "postversion": "git push && git push --tags",
     "coverage": "jest --coverage",
     "lint:ts": "tslint --fix -c tslint.json 'src/**/*.ts' 'tests/**/*.test.ts'",
-    "test": "yarn lint:ts && yarn coverage",
+    "test": "yarn lint:ts && yarn coverage && yarn acceptance",
+    "acceptance": "./.scripts/runAcceptanceTests.sh",
     "unit": "npx jest"
   },
   "keywords": [
@@ -53,7 +54,8 @@
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
     "tslint": "^5.19.0",
-    "typescript": "^3.6.2"
+    "typescript": "^3.6.2",
+    "wait-on": "^3.3.0"
   },
   "peerDependencies": {
     "core-js": "^3.0.0",

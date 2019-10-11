@@ -2,7 +2,7 @@
 
 context('UI', () => {
   beforeEach(() => {
-    cy.visit('localhost:3000')
+    cy.visit('localhost:5000')
   });
 
   it('first test', async () => {
