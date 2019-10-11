@@ -12,4 +12,4 @@ yarn cypress run
 EXIT_CODE=$(echo $?)
 kill $(lsof -t -i:5000) & wait \
   && yarn unlink \
-  && echo $EXIT_CODE
+  && exit $EXIT_CODE
