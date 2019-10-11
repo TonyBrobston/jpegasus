@@ -13,7 +13,7 @@
     "postversion": "git push && git push --tags",
     "coverage": "jest --coverage",
     "lint:ts": "tslint --fix -c tslint.json 'src/**/*.ts' 'tests/**/*.test.ts'",
-    "test": "yarn acceptance",
+    "test": "yarn lint:ts && yarn coverage && yarn acceptance",
     "acceptance": "./.scripts/runAcceptanceTests.sh",
     "acceptance:interactive": "./.scripts/runAcceptanceTestsInteractive.sh",
     "unit": "npx jest"

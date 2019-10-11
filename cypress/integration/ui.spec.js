@@ -19,7 +19,7 @@ context('ui', () => {
 
       cy.get('#originalSize').should('have.text', '533.32');
       cy.get('#originType').should('have.text', 'image/jpeg');
-      cy.get('#compressedSize').should('have.text', '50.29');
+      cy.get('#compressedSize').should('have.text', '56.45');
       cy.get('#compressedType').should('have.text', 'image/jpeg');
     });
   });
