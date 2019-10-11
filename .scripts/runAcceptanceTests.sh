@@ -9,5 +9,7 @@ yarn
 yarn start & wait-on http://localhost:5000
 cd ../
 yarn cypress run
-kill $(lsof -t -i:5000) & wait
-yarn unlink
+EXIT_CODE=$(echo $?)
+kill $(lsof -t -i:5000) & wait \
+  && yarn unlink \
+  && echo $EXIT_CODE
