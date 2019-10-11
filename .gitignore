@@ -4,3 +4,5 @@
 .coverage
 .idea
 .npmrc
+/cypress/screenshots/
+/cypress/videos/
