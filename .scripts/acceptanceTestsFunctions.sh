@@ -1,5 +1,7 @@
 #!/bin/sh
 
+PORT=3000
+
 buildJpegasusAndMakeJpegasusAvailableAsLink() {
   yarn build
   yarn link
@@ -10,20 +12,20 @@ cloneJpegasusDemoAndLinkJpegasus() {
   cd jpegasus-demo
   yarn link jpegasus
   yarn
-  yarn start & wait-on http://localhost:5000
+  yarn start -l $(echo $PORT) & wait-on http://localhost:$(echo $PORT)
   cd ../
 }
 
 runCypressAndTeardown() {
-  yarn cypress run
+  yarn cypress run --env PORT=$(echo $PORT)
   EXIT_CODE=$(echo $?)
-  kill $(lsof -t -i:5000) & wait \
+  kill $(lsof -t -i:$(echo $PORT)) & wait \
     && yarn unlink \
     && exit $EXIT_CODE
 }
 
 openCypressAndTeardown() {
-  yarn cypress open \
-    && kill $(lsof -t -i:5000) & wait \
+  yarn cypress open --env PORT=$(echo $PORT) \
+    && kill $(lsof -t -i:$(echo $PORT)) & wait \
     && yarn unlink
 }
