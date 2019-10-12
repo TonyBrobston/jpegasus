@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ./.scripts/acceptanceTestsFunctions.sh
+. ./.scripts/acceptanceTestFunctions.sh
 
 buildJpegasusAndMakeJpegasusAvailableAsLink
 cloneJpegasusDemoAndLinkJpegasus

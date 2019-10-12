@@ -16,7 +16,7 @@ cloneJpegasusDemoAndLinkJpegasus() {
   cd ../
 }
 
-runCypressAndTeardown() {
+runCypressAndSetupTeardown() {
   yarn cypress run --env PORT=$(echo $PORT)
   EXIT_CODE=$(echo $?)
   kill $(lsof -t -i:$(echo $PORT)) & wait \
@@ -24,7 +24,7 @@ runCypressAndTeardown() {
     && exit $EXIT_CODE
 }
 
-openCypressAndTeardown() {
+openCypressAndSetupTeardown() {
   yarn cypress open --env PORT=$(echo $PORT) \
     && kill $(lsof -t -i:$(echo $PORT)) & wait \
     && yarn unlink
