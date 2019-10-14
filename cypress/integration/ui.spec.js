@@ -2,7 +2,7 @@
 
 context('ui', () => {
   beforeEach(() => {
-    cy.visit('localhost:5000')
+    cy.visit(`localhost:${Cypress.env('PORT')}`)
   });
 
   it('should compress an image and check size and type results', () => {
