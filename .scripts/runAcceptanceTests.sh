@@ -4,4 +4,4 @@
 
 buildJpegasusAndMakeJpegasusAvailableAsLink
 cloneJpegasusDemoAndLinkJpegasus
-runCypressAndTeardown
+runCypressAndSetupTeardown
