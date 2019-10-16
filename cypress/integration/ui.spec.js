@@ -1,5 +1,3 @@
-/// <reference types="Cypress" />
-
 context('ui', () => {
   beforeEach(() => {
     cy.visit(`localhost:${Cypress.env('PORT')}`)
