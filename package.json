@@ -63,7 +63,7 @@
     "wait-on": "^3.3.0"
   },
   "peerDependencies": {
-    "core-js": "^3.0.0",
+    "core-js": "^3.3.5",
     "regenerator-runtime": "^0.13.2"
   },
   "husky": {
