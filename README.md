@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="250" height="250" src="https://raw.githubusercontent.com/TonyBrobston/jpegasus-demo/master/src/img/jpegasus-logo.png"></img>
+</p>
+
 # jpegasus
 A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or `.gif` and returns a compressed `File` of type `.jpeg`. It's as easy as taking out the trash! 🗑
 
