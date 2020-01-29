@@ -1,0 +1,48 @@
+---
+id: "_services_fileservice_"
+title: "services/fileService"
+sidebar_label: "services/fileService"
+---
+
+[jpegasus](../index.md) › ["services/fileService"](_services_fileservice_.md)
+
+## Index
+
+### Functions
+
+* [create](_services_fileservice_.md#const-create)
+* [validate](_services_fileservice_.md#const-validate)
+
+## Functions
+
+### `Const` create
+
+▸ **create**(`bytes`: Uint8Array[], `type`: string, `name`: string): *File | Blob*
+
+*Defined in [services/fileService.ts:9](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/fileService.ts#L9)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`bytes` | Uint8Array[] |
+`type` | string |
+`name` | string |
+
+**Returns:** *File | Blob*
+
+___
+
+### `Const` validate
+
+▸ **validate**(`file`: File): *boolean*
+
+*Defined in [services/fileService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/fileService.ts#L1)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`file` | File |
+
+**Returns:** *boolean*
