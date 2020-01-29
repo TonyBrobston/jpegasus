@@ -18,7 +18,7 @@ sidebar_label: "services/windowService"
 
 ▸ **toByteArray**(`base64`: string): *Uint8Array[]*
 
-*Defined in [services/windowService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/windowService.ts#L1)*
+*Defined in [services/windowService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/windowService.ts#L1)*
 
 **Parameters:**
 

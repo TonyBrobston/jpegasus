@@ -12,7 +12,7 @@
     "acceptance:interactive": "./.scripts/runAcceptanceTestsInteractive.sh",
     "build": "rm -rf lib && tsc",
     "coverage": "jest --coverage",
-    "documentation": "typedoc --readme none --theme docusaurus2 --plugin typedoc-plugin-markdown --hideGenerator",
+    "documentation": "typedoc --readme none --theme docusaurus --plugin typedoc-plugin-markdown --hideGenerator",
     "lint:ts": "tslint --fix -c tslint.json 'src/**/*.ts' 'tests/**/*.test.ts'",
     "postversion": "git push && git push --tags",
     "test": "yarn lint:ts && yarn coverage && yarn acceptance",

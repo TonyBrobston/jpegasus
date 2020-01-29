@@ -19,7 +19,7 @@ sidebar_label: "services/fileService"
 
 ▸ **create**(`bytes`: Uint8Array[], `type`: string, `name`: string): *File | Blob*
 
-*Defined in [services/fileService.ts:9](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/fileService.ts#L9)*
+*Defined in [services/fileService.ts:9](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/fileService.ts#L9)*
 
 **Parameters:**
 
@@ -37,7 +37,7 @@ ___
 
 ▸ **validate**(`file`: File): *boolean*
 
-*Defined in [services/fileService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/fileService.ts#L1)*
+*Defined in [services/fileService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/fileService.ts#L1)*
 
 **Parameters:**
 

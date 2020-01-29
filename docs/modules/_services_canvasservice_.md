@@ -20,7 +20,7 @@ sidebar_label: "services/canvasService"
 
 ▸ **correctExifRotation**(`context`: CanvasTransform, `orientation`: number, `height`: number, `width`: number): *void*
 
-*Defined in [services/canvasService.ts:14](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/canvasService.ts#L14)*
+*Defined in [services/canvasService.ts:14](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/canvasService.ts#L14)*
 
 **Parameters:**
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **create**(`file`: File, `image`: HTMLImageElement, `scale`: number): *Promise‹HTMLCanvasElement›*
 
-*Defined in [services/canvasService.ts:42](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/canvasService.ts#L42)*
+*Defined in [services/canvasService.ts:42](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/canvasService.ts#L42)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **setCanvasDimensions**(`canvas`: HTMLCanvasElement, `orientation`: number, `scaledHeight`: number, `scaledWidth`: number): *void*
 
-*Defined in [services/canvasService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/canvasService.ts#L3)*
+*Defined in [services/canvasService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/canvasService.ts#L3)*
 
 **Parameters:**
 

@@ -19,7 +19,7 @@ sidebar_label: "services/scaleService"
 
 ▸ **determineScale**(`__namedParameters`: object, `__namedParameters`: object): *number*
 
-*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/scaleService.ts#L5)*
+*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/scaleService.ts#L5)*
 
 **Parameters:**
 
@@ -46,7 +46,7 @@ ___
 
 ▸ **toCanvas**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): *Promise‹HTMLCanvasElement›*
 
-*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/scaleService.ts#L19)*
+*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/scaleService.ts#L19)*
 
 **Parameters:**
 

@@ -18,7 +18,7 @@ sidebar_label: "services/qualityService"
 
 ▸ **toFile**(`file`: File, `canvas`: HTMLCanvasElement, `__namedParameters`: object): *File | Blob*
 
-*Defined in [services/qualityService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/qualityService.ts#L5)*
+*Defined in [services/qualityService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/qualityService.ts#L5)*
 
 **Parameters:**
 

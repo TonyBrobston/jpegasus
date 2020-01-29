@@ -18,7 +18,7 @@ sidebar_label: "services/optionService"
 
 ▸ **override**(`inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *[Options](../interfaces/_types_options_.options.md)*
 
-*Defined in [services/optionService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/services/optionService.ts#L4)*
+*Defined in [services/optionService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/optionService.ts#L4)*
 
 **Parameters:**
 

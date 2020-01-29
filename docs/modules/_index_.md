@@ -18,7 +18,7 @@ sidebar_label: "index"
 
 ▸ **compress**(`file`: File, `inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
 
-*Defined in [index.ts:7](https://github.com/TonyBrobston/jpegasus/blob/418125c/src/index.ts#L7)*
+*Defined in [index.ts:7](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/index.ts#L7)*
 
 **Parameters:**
 
