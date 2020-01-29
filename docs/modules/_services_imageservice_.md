@@ -1,4 +1,12 @@
+[jpegasus](../README.md) › ["services/imageService"](_services_imageservice_.md)
+
 # External module: "services/imageService"
+
+## Index
+
+### Functions
+
+* [create](_services_imageservice_.md#markdown-header-const-create)
 
 ## Functions
 
@@ -6,7 +14,7 @@
 
 ▸ **create**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): *Promise‹HTMLImageElement›*
 
-*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/imageService.ts#L3)*
+*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/imageService.ts#L3)*
 
 **Parameters:**
 

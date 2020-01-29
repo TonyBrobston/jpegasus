@@ -1,4 +1,13 @@
+[jpegasus](../README.md) › ["services/scaleService"](_services_scaleservice_.md)
+
 # External module: "services/scaleService"
+
+## Index
+
+### Functions
+
+* [determineScale](_services_scaleservice_.md#markdown-header-const-determinescale)
+* [toCanvas](_services_scaleservice_.md#markdown-header-const-tocanvas)
 
 ## Functions
 
@@ -6,7 +15,7 @@
 
 ▸ **determineScale**(`__namedParameters`: object, `__namedParameters`: object): *number*
 
-*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/scaleService.ts#L5)*
+*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/scaleService.ts#L5)*
 
 **Parameters:**
 
@@ -33,7 +42,7 @@ ___
 
 ▸ **toCanvas**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): *Promise‹HTMLCanvasElement›*
 
-*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/scaleService.ts#L19)*
+*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/scaleService.ts#L19)*
 
 **Parameters:**
 

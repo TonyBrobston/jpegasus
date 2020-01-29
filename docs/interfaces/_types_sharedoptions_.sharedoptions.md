@@ -1,3 +1,5 @@
+[jpegasus](../README.md) › ["types/SharedOptions"](../modules/_types_sharedoptions_.md) › [SharedOptions](_types_sharedoptions_.sharedoptions.md)
+
 # Interface: SharedOptions
 
 ## Hierarchy
@@ -8,13 +10,20 @@
 
   ↳ [Options](_types_options_.options.md)
 
+## Index
+
+### Properties
+
+* [maxHeight](_types_sharedoptions_.sharedoptions.md#markdown-header-optional-maxheight)
+* [maxWidth](_types_sharedoptions_.sharedoptions.md#markdown-header-optional-maxwidth)
+
 ## Properties
 
 ### `Optional` maxHeight
 
 • **maxHeight**? : *undefined | number*
 
-*Defined in [types/SharedOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/types/SharedOptions.ts#L2)*
+*Defined in [types/SharedOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/types/SharedOptions.ts#L2)*
 
 ___
 
@@ -22,4 +31,4 @@ ___
 
 • **maxWidth**? : *undefined | number*
 
-*Defined in [types/SharedOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/types/SharedOptions.ts#L3)*
+*Defined in [types/SharedOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/types/SharedOptions.ts#L3)*

@@ -1,4 +1,14 @@
+[jpegasus](../README.md) › ["services/canvasService"](_services_canvasservice_.md)
+
 # External module: "services/canvasService"
+
+## Index
+
+### Functions
+
+* [correctExifRotation](_services_canvasservice_.md#markdown-header-const-correctexifrotation)
+* [create](_services_canvasservice_.md#markdown-header-const-create)
+* [setCanvasDimensions](_services_canvasservice_.md#markdown-header-const-setcanvasdimensions)
 
 ## Functions
 
@@ -6,7 +16,7 @@
 
 ▸ **correctExifRotation**(`context`: CanvasTransform, `orientation`: number, `height`: number, `width`: number): *void*
 
-*Defined in [services/canvasService.ts:14](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/canvasService.ts#L14)*
+*Defined in [services/canvasService.ts:14](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/canvasService.ts#L14)*
 
 **Parameters:**
 
@@ -25,7 +35,7 @@ ___
 
 ▸ **create**(`file`: File, `image`: HTMLImageElement, `scale`: number): *Promise‹HTMLCanvasElement›*
 
-*Defined in [services/canvasService.ts:42](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/canvasService.ts#L42)*
+*Defined in [services/canvasService.ts:42](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/canvasService.ts#L42)*
 
 **Parameters:**
 
@@ -43,7 +53,7 @@ ___
 
 ▸ **setCanvasDimensions**(`canvas`: HTMLCanvasElement, `orientation`: number, `scaledHeight`: number, `scaledWidth`: number): *void*
 
-*Defined in [services/canvasService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/canvasService.ts#L3)*
+*Defined in [services/canvasService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/canvasService.ts#L3)*
 
 **Parameters:**
 

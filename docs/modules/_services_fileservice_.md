@@ -1,4 +1,13 @@
+[jpegasus](../README.md) › ["services/fileService"](_services_fileservice_.md)
+
 # External module: "services/fileService"
+
+## Index
+
+### Functions
+
+* [create](_services_fileservice_.md#markdown-header-const-create)
+* [validate](_services_fileservice_.md#markdown-header-const-validate)
 
 ## Functions
 
@@ -6,7 +15,7 @@
 
 ▸ **create**(`bytes`: Uint8Array[], `type`: string, `name`: string): *File | Blob*
 
-*Defined in [services/fileService.ts:9](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/fileService.ts#L9)*
+*Defined in [services/fileService.ts:9](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/fileService.ts#L9)*
 
 **Parameters:**
 
@@ -24,7 +33,7 @@ ___
 
 ▸ **validate**(`file`: File): *boolean*
 
-*Defined in [services/fileService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/fileService.ts#L1)*
+*Defined in [services/fileService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/fileService.ts#L1)*
 
 **Parameters:**
 

@@ -1,4 +1,12 @@
+[jpegasus](../README.md) › ["services/optionService"](_services_optionservice_.md)
+
 # External module: "services/optionService"
+
+## Index
+
+### Functions
+
+* [override](_services_optionservice_.md#markdown-header-const-override)
 
 ## Functions
 
@@ -6,7 +14,7 @@
 
 ▸ **override**(`inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *[Options](../interfaces/_types_options_.options.md)*
 
-*Defined in [services/optionService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/optionService.ts#L4)*
+*Defined in [services/optionService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/optionService.ts#L4)*
 
 **Parameters:**
 
