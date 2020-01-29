@@ -1,16 +1,4 @@
----
-id: "_services_imageservice_"
-title: "services/imageService"
-sidebar_label: "services/imageService"
----
-
-[jpegasus](../index.md) › ["services/imageService"](_services_imageservice_.md)
-
-## Index
-
-### Functions
-
-* [create](_services_imageservice_.md#const-create)
+# External module: "services/imageService"
 
 ## Functions
 
@@ -18,7 +6,7 @@ sidebar_label: "services/imageService"
 
 ▸ **create**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): *Promise‹HTMLImageElement›*
 
-*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/imageService.ts#L3)*
+*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/imageService.ts#L3)*
 
 **Parameters:**
 

@@ -1,9 +1,7 @@
-{
-  "jpegasus": {
-    "Introduction": [
-      "index"
-    ],
-    "External Modules": [
+[
+  {
+    "title": "External Modules",
+    "children": [
       "modules/_index_",
       "modules/_services_canvasservice_",
       "modules/_services_exifservice_",
@@ -19,11 +17,14 @@
       "interfaces/_types_options_.options",
       "modules/_types_sharedoptions_",
       "interfaces/_types_sharedoptions_.sharedoptions"
-    ],
-    "Interfaces": [
+    ]
+  },
+  {
+    "title": "Interfaces",
+    "children": [
       "interfaces/_types_inputoptions_.inputoptions",
       "interfaces/_types_options_.options",
       "interfaces/_types_sharedoptions_.sharedoptions"
     ]
   }
-}
+]

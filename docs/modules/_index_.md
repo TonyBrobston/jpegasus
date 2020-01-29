@@ -1,16 +1,4 @@
----
-id: "_index_"
-title: "index"
-sidebar_label: "index"
----
-
-[jpegasus](../index.md) › ["index"](_index_.md)
-
-## Index
-
-### Functions
-
-* [compress](_index_.md#const-compress)
+# External module: "index"
 
 ## Functions
 
@@ -18,7 +6,7 @@ sidebar_label: "index"
 
 ▸ **compress**(`file`: File, `inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
 
-*Defined in [index.ts:7](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/index.ts#L7)*
+*Defined in [index.ts:7](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/index.ts#L7)*
 
 **Parameters:**
 

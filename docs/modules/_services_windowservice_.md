@@ -1,16 +1,4 @@
----
-id: "_services_windowservice_"
-title: "services/windowService"
-sidebar_label: "services/windowService"
----
-
-[jpegasus](../index.md) › ["services/windowService"](_services_windowservice_.md)
-
-## Index
-
-### Functions
-
-* [toByteArray](_services_windowservice_.md#const-tobytearray)
+# External module: "services/windowService"
 
 ## Functions
 
@@ -18,7 +6,7 @@ sidebar_label: "services/windowService"
 
 ▸ **toByteArray**(`base64`: string): *Uint8Array[]*
 
-*Defined in [services/windowService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/windowService.ts#L1)*
+*Defined in [services/windowService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/windowService.ts#L1)*
 
 **Parameters:**
 

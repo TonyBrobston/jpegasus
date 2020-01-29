@@ -1,16 +1,4 @@
----
-id: "_services_qualityservice_"
-title: "services/qualityService"
-sidebar_label: "services/qualityService"
----
-
-[jpegasus](../index.md) › ["services/qualityService"](_services_qualityservice_.md)
-
-## Index
-
-### Functions
-
-* [toFile](_services_qualityservice_.md#const-tofile)
+# External module: "services/qualityService"
 
 ## Functions
 
@@ -18,7 +6,7 @@ sidebar_label: "services/qualityService"
 
 ▸ **toFile**(`file`: File, `canvas`: HTMLCanvasElement, `__namedParameters`: object): *File | Blob*
 
-*Defined in [services/qualityService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/qualityService.ts#L5)*
+*Defined in [services/qualityService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/qualityService.ts#L5)*
 
 **Parameters:**
 

@@ -1,17 +1,4 @@
----
-id: "_services_scaleservice_"
-title: "services/scaleService"
-sidebar_label: "services/scaleService"
----
-
-[jpegasus](../index.md) › ["services/scaleService"](_services_scaleservice_.md)
-
-## Index
-
-### Functions
-
-* [determineScale](_services_scaleservice_.md#const-determinescale)
-* [toCanvas](_services_scaleservice_.md#const-tocanvas)
+# External module: "services/scaleService"
 
 ## Functions
 
@@ -19,7 +6,7 @@ sidebar_label: "services/scaleService"
 
 ▸ **determineScale**(`__namedParameters`: object, `__namedParameters`: object): *number*
 
-*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/scaleService.ts#L5)*
+*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/scaleService.ts#L5)*
 
 **Parameters:**
 
@@ -46,7 +33,7 @@ ___
 
 ▸ **toCanvas**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): *Promise‹HTMLCanvasElement›*
 
-*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/5eb4219/src/services/scaleService.ts#L19)*
+*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/ead5eea/src/services/scaleService.ts#L19)*
 
 **Parameters:**
 
