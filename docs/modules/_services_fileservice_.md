@@ -6,8 +6,8 @@
 
 ### Functions
 
-* [create](_services_fileservice_.md#markdown-header-const-create)
-* [validate](_services_fileservice_.md#markdown-header-const-validate)
+* [create](_services_fileservice_.md#const-create)
+* [validate](_services_fileservice_.md#const-validate)
 
 ## Functions
 
@@ -15,7 +15,7 @@
 
 ▸ **create**(`bytes`: Uint8Array[], `type`: string, `name`: string): *File | Blob*
 
-*Defined in [services/fileService.ts:9](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/fileService.ts#L9)*
+*Defined in [services/fileService.ts:9](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/services/fileService.ts#L9)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 ▸ **validate**(`file`: File): *boolean*
 
-*Defined in [services/fileService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/fileService.ts#L1)*
+*Defined in [services/fileService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/services/fileService.ts#L1)*
 
 **Parameters:**
 

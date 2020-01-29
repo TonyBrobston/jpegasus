@@ -6,7 +6,7 @@
 
 ### Functions
 
-* [compress](_index_.md#markdown-header-const-compress)
+* [compress](_index_.md#const-compress)
 
 ## Functions
 
@@ -14,7 +14,7 @@
 
 ▸ **compress**(`file`: File, `inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
 
-*Defined in [index.ts:7](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/index.ts#L7)*
+*Defined in [index.ts:7](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/index.ts#L7)*
 
 **Parameters:**
 

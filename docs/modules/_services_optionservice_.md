@@ -6,7 +6,7 @@
 
 ### Functions
 
-* [override](_services_optionservice_.md#markdown-header-const-override)
+* [override](_services_optionservice_.md#const-override)
 
 ## Functions
 
@@ -14,7 +14,7 @@
 
 ▸ **override**(`inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *[Options](../interfaces/_types_options_.options.md)*
 
-*Defined in [services/optionService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/optionService.ts#L4)*
+*Defined in [services/optionService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/services/optionService.ts#L4)*
 
 **Parameters:**
 

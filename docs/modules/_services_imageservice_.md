@@ -6,7 +6,7 @@
 
 ### Functions
 
-* [create](_services_imageservice_.md#markdown-header-const-create)
+* [create](_services_imageservice_.md#const-create)
 
 ## Functions
 
@@ -14,7 +14,7 @@
 
 ▸ **create**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): *Promise‹HTMLImageElement›*
 
-*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/imageService.ts#L3)*
+*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/services/imageService.ts#L3)*
 
 **Parameters:**
 

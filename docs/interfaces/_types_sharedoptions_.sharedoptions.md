@@ -14,8 +14,8 @@
 
 ### Properties
 
-* [maxHeight](_types_sharedoptions_.sharedoptions.md#markdown-header-optional-maxheight)
-* [maxWidth](_types_sharedoptions_.sharedoptions.md#markdown-header-optional-maxwidth)
+* [maxHeight](_types_sharedoptions_.sharedoptions.md#optional-maxheight)
+* [maxWidth](_types_sharedoptions_.sharedoptions.md#optional-maxwidth)
 
 ## Properties
 
@@ -23,7 +23,7 @@
 
 • **maxHeight**? : *undefined | number*
 
-*Defined in [types/SharedOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/types/SharedOptions.ts#L2)*
+*Defined in [types/SharedOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/types/SharedOptions.ts#L2)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **maxWidth**? : *undefined | number*
 
-*Defined in [types/SharedOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/types/SharedOptions.ts#L3)*
+*Defined in [types/SharedOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/types/SharedOptions.ts#L3)*

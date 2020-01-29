@@ -6,7 +6,7 @@
 
 ### Functions
 
-* [toByteArray](_services_windowservice_.md#markdown-header-const-tobytearray)
+* [toByteArray](_services_windowservice_.md#const-tobytearray)
 
 ## Functions
 
@@ -14,7 +14,7 @@
 
 ▸ **toByteArray**(`base64`: string): *Uint8Array[]*
 
-*Defined in [services/windowService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/4f5d651/src/services/windowService.ts#L1)*
+*Defined in [services/windowService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/services/windowService.ts#L1)*
 
 **Parameters:**
 
