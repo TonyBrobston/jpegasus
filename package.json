@@ -8,15 +8,16 @@
     "url": "https://github.com/TonyBrobston/jpegasus"
   },
   "scripts": {
-    "build": "rm -rf lib && tsc",
-    "version": "yarn build && git add .",
-    "postversion": "git push && git push --tags",
-    "coverage": "jest --coverage",
-    "lint:ts": "tslint --fix -c tslint.json 'src/**/*.ts' 'tests/**/*.test.ts'",
-    "test": "yarn lint:ts && yarn coverage && yarn acceptance",
     "acceptance": "./.scripts/runAcceptanceTests.sh",
     "acceptance:interactive": "./.scripts/runAcceptanceTestsInteractive.sh",
-    "unit": "npx jest"
+    "build": "rm -rf lib && tsc",
+    "coverage": "jest --coverage",
+    "documentation": "typedoc --readme none --theme markdown --plugin typedoc-plugin-markdown --hideGenerator",
+    "lint:ts": "tslint --fix -c tslint.json 'src/**/*.ts' 'tests/**/*.test.ts'",
+    "postversion": "git push && git push --tags",
+    "test": "yarn lint:ts && yarn coverage && yarn acceptance",
+    "unit": "npx jest",
+    "version": "yarn build && git add ."
   },
   "keywords": [
     "javascript",
@@ -59,6 +60,8 @@
     "ts-jest": "^25.0.0",
     "ts-node": "^8.3.0",
     "tslint": "^5.19.0",
+    "typedoc": "^0.16.9",
+    "typedoc-plugin-markdown": "^2.2.16",
     "typescript": "^3.6.2",
     "wait-on": "^4.0.0"
   },

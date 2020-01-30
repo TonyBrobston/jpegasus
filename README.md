@@ -15,37 +15,30 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 [![Known Vulnerabilities](https://snyk.io/test/github/tonybrobston/jpegasus/badge.svg)](https://snyk.io/test/github/tonybrobston/jpegasus)
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg)](#contributors)
 
-## Demo
-* [Live Demo](https://tonybrobston.github.io/jpegasus-demo)
-* [Concise Example Repository](https://github.com/TonyBrobston/jpegasus-demo)
+## Implementation example
+* [Live demo](https://tonybrobston.github.io/jpegasus-demo)
+* [Concise repository](https://github.com/TonyBrobston/jpegasus-demo)
 
 ## Code example
 
 ```js
-const jpegasus = require('Jpegasus');
+const jpegasus = require('jpegasus');
 
-const processFile = (file) => {
+function processFile {
     return jpegasus.compress(file, {
         maxHeight: 1000,
         maxWidth: 1000,
         quality: 0.65
     });
-};
+}
 
 module.exports = {
     processFile
 };
 ```
 
-## Parameters
-* First parameter: JavaScript `File`
-* Second parameter: Object of `options`
-  * `allowCrossOriginResourceSharing`: a boolean that determines if CORS should be allowed, defaults to `false`.
-  * `maxHeight`: the max height in pixels of the compressed output File, defaults to `image's original height`.
-  * `maxWidth`: the max width in pixels of the compressed output File, defaults to `image's original width`.
-  * `quality`: degrades quality of File, values is between `0.01` and `1.00`, defaults to `0.50`.
-  * `returnOriginalOnFailure`: a boolean that determines if `jpegasus` should return the original `File` on failure or if it should throw and the let the consumer handle the failure, defaults to `true`.
-  * `scaleImageBy`: a decimal to scale up or down the image width and height by, defaults to `1.00`.
+## Documentation
+**[compress](https://github.com/TonyBrobston/jpegasus/blob/autogenerate-docs/docs/modules/_index_.md#const-compress)**(`file`: File, `inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
 
 ## Feedback
 Do you have an idea for making jpegasus better? Add your idea under the issues tab, we'd love to hear about it!
