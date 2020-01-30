@@ -29,7 +29,7 @@ function processFile {
         maxHeight: 1000,
         maxWidth: 1000,
         quality: 0.65
-    });  
+    });
 }
 
 module.exports = {
