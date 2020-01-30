@@ -38,7 +38,7 @@ module.exports = {
 ```
 
 ## Documentation
-**[compress](https://github.com/TonyBrobston/jpegasus/blob/autogenerate-docs/docs/modules/_index_.md#const-compress)**(`file`: File, `inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
+**[compress](docs/modules/_index_.md#const-compress)**(`file`: File, `inputOptions`: [InputOptions](docs/interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
 
 ## Feedback
 Do you have an idea for making jpegasus better? Add your idea under the issues tab, we'd love to hear about it!
