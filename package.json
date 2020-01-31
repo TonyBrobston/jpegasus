@@ -37,9 +37,13 @@
     "compressor",
     "canvas",
     "scale",
+    "resize",
     "size",
     "reduce",
-    "smaller"
+    "smaller",
+    "front",
+    "front-end",
+    "front end"
   ],
   "author": "Tony Brobston",
   "license": "MIT",
