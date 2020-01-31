@@ -8,6 +8,10 @@ setup_git_config() {
   echo "https://${GITHUB_API_KEY}:@github.com" > .git/credentials
 }
 
+build_lib() {
+  yarn build
+}
+
 create_npm_version_and_publish() {
   echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
@@ -24,5 +28,6 @@ push_version_update_to_git() {
 }
 
 setup_git_config
+build_lib
 create_npm_version_and_publish
 push_version_update_to_git

@@ -16,8 +16,7 @@
     "lint:ts": "tslint --fix -c tslint.json 'src/**/*.ts' 'tests/**/*.test.ts'",
     "postversion": "git push && git push --tags",
     "test": "yarn lint:ts && yarn coverage && yarn acceptance",
-    "unit": "npx jest",
-    "version": "yarn build && git add ."
+    "unit": "npx jest"
   },
   "keywords": [
     "javascript",
