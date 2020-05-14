@@ -15,6 +15,8 @@ build_lib() {
 create_npm_version_and_publish() {
   echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
+  npm config get registry
+  npm config set registry https://registry.npmjs.com/
   npm cache clean --force
   npm --no-git-tag-version version $TRAVIS_TAG
   npm publish
