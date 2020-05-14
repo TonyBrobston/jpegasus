@@ -14,7 +14,7 @@
 
 ▸ **toByteArray**(`base64`: string): *Uint8Array[]*
 
-*Defined in [services/windowService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/services/windowService.ts#L1)*
+*Defined in [services/windowService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/services/windowService.ts#L1)*
 
 **Parameters:**
 

@@ -14,7 +14,7 @@
 
 ▸ **toFile**(`file`: File, `canvas`: HTMLCanvasElement, `__namedParameters`: object): *File | Blob*
 
-*Defined in [services/qualityService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/services/qualityService.ts#L5)*
+*Defined in [services/qualityService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/services/qualityService.ts#L5)*
 
 **Parameters:**
 
