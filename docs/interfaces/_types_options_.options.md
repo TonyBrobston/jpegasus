@@ -16,6 +16,7 @@
 * [maxHeight](_types_options_.options.md#optional-maxheight)
 * [maxWidth](_types_options_.options.md#optional-maxwidth)
 * [quality](_types_options_.options.md#quality)
+* [returnOriginalIfCompressedFileIsLarger](_types_options_.options.md#returnoriginalifcompressedfileislarger)
 * [returnOriginalOnFailure](_types_options_.options.md#returnoriginalonfailure)
 * [scaleImageBy](_types_options_.options.md#scaleimageby)
 
@@ -25,7 +26,7 @@
 
 • **allowCrossOriginResourceSharing**: *boolean*
 
-*Defined in [types/Options.ts:4](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/types/Options.ts#L4)*
+*Defined in [types/Options.ts:4](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/types/Options.ts#L4)*
 
 ___
 
@@ -35,7 +36,7 @@ ___
 
 *Inherited from [SharedOptions](_types_sharedoptions_.sharedoptions.md).[maxHeight](_types_sharedoptions_.sharedoptions.md#optional-maxheight)*
 
-*Defined in [types/SharedOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/types/SharedOptions.ts#L2)*
+*Defined in [types/SharedOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/types/SharedOptions.ts#L2)*
 
 ___
 
@@ -45,7 +46,7 @@ ___
 
 *Inherited from [SharedOptions](_types_sharedoptions_.sharedoptions.md).[maxWidth](_types_sharedoptions_.sharedoptions.md#optional-maxwidth)*
 
-*Defined in [types/SharedOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/types/SharedOptions.ts#L3)*
+*Defined in [types/SharedOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/types/SharedOptions.ts#L3)*
 
 ___
 
@@ -53,7 +54,15 @@ ___
 
 • **quality**: *number*
 
-*Defined in [types/Options.ts:5](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/types/Options.ts#L5)*
+*Defined in [types/Options.ts:5](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/types/Options.ts#L5)*
+
+___
+
+###  returnOriginalIfCompressedFileIsLarger
+
+• **returnOriginalIfCompressedFileIsLarger**: *boolean*
+
+*Defined in [types/Options.ts:7](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/types/Options.ts#L7)*
 
 ___
 
@@ -61,7 +70,7 @@ ___
 
 • **returnOriginalOnFailure**: *boolean*
 
-*Defined in [types/Options.ts:6](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/types/Options.ts#L6)*
+*Defined in [types/Options.ts:6](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/types/Options.ts#L6)*
 
 ___
 
@@ -69,4 +78,4 @@ ___
 
 • **scaleImageBy**: *number*
 
-*Defined in [types/Options.ts:7](https://github.com/TonyBrobston/jpegasus/blob/78e3a3f/src/types/Options.ts#L7)*
+*Defined in [types/Options.ts:8](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/types/Options.ts#L8)*
