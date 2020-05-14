@@ -1,7 +1,7 @@
 #!/bin/sh
 
 setup_git_config() {
-  git config --global user.name "Automated Deployment"
+  git config --global user.name "TonyBrobston"
 
   git config credential.helper "store --file=.git/credentials"
 
@@ -15,6 +15,7 @@ build_lib() {
 create_npm_version_and_publish() {
   echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
+  npm cache clean --force
   npm --no-git-tag-version version $TRAVIS_TAG
   npm publish
 
