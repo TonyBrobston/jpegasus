@@ -10,6 +10,8 @@ buildJpegasusAndMakeJpegasusAvailableAsLink() {
 cloneJpegasusDemoAndLinkJpegasus() {
   git clone https://github.com/TonyBrobston/jpegasus-demo.git
   cd jpegasus-demo
+  git pull
+  git reset --hard origin/master
   yarn link jpegasus
   yarn
   yarn start -l $(echo $PORT) & wait-on http://localhost:$(echo $PORT)
