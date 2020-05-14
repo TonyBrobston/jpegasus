@@ -6,6 +6,8 @@ setup_git_config() {
   git config credential.helper "store --file=.git/credentials"
 
   echo "https://${GITHUB_API_KEY}:@github.com" > .git/credentials
+
+  git checkout master
 }
 
 build_lib() {
