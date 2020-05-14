@@ -7,6 +7,7 @@ setup_git_config() {
 
   echo "https://${GITHUB_API_KEY}:@github.com" > .git/credentials
 
+  git fetch
   git checkout master
 }
 
