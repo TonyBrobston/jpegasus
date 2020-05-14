@@ -5,6 +5,7 @@ const override = (inputOptions: InputOptions): Options => {
     return {
         allowCrossOriginResourceSharing: false,
         quality: 0.5,
+        returnOriginalIfCompressedFileIsLarger: false,
         returnOriginalOnFailure: true,
         scaleImageBy: 1.00,
         ...inputOptions,
