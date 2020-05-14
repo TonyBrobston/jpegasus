@@ -10,7 +10,10 @@ export const compress = async (file: File, inputOptions: InputOptions = {}): Pro
     try {
         if (fileService.validate(file)) {
             const canvas = await scaleService.toCanvas(file, options);
-            return qualityService.toFile(file, canvas, options);
+            const compressedFile = qualityService.toFile(file, canvas, options);
+            if (!(options.returnOriginalIfCompressedFileIsLarger && file.size < compressedFile.size)) {
+                return compressedFile;
+            }
         } else if (!options.returnOriginalOnFailure) {
             throw new Error('The File you have entered is not valid.');
         }

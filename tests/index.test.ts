@@ -16,10 +16,10 @@ describe('index', () => {
     describe(`happy path`, () => {
         let actualCompressedFile: File|Blob;
 
-        const file = new File([chance.string()], chance.string(), {
+        const file = new File([chance.string({length: 2})], chance.string(), {
             type: 'image/jpeg',
         });
-        const expectedCompressedBlob = new File([chance.string()], chance.string());
+        const expectedCompressedFile = new File([chance.string({length: 1})], chance.string());
         const inputOptions = {
             allowCrossOriginResourceSharing: true,
             maxHeight: 1000,
@@ -31,7 +31,7 @@ describe('index', () => {
         const canvas = document.createElement('canvas');
         fileService.validate = jest.fn(() => true);
         scaleService.toCanvas = jest.fn(() => Promise.resolve(canvas));
-        qualityService.toFile = jest.fn(() => expectedCompressedBlob);
+        qualityService.toFile = jest.fn(() => expectedCompressedFile);
 
         beforeAll(async () => {
             actualCompressedFile = await compress(file, inputOptions);
@@ -52,7 +52,7 @@ describe('index', () => {
         });
 
         it('should return a compressed file', () => {
-            expect(actualCompressedFile).toEqual(expectedCompressedBlob);
+            expect(actualCompressedFile).toEqual(expectedCompressedFile);
         });
     });
 
@@ -64,6 +64,66 @@ describe('index', () => {
             const actualFile = await compress(expectedFile);
 
             expect(actualFile).toBe(expectedFile);
+        });
+
+        it('is larger compressed file and return original if compressed file is larger true', async () => {
+            const expectedFile = new File([chance.string({length: 1})], chance.string());
+            const expectedCompressedFile = new File([chance.string({length: 2})], chance.string());
+            const canvas = document.createElement('canvas');
+            fileService.validate = jest.fn(() => true);
+            scaleService.toCanvas = jest.fn(() => Promise.resolve(canvas));
+            qualityService.toFile = jest.fn(() => expectedCompressedFile);
+
+            const actualFile = await compress(expectedFile, {
+                returnOriginalIfCompressedFileIsLarger: true,
+            });
+
+            expect(actualFile).toBe(expectedFile);
+        });
+
+        it('is larger compressed file and return original if compressed file is larger false', async () => {
+            const expectedFile = new File([chance.string({length: 1})], chance.string());
+            const expectedCompressedFile = new File([chance.string({length: 2})], chance.string());
+            const canvas = document.createElement('canvas');
+            fileService.validate = jest.fn(() => true);
+            scaleService.toCanvas = jest.fn(() => Promise.resolve(canvas));
+            qualityService.toFile = jest.fn(() => expectedCompressedFile);
+
+            const actualFile = await compress(expectedFile, {
+                returnOriginalIfCompressedFileIsLarger: false,
+            });
+
+            expect(actualFile).toBe(expectedCompressedFile);
+        });
+
+        it('is equal compressed file and return original if compressed file is larger true', async () => {
+            const expectedFile = new File([chance.string({length: 1})], chance.string());
+            const expectedCompressedFile = new File([chance.string({length: 1})], chance.string());
+            const canvas = document.createElement('canvas');
+            fileService.validate = jest.fn(() => true);
+            scaleService.toCanvas = jest.fn(() => Promise.resolve(canvas));
+            qualityService.toFile = jest.fn(() => expectedCompressedFile);
+
+            const actualFile = await compress(expectedFile, {
+                returnOriginalIfCompressedFileIsLarger: true,
+            });
+
+            expect(actualFile).toBe(expectedCompressedFile);
+        });
+
+        it('is equal compressed file and return original if compressed file is larger false', async () => {
+            const expectedFile = new File([chance.string({length: 1})], chance.string());
+            const expectedCompressedFile = new File([chance.string({length: 1})], chance.string());
+            const canvas = document.createElement('canvas');
+            fileService.validate = jest.fn(() => true);
+            scaleService.toCanvas = jest.fn(() => Promise.resolve(canvas));
+            qualityService.toFile = jest.fn(() => expectedCompressedFile);
+
+            const actualFile = await compress(expectedFile, {
+                returnOriginalIfCompressedFileIsLarger: false,
+            });
+
+            expect(actualFile).toBe(expectedCompressedFile);
         });
 
         it('is invalid file and throw', async () => {
