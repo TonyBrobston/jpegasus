@@ -14,7 +14,7 @@
 
 ▸ **compress**(`file`: File, `inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
 
-*Defined in [index.ts:7](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/index.ts#L7)*
+*Defined in [index.ts:7](https://github.com/TonyBrobston/jpegasus/blob/3e8440e/src/index.ts#L7)*
 
 **Parameters:**
 

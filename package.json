@@ -10,7 +10,7 @@
   "scripts": {
     "acceptance": "./.scripts/runAcceptanceTests.sh",
     "acceptance:interactive": "./.scripts/runAcceptanceTestsInteractive.sh",
-    "build": "rm -rf lib && tsc",
+    "build": "rm -rf lib && yarn --production && tsc && yarn",
     "coverage": "jest --coverage",
     "documentation": "typedoc --readme none --theme markdown --plugin typedoc-plugin-markdown --hideGenerator",
     "lint:ts": "tslint --fix -c tslint.json 'src/**/*.ts' 'tests/**/*.test.ts'",
@@ -46,13 +46,16 @@
   ],
   "author": "Tony Brobston",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@ginpei/exif-orientation": "^1.1.0",
+    "@types/node": "^13.5.0",
+    "typescript": "^3.6.2"
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@types/chance": "^1.0.6",
     "@types/jest": "^25.1.2",
-    "@types/node": "^13.5.0",
     "chance": "^1.0.18",
     "commitlint": "^8.2.0",
     "cypress": "^3.4.1",
@@ -65,7 +68,6 @@
     "tslint": "^5.19.0",
     "typedoc": "^0.16.9",
     "typedoc-plugin-markdown": "^2.2.16",
-    "typescript": "^3.6.2",
     "wait-on": "^4.0.0"
   },
   "peerDependencies": {

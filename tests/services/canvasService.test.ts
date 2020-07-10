@@ -1,11 +1,11 @@
 import {Chance} from 'chance';
 
+import * as exifOrientation from '@ginpei/exif-orientation';
 import canvasService from '../../src/services/canvasService';
-import exifService from '../../src/services/exifService';
 
 const chance = new Chance();
 
-jest.mock('../../src/services/exifService');
+jest.mock('@ginpei/exif-orientation');
 
 describe('canvasService', () => {
     const file = new File([chance.string()], chance.string());
@@ -20,11 +20,14 @@ describe('canvasService', () => {
     const scaledHeight = image.height * scale;
     const scaledWidth = image.width * scale;
 
-    const expectedOrientation = 1;
+    const expectedOrientation = {
+        flipped: false,
+        rotation: 0,
+    };
 
     let actualCanvas: HTMLCanvasElement;
 
-    exifService.determineOrientation = jest.fn(() => Promise.resolve(expectedOrientation));
+    jest.spyOn(exifOrientation, 'getOrientation').mockResolvedValue(expectedOrientation);
 
     describe('create', () => {
         beforeAll(async () => {
@@ -32,8 +35,8 @@ describe('canvasService', () => {
         });
 
         it('should determine orientation', () => {
-            expect(exifService.determineOrientation).toHaveBeenCalledTimes(1);
-            expect(exifService.determineOrientation).toHaveBeenCalledWith(file);
+            expect(exifOrientation.getOrientation).toHaveBeenCalledTimes(1);
+            expect(exifOrientation.getOrientation).toHaveBeenCalledWith(file);
         });
 
         it('should return a canvasService', () => {
@@ -53,58 +56,66 @@ describe('canvasService', () => {
 
         const expectedRotationScenarios = [
             {
-                exifOrientation: 2,
+                exifOrientation: {rotation: 0, flipped: true},
                 height: scaledHeight,
-                parameters: [- 1, 0, 0, 1, scaledWidth, 0],
+                name: '2',
+                parameters: [-1, 0, 0, 1, scaledWidth, 0],
                 width: scaledWidth,
             },
             {
-                exifOrientation: 3,
+                exifOrientation: {rotation: 180, flipped: false},
                 height: scaledHeight,
-                parameters: [- 1, 0, 0, - 1, scaledWidth, scaledHeight],
+                name: '3',
+                parameters: [-1, 0, 0, -1, scaledWidth, scaledHeight],
                 width: scaledWidth,
             },
             {
-                exifOrientation: 4,
+                exifOrientation: {rotation: 180, flipped: true},
                 height: scaledHeight,
-                parameters: [1, 0, 0, - 1, 0, scaledHeight],
+                name: '4',
+                parameters: [1, 0, 0, -1, 0, scaledHeight],
                 width: scaledWidth,
             },
             {
-                exifOrientation: 5,
+                exifOrientation: {rotation: 90, flipped: true},
                 height: scaledWidth,
+                name: '5',
                 parameters: [0, 1, 1, 0, 0, 0],
                 width: scaledHeight,
             },
             {
-                exifOrientation: 6,
+                exifOrientation: {rotation: 90, flipped: false},
                 height: scaledWidth,
-                parameters: [0, 1, - 1, 0, scaledHeight, 0],
+                name: '6',
+                parameters: [0, 1, -1, 0, scaledHeight, 0],
                 width: scaledHeight,
             },
             {
-                exifOrientation: 7,
+                exifOrientation: {rotation: 270, flipped: true},
                 height: scaledWidth,
-                parameters: [0, - 1, - 1, 0, scaledHeight, scaledWidth],
+                name: '7',
+                parameters: [0, -1, -1, 0, scaledHeight, scaledWidth],
                 width: scaledHeight,
             },
             {
-                exifOrientation: 8,
+                exifOrientation: {rotation: 270, flipped: false},
                 height: scaledWidth,
-                parameters: [0, - 1, 1, 0, 0, scaledWidth],
+                name: '8',
+                parameters: [0, -1, 1, 0, 0, scaledWidth],
                 width: scaledHeight,
             },
         ];
 
         expectedRotationScenarios.forEach((scenario: {
-            exifOrientation: number,
+            exifOrientation: exifOrientation.IOrientationInfo,
             height: number,
+            name: string,
             parameters: number[],
             width: number,
         }) => {
-            it(`should correct orientation ${scenario.exifOrientation}`, async () => {
+            it(`should correct orientation ${scenario.name}`, async () => {
                 transform.mockClear();
-                exifService.determineOrientation = jest.fn(() => Promise.resolve(scenario.exifOrientation));
+                jest.spyOn(exifOrientation, 'getOrientation').mockResolvedValue(scenario.exifOrientation);
 
                 actualCanvas = await canvasService.create(file, image, scale);
 
@@ -114,6 +125,56 @@ describe('canvasService', () => {
                 expect(transform).toHaveBeenCalledTimes(1);
                 expect(transform).toHaveBeenCalledWith(...scenario.parameters);
             });
+        });
+
+        it('should not change orientation 1', async () => {
+            transform.mockClear();
+            jest.spyOn(exifOrientation, 'getOrientation').mockResolvedValue({rotation: 0, flipped: false});
+
+            actualCanvas = await canvasService.create(file, image, scale);
+
+            expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
+            expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
+
+            expect(transform).not.toHaveBeenCalled();
+        });
+
+        it('should not change orientation if invalid rotation', async () => {
+            transform.mockClear();
+            jest.spyOn(exifOrientation, 'getOrientation').mockResolvedValue({rotation: -1, flipped: true});
+
+            actualCanvas = await canvasService.create(file, image, scale);
+
+            expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
+            expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
+
+            expect(transform).not.toHaveBeenCalled();
+        });
+
+        it('should not change orientation for undefined', async () => {
+            transform.mockClear();
+            jest.spyOn(exifOrientation, 'getOrientation').mockResolvedValue(undefined);
+
+            actualCanvas = await canvasService.create(file, image, scale);
+
+            expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
+            expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
+
+            expect(transform).not.toHaveBeenCalled();
+        });
+
+        it('should not change orientation if throw', async () => {
+            transform.mockClear();
+            jest.spyOn(exifOrientation, 'getOrientation').mockImplementation(async () => {
+                throw new Error();
+            });
+
+            actualCanvas = await canvasService.create(file, image, scale);
+
+            expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
+            expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
+
+            expect(transform).not.toHaveBeenCalled();
         });
     });
 

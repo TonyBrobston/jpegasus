@@ -1,3 +1,4 @@
+import * as exif from '@ginpei/exif-orientation';
 import fileService from './services/fileService';
 import optionService from './services/optionService';
 import qualityService from './services/qualityService';
@@ -9,6 +10,7 @@ export const compress = async (file: File, inputOptions: InputOptions = {}): Pro
 
     try {
         if (fileService.validate(file)) {
+            await exif.updateOrientationCode(file, 1);
             const canvas = await scaleService.toCanvas(file, options);
             const compressedFile = qualityService.toFile(file, canvas, options);
             if (!(options.returnOriginalIfCompressedFileIsLarger && file.size < compressedFile.size)) {

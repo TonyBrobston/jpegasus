@@ -14,16 +14,16 @@
 
 ### `Const` correctExifRotation
 
-▸ **correctExifRotation**(`context`: CanvasTransform, `orientation`: number, `height`: number, `width`: number): *void*
+▸ **correctExifRotation**(`context`: CanvasTransform, `orientation`: IOrientationInfo, `height`: number, `width`: number): *void*
 
-*Defined in [services/canvasService.ts:14](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/services/canvasService.ts#L14)*
+*Defined in [services/canvasService.ts:18](https://github.com/TonyBrobston/jpegasus/blob/3e8440e/src/services/canvasService.ts#L18)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `context` | CanvasTransform |
-`orientation` | number |
+`orientation` | IOrientationInfo |
 `height` | number |
 `width` | number |
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **create**(`file`: File, `image`: HTMLImageElement, `scale`: number): *Promise‹HTMLCanvasElement›*
 
-*Defined in [services/canvasService.ts:42](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/services/canvasService.ts#L42)*
+*Defined in [services/canvasService.ts:41](https://github.com/TonyBrobston/jpegasus/blob/3e8440e/src/services/canvasService.ts#L41)*
 
 **Parameters:**
 
@@ -51,16 +51,16 @@ ___
 
 ### `Const` setCanvasDimensions
 
-▸ **setCanvasDimensions**(`canvas`: HTMLCanvasElement, `orientation`: number, `scaledHeight`: number, `scaledWidth`: number): *void*
+▸ **setCanvasDimensions**(`canvas`: HTMLCanvasElement, `orientation`: IOrientationInfo, `scaledHeight`: number, `scaledWidth`: number): *void*
 
-*Defined in [services/canvasService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/services/canvasService.ts#L3)*
+*Defined in [services/canvasService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/3e8440e/src/services/canvasService.ts#L3)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `canvas` | HTMLCanvasElement |
-`orientation` | number |
+`orientation` | IOrientationInfo |
 `scaledHeight` | number |
 `scaledWidth` | number |
 
