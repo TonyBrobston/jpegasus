@@ -12,7 +12,7 @@ const parseBytes = (dataView: DataView, resolve: (uint16: number) => void): void
         offset += 2;
         if (marker === applicationSegmentOneMarker
             && dataView.getUint32(offset + 2, false) !== beginOfExifHeaderMarker) {
-            resolve(1);
+            resolve(-1);
         } else if (marker === applicationSegmentOneMarker) {
             offset += 8;
             const little = dataView.getUint16(offset, false) === byteOrderMarker;
@@ -25,7 +25,7 @@ const parseBytes = (dataView: DataView, resolve: (uint16: number) => void): void
                 }
             }
         } else if ((marker & byteStuffingMarker) !== byteStuffingMarker) {
-            resolve(1);
+            resolve(-1);
         } else {
             offset += dataView.getUint16(offset, false);
         }
@@ -39,7 +39,7 @@ const determineOrientation = async (file: File): Promise<number> => {
             reader.onload = (): void => {
                 const dataView = new DataView(reader.result as SharedArrayBuffer | ArrayBuffer);
                 if (dataView.getUint16(0, false) !== startOfFileMarker) {
-                    resolve(1);
+                    resolve(-1);
                 }
                 parseBytes(dataView, resolve);
             };

@@ -1,3 +1,4 @@
+import exifService from './services/exifService';
 import fileService from './services/fileService';
 import optionService from './services/optionService';
 import qualityService from './services/qualityService';
@@ -27,3 +28,5 @@ export const compress = async (file: File, inputOptions: InputOptions = {}): Pro
 
     return file;
 };
+
+export const determineOrientation = exifService.determineOrientation;
