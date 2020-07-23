@@ -25,19 +25,19 @@ describe('exifService', () => {
                 name: 'should return orientation of 1 and has exif gps data',
             },
             {
-                expectedOrientation: 1,
+                expectedOrientation: -1,
                 file: 'notJpeg.png',
-                name: 'should return orientation 1 because not jpeg',
+                name: 'should return orientation -1 because not jpeg',
             },
             {
-                expectedOrientation: 1,
+                expectedOrientation: -1,
                 file: 'hasByteStuffing.jpeg',
-                name: 'should return orientation 1 because has byte stuffing',
+                name: 'should return orientation -1 because has byte stuffing',
             },
             {
-                expectedOrientation: 1,
+                expectedOrientation: -1,
                 file: 'hasNoExif.jpeg',
-                name: 'should return orientation 1 because has no exif',
+                name: 'should return orientation -1 because has no exif',
             },
         ];
 
