@@ -6,9 +6,8 @@ context('ui', () => {
   it('should compress an image and check size and type results', () => {
     const fileName = 'merlin-superJumo.jpg';
     cy.fixture(fileName).then((fileContent) => {
-      cy.get('#imageInput').upload({
+      cy.get('#imageInput').attachFile(fileName, {
         fileContent,
-        fileName,
         mimeType: 'image/jpeg'
       });
       cy.get('#qualitySelector').select('0.5');
