@@ -23,7 +23,7 @@
 
 • **maxHeight**? : *undefined | number*
 
-*Defined in [types/SharedOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/types/SharedOptions.ts#L2)*
+*Defined in [types/SharedOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/types/SharedOptions.ts#L2)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **maxWidth**? : *undefined | number*
 
-*Defined in [types/SharedOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/1deeeae/src/types/SharedOptions.ts#L3)*
+*Defined in [types/SharedOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/types/SharedOptions.ts#L3)*
