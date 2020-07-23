@@ -40,6 +40,8 @@ module.exports = {
 ## Documentation
 **[compress](docs/modules/_index_.md#const-compress)**(`file`: File, `inputOptions`: [InputOptions](docs/interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
 
+**[determineOrientation](docs/modules/_index_.md#const-determineOrientation)**(`file`: File): *Promise‹number›*
+
 ## Feedback
 Do you have an idea for making jpegasus better? Add your idea under the issues tab, we'd love to hear about it!
 
