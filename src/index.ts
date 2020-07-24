@@ -19,11 +19,9 @@ export const compress = async (file: File, inputOptions: InputOptions = {}): Pro
             throw new Error('The File you have entered is not valid.');
         }
     } catch (error) {
-        if (options.returnOriginalOnFailure) {
-            return file;
+        if (!options.returnOriginalOnFailure) {
+            throw error;
         }
-
-        throw error;
     }
 
     return file;
