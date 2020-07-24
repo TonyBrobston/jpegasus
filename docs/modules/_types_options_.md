@@ -1,6 +1,6 @@
 [jpegasus](../README.md) › ["types/Options"](_types_options_.md)
 
-# External module: "types/Options"
+# Module: "types/Options"
 
 ## Index
 

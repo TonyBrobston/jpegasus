@@ -1,6 +1,6 @@
-import {SharedOptions} from './SharedOptions';
+import {InputOptions} from './InputOptions';
 
-export interface Options extends SharedOptions {
+export interface Options extends InputOptions {
     readonly allowCrossOriginResourceSharing: boolean;
     readonly quality: number;
     readonly returnOriginalOnFailure: boolean;

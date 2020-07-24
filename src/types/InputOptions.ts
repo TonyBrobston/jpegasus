@@ -1,9 +1,9 @@
-import {SharedOptions} from './SharedOptions';
-
-export interface InputOptions extends SharedOptions {
-    allowCrossOriginResourceSharing?: boolean;
-    quality?: number;
-    returnOriginalOnFailure?: boolean;
-    returnOriginalIfCompressedFileIsLarger?: boolean;
-    scaleImageBy?: number;
+export interface InputOptions {
+    readonly allowCrossOriginResourceSharing?: boolean;
+    readonly quality?: number;
+    readonly returnOriginalOnFailure?: boolean;
+    readonly returnOriginalIfCompressedFileIsLarger?: boolean;
+    readonly scaleImageBy?: number;
+    readonly maxHeight?: number;
+    readonly maxWidth?: number;
 }

@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-* [SharedOptions](_types_sharedoptions_.sharedoptions.md)
+* [InputOptions](_types_inputoptions_.inputoptions.md)
 
   ↳ **Options**
 
@@ -12,21 +12,23 @@
 
 ### Properties
 
-* [allowCrossOriginResourceSharing](_types_options_.options.md#allowcrossoriginresourcesharing)
+* [allowCrossOriginResourceSharing](_types_options_.options.md#readonly-allowcrossoriginresourcesharing)
 * [maxHeight](_types_options_.options.md#optional-maxheight)
 * [maxWidth](_types_options_.options.md#optional-maxwidth)
-* [quality](_types_options_.options.md#quality)
-* [returnOriginalIfCompressedFileIsLarger](_types_options_.options.md#returnoriginalifcompressedfileislarger)
-* [returnOriginalOnFailure](_types_options_.options.md#returnoriginalonfailure)
-* [scaleImageBy](_types_options_.options.md#scaleimageby)
+* [quality](_types_options_.options.md#readonly-quality)
+* [returnOriginalIfCompressedFileIsLarger](_types_options_.options.md#readonly-returnoriginalifcompressedfileislarger)
+* [returnOriginalOnFailure](_types_options_.options.md#readonly-returnoriginalonfailure)
+* [scaleImageBy](_types_options_.options.md#readonly-scaleimageby)
 
 ## Properties
 
-###  allowCrossOriginResourceSharing
+### `Readonly` allowCrossOriginResourceSharing
 
 • **allowCrossOriginResourceSharing**: *boolean*
 
-*Defined in [types/Options.ts:4](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/types/Options.ts#L4)*
+*Overrides [InputOptions](_types_inputoptions_.inputoptions.md).[allowCrossOriginResourceSharing](_types_inputoptions_.inputoptions.md#optional-allowcrossoriginresourcesharing)*
+
+*Defined in [types/Options.ts:4](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/types/Options.ts#L4)*
 
 ___
 
@@ -34,9 +36,9 @@ ___
 
 • **maxHeight**? : *undefined | number*
 
-*Inherited from [SharedOptions](_types_sharedoptions_.sharedoptions.md).[maxHeight](_types_sharedoptions_.sharedoptions.md#optional-maxheight)*
+*Inherited from [InputOptions](_types_inputoptions_.inputoptions.md).[maxHeight](_types_inputoptions_.inputoptions.md#optional-maxheight)*
 
-*Defined in [types/SharedOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/types/SharedOptions.ts#L2)*
+*Defined in [types/InputOptions.ts:7](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/types/InputOptions.ts#L7)*
 
 ___
 
@@ -44,38 +46,46 @@ ___
 
 • **maxWidth**? : *undefined | number*
 
-*Inherited from [SharedOptions](_types_sharedoptions_.sharedoptions.md).[maxWidth](_types_sharedoptions_.sharedoptions.md#optional-maxwidth)*
+*Inherited from [InputOptions](_types_inputoptions_.inputoptions.md).[maxWidth](_types_inputoptions_.inputoptions.md#optional-maxwidth)*
 
-*Defined in [types/SharedOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/types/SharedOptions.ts#L3)*
+*Defined in [types/InputOptions.ts:8](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/types/InputOptions.ts#L8)*
 
 ___
 
-###  quality
+### `Readonly` quality
 
 • **quality**: *number*
 
-*Defined in [types/Options.ts:5](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/types/Options.ts#L5)*
+*Overrides [InputOptions](_types_inputoptions_.inputoptions.md).[quality](_types_inputoptions_.inputoptions.md#optional-quality)*
+
+*Defined in [types/Options.ts:5](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/types/Options.ts#L5)*
 
 ___
 
-###  returnOriginalIfCompressedFileIsLarger
+### `Readonly` returnOriginalIfCompressedFileIsLarger
 
 • **returnOriginalIfCompressedFileIsLarger**: *boolean*
 
-*Defined in [types/Options.ts:7](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/types/Options.ts#L7)*
+*Overrides [InputOptions](_types_inputoptions_.inputoptions.md).[returnOriginalIfCompressedFileIsLarger](_types_inputoptions_.inputoptions.md#optional-returnoriginalifcompressedfileislarger)*
+
+*Defined in [types/Options.ts:7](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/types/Options.ts#L7)*
 
 ___
 
-###  returnOriginalOnFailure
+### `Readonly` returnOriginalOnFailure
 
 • **returnOriginalOnFailure**: *boolean*
 
-*Defined in [types/Options.ts:6](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/types/Options.ts#L6)*
+*Overrides [InputOptions](_types_inputoptions_.inputoptions.md).[returnOriginalOnFailure](_types_inputoptions_.inputoptions.md#optional-returnoriginalonfailure)*
+
+*Defined in [types/Options.ts:6](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/types/Options.ts#L6)*
 
 ___
 
-###  scaleImageBy
+### `Readonly` scaleImageBy
 
 • **scaleImageBy**: *number*
 
-*Defined in [types/Options.ts:8](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/types/Options.ts#L8)*
+*Overrides [InputOptions](_types_inputoptions_.inputoptions.md).[scaleImageBy](_types_inputoptions_.inputoptions.md#optional-scaleimageby)*
+
+*Defined in [types/Options.ts:8](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/types/Options.ts#L8)*
