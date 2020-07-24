@@ -1,6 +1,6 @@
 [jpegasus](../README.md) › ["services/imageService"](_services_imageservice_.md)
 
-# External module: "services/imageService"
+# Module: "services/imageService"
 
 ## Index
 
@@ -14,7 +14,7 @@
 
 ▸ **create**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): *Promise‹HTMLImageElement›*
 
-*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/services/imageService.ts#L3)*
+*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/services/imageService.ts#L3)*
 
 **Parameters:**
 

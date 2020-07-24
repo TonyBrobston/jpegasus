@@ -1,6 +1,6 @@
 [jpegasus](../README.md) › ["services/qualityService"](_services_qualityservice_.md)
 
-# External module: "services/qualityService"
+# Module: "services/qualityService"
 
 ## Index
 
@@ -14,7 +14,7 @@
 
 ▸ **toFile**(`file`: File, `canvas`: HTMLCanvasElement, `__namedParameters`: object): *File | Blob*
 
-*Defined in [services/qualityService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/03dd45f/src/services/qualityService.ts#L5)*
+*Defined in [services/qualityService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/services/qualityService.ts#L5)*
 
 **Parameters:**
 

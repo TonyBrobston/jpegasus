@@ -4,7 +4,7 @@
 
 ## Index
 
-### External modules
+### Modules
 
 * ["index"](modules/_index_.md)
 * ["services/canvasService"](modules/_services_canvasservice_.md)
@@ -17,4 +17,3 @@
 * ["services/windowService"](modules/_services_windowservice_.md)
 * ["types/InputOptions"](modules/_types_inputoptions_.md)
 * ["types/Options"](modules/_types_options_.md)
-* ["types/SharedOptions"](modules/_types_sharedoptions_.md)
