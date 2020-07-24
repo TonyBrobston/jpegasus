@@ -1,9 +1,9 @@
 import {SharedOptions} from './SharedOptions';
 
 export interface Options extends SharedOptions {
-    allowCrossOriginResourceSharing: boolean;
-    quality: number;
-    returnOriginalOnFailure: boolean;
-    returnOriginalIfCompressedFileIsLarger: boolean;
-    scaleImageBy: number;
+    readonly allowCrossOriginResourceSharing: boolean;
+    readonly quality: number;
+    readonly returnOriginalOnFailure: boolean;
+    readonly returnOriginalIfCompressedFileIsLarger: boolean;
+    readonly scaleImageBy: number;
 }
