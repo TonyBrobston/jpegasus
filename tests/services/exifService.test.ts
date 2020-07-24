@@ -15,9 +15,84 @@ describe('exifService', () => {
     describe('read files', () => {
         const scenarios = [
             {
+                expectedOrientation: 1,
+                file: '000-1.jpg',
+                name: 'should return orientation of 1',
+            },
+            {
+                expectedOrientation: 2,
+                file: '000-flipped-2.jpg',
+                name: 'should return orientation of 2',
+            },
+            {
+                expectedOrientation: 3,
+                file: '180-3.jpg',
+                name: 'should return orientation of 3',
+            },
+            {
                 expectedOrientation: 4,
-                file: 'exifOrientationFour.jpeg',
+                file: '180-flipped-4.jpg',
                 name: 'should return orientation of 4',
+            },
+            {
+                expectedOrientation: 5,
+                file: '090-flipped-5.jpg',
+                name: 'should return orientation of 5',
+            },
+            {
+                expectedOrientation: 6,
+                file: '090-6.jpg',
+                name: 'should return orientation of 6',
+            },
+            {
+                expectedOrientation: 7,
+                file: '270-flipped-7.jpg',
+                name: 'should return orientation of 7',
+            },
+            {
+                expectedOrientation: 8,
+                file: '270-8.jpg',
+                name: 'should return orientation of 8',
+            },
+            {
+                expectedOrientation: 1,
+                file: 'up.jpg',
+                name: 'should return orientation of 1',
+            },
+            {
+                expectedOrientation: 2,
+                file: 'up-mirrored.jpg',
+                name: 'should return orientation of 2',
+            },
+            {
+                expectedOrientation: 3,
+                file: 'down.jpg',
+                name: 'should return orientation of 3',
+            },
+            {
+                expectedOrientation: 4,
+                file: 'down-mirrored.jpg',
+                name: 'should return orientation of 4',
+            },
+            {
+                expectedOrientation: 5,
+                file: 'left-mirrored.jpg',
+                name: 'should return orientation of 5',
+            },
+            {
+                expectedOrientation: 6,
+                file: 'left.jpg',
+                name: 'should return orientation of 6',
+            },
+            {
+                expectedOrientation: 7,
+                file: 'right-mirrored.jpg',
+                name: 'should return orientation of 7',
+            },
+            {
+                expectedOrientation: 8,
+                file: 'right.jpg',
+                name: 'should return orientation of 8',
             },
             {
                 expectedOrientation: 1,
@@ -46,7 +121,7 @@ describe('exifService', () => {
             file: string,
             name: string,
         }) => {
-            it(scenario.name, async () => {
+            it(`${scenario.file} ${scenario.name}`, async () => {
                 const file = await readFileSystemFileToJavaScriptFile(scenario.file);
 
                 const orientation = await exifService.determineOrientation(file);
