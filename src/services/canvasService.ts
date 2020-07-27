@@ -1,8 +1,14 @@
+import {Options} from '../types/Options';
 import exifService from './exifService';
 
-const setCanvasDimensions =
-    (canvas: HTMLCanvasElement, orientation: number, scaledHeight: number, scaledWidth: number): void => {
-    if (orientation > 4 && orientation < 9) {
+const setCanvasDimensions = (
+    canvas: HTMLCanvasElement,
+    orientation: number,
+    fixImageOrientation: boolean,
+    scaledHeight: number,
+    scaledWidth: number,
+): void => {
+    if (orientation > 4 && orientation < 9 && fixImageOrientation) {
         canvas.width = scaledHeight;
         canvas.height = scaledWidth;
     } else {
@@ -39,15 +45,22 @@ const correctExifRotation = (context: CanvasTransform, orientation: number, heig
     }
 };
 
-const create = async (file: File, image: HTMLImageElement, scale: number): Promise<HTMLCanvasElement> => {
+const create = async (
+    file: File,
+    image: HTMLImageElement,
+    scale: number,
+    {fixImageOrientation}: Options,
+): Promise<HTMLCanvasElement> => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     if (context) {
         const scaledHeight = image.height * scale;
         const scaledWidth = image.width * scale;
         const orientation = await exifService.determineOrientation(file);
-        setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth);
-        correctExifRotation(context, orientation, scaledHeight, scaledWidth);
+        setCanvasDimensions(canvas, orientation, fixImageOrientation, scaledHeight, scaledWidth);
+        if (fixImageOrientation) {
+            correctExifRotation(context, orientation, scaledHeight, scaledWidth);
+        }
         context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
         return canvas;
     } else {

@@ -7,6 +7,7 @@ describe('optionService', () => {
         {
             expectedOptions: {
                 allowCrossOriginResourceSharing: false,
+                fixImageOrientation: true,
                 quality: 0.5,
                 returnOriginalIfCompressedFileIsLarger: false,
                 returnOriginalOnFailure: true,
@@ -18,6 +19,7 @@ describe('optionService', () => {
         {
             expectedOptions: {
                 allowCrossOriginResourceSharing: true,
+                fixImageOrientation: false,
                 maxHeight: 5,
                 maxWidth: 4,
                 quality: 0.75,
@@ -27,6 +29,7 @@ describe('optionService', () => {
             } as Options,
             inputOptions: {
                 allowCrossOriginResourceSharing: true,
+                fixImageOrientation: false,
                 maxHeight: 5,
                 maxWidth: 4,
                 quality: 0.75,
@@ -39,6 +42,7 @@ describe('optionService', () => {
         {
             expectedOptions: {
                 allowCrossOriginResourceSharing: true,
+                fixImageOrientation: true,
                 quality: 0.5,
                 returnOriginalIfCompressedFileIsLarger: false,
                 returnOriginalOnFailure: true,

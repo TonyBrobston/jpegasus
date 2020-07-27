@@ -4,6 +4,7 @@ import {Options} from '../types/Options';
 const override = (inputOptions: InputOptions): Options => {
     return {
         allowCrossOriginResourceSharing: false,
+        fixImageOrientation: true,
         quality: 0.5,
         returnOriginalIfCompressedFileIsLarger: false,
         returnOriginalOnFailure: true,
