@@ -198,7 +198,7 @@ describe('scaleService', () => {
             it('should create a canvas', () => {
                 expect(canvasService.create).toHaveBeenCalledTimes(1);
                 expect(canvasService.create).toHaveBeenCalledWith(
-                    file, image, scenario.scale);
+                    file, image, scenario.scale, scenario.options);
             });
 
             it('should return a scaled canvasService', () => {
