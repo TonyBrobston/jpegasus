@@ -24,7 +24,7 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 ```js
 const jpegasus = require('jpegasus');
 
-function processFile {
+function processFile(file) {
     return jpegasus.compress(file, {
         maxHeight: 1000,
         maxWidth: 1000,
