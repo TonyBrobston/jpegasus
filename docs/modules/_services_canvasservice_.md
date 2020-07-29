@@ -16,7 +16,7 @@
 
 ▸ **correctExifRotation**(`context`: CanvasTransform, `orientation`: number, `height`: number, `width`: number): *void*
 
-*Defined in [services/canvasService.ts:14](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/services/canvasService.ts#L14)*
+*Defined in [services/canvasService.ts:20](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/canvasService.ts#L20)*
 
 **Parameters:**
 
@@ -33,17 +33,23 @@ ___
 
 ### `Const` create
 
-▸ **create**(`file`: File, `image`: HTMLImageElement, `scale`: number): *Promise‹HTMLCanvasElement›*
+▸ **create**(`file`: File, `image`: HTMLImageElement, `scale`: number, `__namedParameters`: object): *Promise‹HTMLCanvasElement›*
 
-*Defined in [services/canvasService.ts:42](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/services/canvasService.ts#L42)*
+*Defined in [services/canvasService.ts:48](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/canvasService.ts#L48)*
 
 **Parameters:**
 
+▪ **file**: *File*
+
+▪ **image**: *HTMLImageElement*
+
+▪ **scale**: *number*
+
+▪ **__namedParameters**: *object*
+
 Name | Type |
 ------ | ------ |
-`file` | File |
-`image` | HTMLImageElement |
-`scale` | number |
+`fixImageOrientation` | boolean |
 
 **Returns:** *Promise‹HTMLCanvasElement›*
 
@@ -51,9 +57,9 @@ ___
 
 ### `Const` setCanvasDimensions
 
-▸ **setCanvasDimensions**(`canvas`: HTMLCanvasElement, `orientation`: number, `scaledHeight`: number, `scaledWidth`: number): *void*
+▸ **setCanvasDimensions**(`canvas`: HTMLCanvasElement, `orientation`: number, `fixImageOrientation`: boolean, `scaledHeight`: number, `scaledWidth`: number): *void*
 
-*Defined in [services/canvasService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/services/canvasService.ts#L3)*
+*Defined in [services/canvasService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/canvasService.ts#L4)*
 
 **Parameters:**
 
@@ -61,6 +67,7 @@ Name | Type |
 ------ | ------ |
 `canvas` | HTMLCanvasElement |
 `orientation` | number |
+`fixImageOrientation` | boolean |
 `scaledHeight` | number |
 `scaledWidth` | number |
 

@@ -15,7 +15,7 @@
 
 ▸ **determineScale**(`__namedParameters`: object, `__namedParameters`: object): *number*
 
-*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/services/scaleService.ts#L5)*
+*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/scaleService.ts#L5)*
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **toCanvas**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): *Promise‹HTMLCanvasElement›*
 
-*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/services/scaleService.ts#L19)*
+*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/scaleService.ts#L19)*
 
 **Parameters:**
 

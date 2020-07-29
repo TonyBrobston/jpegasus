@@ -14,7 +14,7 @@
 
 ▸ **override**(`inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *[Options](../interfaces/_types_options_.options.md)*
 
-*Defined in [services/optionService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/dccdfc0/src/services/optionService.ts#L4)*
+*Defined in [services/optionService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/optionService.ts#L4)*
 
 **Parameters:**
 
