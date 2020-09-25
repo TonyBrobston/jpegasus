@@ -114,6 +114,11 @@ describe('exifService', () => {
                 file: 'hasNoExif.jpeg',
                 name: 'should return orientation -1 because has no exif',
             },
+            {
+                expectedOrientation: -1,
+                file: 'image-stuck-in-promise.jpg',
+                name: 'should return orientation -1 because has no exif and stuck in promise',
+            },
         ];
 
         scenarios.forEach((scenario: {

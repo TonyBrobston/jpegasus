@@ -30,6 +30,7 @@ const parseBytes = (dataView: DataView, resolve: (uint16: number) => void): void
             offset += dataView.getUint16(offset, false);
         }
     }
+    resolve(-1);
 };
 
 const determineOrientation = async (file: File): Promise<number> => {
