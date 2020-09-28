@@ -8,7 +8,7 @@ const chance = new Chance();
 
 jest.mock('../../src/services/exifService');
 
-describe('canvasService', () => {
+describe('canvasService', (): void => {
     const file = new File([chance.string()], chance.string());
     const image = document.createElement('img');
     image.height = 300;
@@ -28,26 +28,26 @@ describe('canvasService', () => {
 
     let actualCanvas: HTMLCanvasElement;
 
-    exifService.determineOrientation = jest.fn(() => Promise.resolve(expectedOrientation));
+    exifService.determineOrientation = jest.fn((): Promise<number> => Promise.resolve(expectedOrientation));
 
-    describe('create', () => {
-        beforeAll(async () => {
+    describe('create', (): void => {
+        beforeAll(async (): Promise<void> => {
             actualCanvas = await canvasService.create(file, image, scale, options);
         });
 
-        it('should determine orientation', () => {
+        it('should determine orientation', (): void => {
             expect(exifService.determineOrientation).toHaveBeenCalledTimes(1);
             expect(exifService.determineOrientation).toHaveBeenCalledWith(file);
         });
 
-        it('should return a canvasService', () => {
+        it('should return a canvasService', (): void => {
             expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
             expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
         });
     });
 
-    describe('correctExifRotation', () => {
-        afterEach(() => {
+    describe('correctExifRotation', (): void => {
+        afterEach((): void => {
             transform.mockClear();
         });
 
@@ -57,7 +57,7 @@ describe('canvasService', () => {
             drawImage: jest.fn(),
             transform,
         });
-        document.createElement = jest.fn(() => canvas);
+        document.createElement = jest.fn((): HTMLCanvasElement => canvas);
 
         const expectedRotationScenarios = [
             {
@@ -109,9 +109,9 @@ describe('canvasService', () => {
             height: number,
             parameters: number[],
             width: number,
-        }) => {
-            it(`should correct orientation ${scenario.exifOrientation}`, async () => {
-                exifService.determineOrientation = jest.fn(() => Promise.resolve(scenario.exifOrientation));
+        }): void => {
+            it(`should correct orientation ${scenario.exifOrientation}`, async (): Promise<void> => {
+                exifService.determineOrientation = jest.fn((): Promise<number> => Promise.resolve(scenario.exifOrientation));
 
                 actualCanvas = await canvasService.create(file, image, scale, options);
 
@@ -123,9 +123,9 @@ describe('canvasService', () => {
             });
         });
 
-        it('should NOT correct orientation', async () => {
+        it('should NOT correct orientation', async (): Promise<void> => {
             const exifOrientation = 6;
-            exifService.determineOrientation = jest.fn(() => Promise.resolve(exifOrientation));
+            exifService.determineOrientation = jest.fn((): Promise<number> => Promise.resolve(exifOrientation));
 
             actualCanvas = await canvasService.create(file, image, scale, {
                 fixImageOrientation: false,
@@ -138,11 +138,11 @@ describe('canvasService', () => {
         });
     });
 
-    describe('cannot read context', () => {
-        it('should throw if context is falsy', async () => {
+    describe('cannot read context', (): void => {
+        it('should throw if context is falsy', async (): Promise<void> => {
             const canvas = document.createElement('canvas');
-            canvas.getContext = jest.fn(() => null);
-            document.createElement = jest.fn(() => canvas);
+            canvas.getContext = jest.fn((): null => null);
+            document.createElement = jest.fn((): HTMLCanvasElement => canvas);
 
             try {
                 await canvasService.create(file, image, scale, options);
@@ -151,10 +151,10 @@ describe('canvasService', () => {
             }
         });
 
-        it('should throw with message if context is falsy', async () => {
+        it('should throw with message if context is falsy', async (): Promise<void> => {
             const canvas = document.createElement('canvas');
-            canvas.getContext = jest.fn(() => null);
-            document.createElement = jest.fn(() => canvas);
+            canvas.getContext = jest.fn((): null => null);
+            document.createElement = jest.fn((): HTMLCanvasElement => canvas);
 
             await expect(canvasService.create(file, image, scale, options)).rejects.toThrow();
         });
