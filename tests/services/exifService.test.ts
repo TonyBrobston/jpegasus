@@ -7,12 +7,12 @@ import exifService from '../../src/services/exifService';
 
 const chance = new Chance();
 
-describe('exifService', () => {
+describe('exifService', (): void => {
     interface WindowWithFileReader extends Window {
         FileReader: any;
     }
 
-    describe('read files', () => {
+    describe('read files', (): void => {
         const scenarios = [
             {
                 expectedOrientation: 1,
@@ -125,8 +125,8 @@ describe('exifService', () => {
             expectedOrientation: number,
             file: string,
             name: string,
-        }) => {
-            it(`${scenario.file} ${scenario.name}`, async () => {
+        }): void => {
+            it(`${scenario.file} ${scenario.name}`, async (): Promise<void> => {
                 const file = await readFileSystemFileToJavaScriptFile(scenario.file);
 
                 const orientation = await exifService.determineOrientation(file);
@@ -135,8 +135,8 @@ describe('exifService', () => {
             });
         });
 
-        it('should resolve orientation 1 on throw', async () => {
-            (window as WindowWithFileReader).FileReader = jest.fn().mockImplementation(() => {
+        it('should resolve orientation 1 on throw', async (): Promise<void> => {
+            (window as WindowWithFileReader).FileReader = jest.fn().mockImplementation((): void => {
                 throw new Error();
             });
 

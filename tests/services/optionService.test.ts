@@ -2,7 +2,7 @@ import optionService from '../../src/services/optionService';
 import {InputOptions} from '../../src/types/InputOptions';
 import {Options} from '../../src/types/Options';
 
-describe('optionService', () => {
+describe('optionService', (): void => {
     const scenarios = [
         {
             expectedOptions: {
@@ -59,8 +59,8 @@ describe('optionService', () => {
         expectedOptions: {},
         inputOptions: {},
         name: string,
-    }) => {
-        it(scenario.name, () => {
+    }): void => {
+        it(scenario.name, (): void => {
             const mergedOptions = optionService.override(scenario.inputOptions);
 
             expect(mergedOptions).toEqual(scenario.expectedOptions);

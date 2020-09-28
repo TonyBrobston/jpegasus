@@ -11,7 +11,7 @@ jest.mock('../../src/services/canvasService');
 
 const chance = new Chance();
 
-describe('scaleService', () => {
+describe('scaleService', (): void => {
     const file = new File([chance.string()], chance.string());
     const expectedCanvas = document.createElement('canvas');
     let actualCanvas: HTMLCanvasElement;
@@ -172,36 +172,36 @@ describe('scaleService', () => {
         options: Options,
         name: string,
         scale: number,
-    }) => {
-        describe(scenario.name, () => {
+    }): void => {
+        describe(scenario.name, (): void => {
             let image: HTMLImageElement;
 
-            beforeAll(async () => {
+            beforeAll(async (): Promise<void> => {
                 image = document.createElement('img');
                 image.height = scenario.image.height;
                 image.width = scenario.image.width;
-                imageService.create = jest.fn(() => Promise.resolve(image));
-                canvasService.create = jest.fn(() => Promise.resolve(expectedCanvas));
+                imageService.create = jest.fn((): Promise<HTMLImageElement> => Promise.resolve(image));
+                canvasService.create = jest.fn((): Promise<HTMLCanvasElement> => Promise.resolve(expectedCanvas));
 
                 actualCanvas = await scaleService.toCanvas(file, scenario.options);
             });
 
-            afterAll(() => {
+            afterAll((): void => {
                 jest.clearAllMocks();
             });
 
-            it('should create an image', () => {
+            it('should create an image', (): void => {
                 expect(imageService.create).toHaveBeenCalledTimes(1);
                 expect(imageService.create).toHaveBeenCalledWith(file, scenario.options);
             });
 
-            it('should create a canvas', () => {
+            it('should create a canvas', (): void => {
                 expect(canvasService.create).toHaveBeenCalledTimes(1);
                 expect(canvasService.create).toHaveBeenCalledWith(
                     file, image, scenario.scale, scenario.options);
             });
 
-            it('should return a scaled canvasService', () => {
+            it('should return a scaled canvasService', (): void => {
                 expect(actualCanvas).toBe(expectedCanvas);
             });
         });

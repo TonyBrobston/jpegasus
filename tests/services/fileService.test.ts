@@ -4,10 +4,10 @@ import fileService from '../../src/services/fileService';
 
 const chance = new Chance();
 
-describe('fileService', () => {
+describe('fileService', (): void => {
     const globalAny: any = global;
 
-    describe('validate', () => {
+    describe('validate', (): void => {
         const scenarios = [
             {
                 expectedOptions: true,
@@ -55,8 +55,8 @@ describe('fileService', () => {
             expectedOptions: boolean,
             file: File,
             name: string,
-        }) => {
-            it(`should not allow ${scenario.name}`, () => {
+        }): void => {
+            it(`should not allow ${scenario.name}`, (): void => {
                 const isValid = fileService.validate(scenario.file);
 
                 expect(isValid).toBe(scenario.expectedOptions);
@@ -64,27 +64,27 @@ describe('fileService', () => {
         });
     });
 
-    describe('create File', () => {
+    describe('create File', (): void => {
         const bytes =  Uint8Array.from([chance.integer()]);
         const type = `image/${chance.pickone(['jpeg', 'gif', 'png'])}`;
         const name = chance.string();
         let actualFile: File|Blob;
 
-        beforeAll(() => {
+        beforeAll((): void => {
             actualFile = fileService.create([bytes], type, name);
         });
 
-        it('should create a blob with size', () => {
+        it('should create a blob with size', (): void => {
             expect(actualFile.size).toBe(bytes.toString().length);
         });
 
-        it('should create a blob with type', () => {
+        it('should create a blob with type', (): void => {
             expect(actualFile.type).toBe(type);
         });
     });
 
-    describe('create Blob', () => {
-        globalAny.File = jest.fn().mockImplementation(() => {
+    describe('create Blob', (): void => {
+        globalAny.File = jest.fn().mockImplementation((): void => {
             throw new Error();
         });
         const bytes =  Uint8Array.from([chance.integer()]);
@@ -92,15 +92,15 @@ describe('fileService', () => {
         const name = chance.string();
         let actualBlob: File|Blob;
 
-        beforeAll(() => {
+        beforeAll((): void => {
             actualBlob = fileService.create([bytes], type, name);
         });
 
-        it('should create a blob with size', () => {
+        it('should create a blob with size', (): void => {
             expect(actualBlob.size).toBe(bytes.toString().length);
         });
 
-        it('should create a blob with type', () => {
+        it('should create a blob with type', (): void => {
             expect(actualBlob.type).toBe(type);
         });
     });
