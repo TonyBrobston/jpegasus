@@ -74,11 +74,15 @@ describe('fileService', (): void => {
             actualFile = fileService.create([bytes], type, name);
         });
 
-        it('should create a blob with size', (): void => {
+        it('should create a file with name', (): void => {
+            expect(actualFile.name).toBe(name);
+        });
+
+        it('should create a file with size', (): void => {
             expect(actualFile.size).toBe(bytes.toString().length);
         });
 
-        it('should create a blob with type', (): void => {
+        it('should create a file with type', (): void => {
             expect(actualFile.type).toBe(type);
         });
     });
@@ -94,6 +98,10 @@ describe('fileService', (): void => {
 
         beforeAll((): void => {
             actualBlob = fileService.create([bytes], type, name);
+        });
+
+        it('should create a blob with name', (): void => {
+            expect(actualBlob.name).toBe(name);
         });
 
         it('should create a blob with size', (): void => {
