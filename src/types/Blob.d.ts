@@ -1,0 +1,3 @@
+interface Blob {
+  name: string
+}

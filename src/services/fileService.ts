@@ -10,7 +10,9 @@ const create = (bytes: Uint8Array[], type: string, name: string): File|Blob => {
     try {
         return new File(bytes, name, {type});
     } catch (error) {
-        return new Blob(bytes, {type});
+        const blob = new Blob(bytes, {type});
+        blob.name = name;
+        return blob;
     }
 };
 
