@@ -74,7 +74,7 @@ describe('fileService', (): void => {
             actualFile = fileService.create([bytes], type, name);
         });
 
-        it('should create a file with type File', (): void => {
+        it('should create a file with instance of File', (): void => {
             expect(actualFile).toBeInstanceOf(File);
         });
 
@@ -95,16 +95,19 @@ describe('fileService', (): void => {
         const bytes =  Uint8Array.from([chance.integer()]);
         const type = `image/${chance.pickone(['jpeg', 'gif', 'png'])}`;
         const name = chance.string();
+        const date = chance.date();
+        const now = date.getTime();
         let actualBlob: File|Blob;
 
         beforeAll((): void => {
             globalAny.File = jest.fn().mockImplementation((): void => {
                 throw new Error();
             });
+            Date.now = jest.fn((): number => now)
             actualBlob = fileService.create([bytes], type, name);
         });
 
-        it('should create a blob with type Blob', (): void => {
+        it('should create a blob with instance of Blob', (): void => {
             expect(actualBlob).toBeInstanceOf(Blob);
         });
 
@@ -118,6 +121,14 @@ describe('fileService', (): void => {
 
         it('should create a blob with type', (): void => {
             expect(actualBlob.type).toBe(type);
+        });
+
+        it('should create a blob with lastModified', (): void => {
+            expect(actualBlob.lastModified).toBe(now);
+        });
+
+        it('should create a blob with lastModifiedDate', (): void => {
+            expect(actualBlob.lastModifiedDate).toEqual(date);
         });
     });
 });

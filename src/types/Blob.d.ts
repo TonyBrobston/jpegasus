@@ -1,3 +1,5 @@
 interface Blob {
-  name: string
+  name: string,
+  lastModified: number,
+  lastModifiedDate: Date,
 }
