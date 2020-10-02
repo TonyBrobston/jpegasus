@@ -2,6 +2,10 @@
 
 PORT=3000
 
+installCypress() {
+  cypress install
+}
+
 buildJpegasusAndMakeJpegasusAvailableAsLink() {
   yarn build
   yarn link
