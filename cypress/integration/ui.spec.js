@@ -5,6 +5,12 @@ context('ui', () => {
 
   it('should compress an image and check size and type results', () => {
     const fileName = 'merlin-superJumo.jpg';
+    const compressedSize = {
+      'chrome': '50.29',
+      'firefox': '59.57',
+      'edge': '50.29',
+      'electron': '50.26',
+    };
     cy.fixture(fileName).then((fileContent) => {
       cy.get('#imageInput').attachFile(fileName, {
         fileContent,
@@ -16,7 +22,7 @@ context('ui', () => {
 
       cy.get('#originalSize').should('have.text', '533.32');
       cy.get('#originalType').should('have.text', 'image/jpeg');
-      cy.get('#compressedSize').should('have.text', '50.26');
+      cy.get('#compressedSize').should('have.text', compressedSize[Cypress.browser.name])
       cy.get('#compressedType').should('have.text', 'image/jpeg');
     });
   });

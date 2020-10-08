@@ -1,11 +1,15 @@
 language: node_js
 os: osx
+osx_image: xcode11
 node_js:
   - 10.22.0
 addons:
-  apt:
-    packages:
-      - libgconf-2-4
+  chrome: stable
+  firefox: "81.0"
+  homebrew:
+    casks:
+      - microsoft-edge
+    update: true
 cache:
   directories:
     - ~/.npm
