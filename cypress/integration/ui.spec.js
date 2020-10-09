@@ -7,7 +7,7 @@ context('ui', () => {
     const fileName = 'merlin-superJumo.jpg';
     const compressedSize = {
       'chrome': '50.29',
-      'firefox': '59.57',
+      'firefox': '58.94',
       'edge': '50.29',
       'electron': '50.26',
     };
