@@ -42,6 +42,10 @@ module.exports = {
 
 **[determineOrientation](docs/modules/_index_.md#const-determineOrientation)**(`file`: File): *Promise‹number›*
 
+## Caution
+
+- Note that when the `preserveFileType` option is `true`, the `quality` option will only work for files such as `image/jpeg` and `image/webp` per the MDN web docs [here](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL).
+
 ## Feedback
 Do you have an idea for making jpegasus better? Add your idea under the issues tab, we'd love to hear about it!
 
