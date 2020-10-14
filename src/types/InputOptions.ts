@@ -5,6 +5,7 @@ export interface InputOptions {
     readonly returnOriginalOnFailure?: boolean;
     readonly returnOriginalIfCompressedFileIsLarger?: boolean;
     readonly scaleImageBy?: number;
+    readonly transparencyFillColor?: string,
     readonly maxHeight?: number;
     readonly maxWidth?: number;
 }

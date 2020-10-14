@@ -1,4 +1,6 @@
-[jpegasus](../README.md) › ["types/InputOptions"](_types_inputoptions_.md)
+**jpegasus**
+
+> [Globals](../README.md) / "types/InputOptions"
 
 # Module: "types/InputOptions"
 

@@ -1,4 +1,6 @@
-[jpegasus](../README.md) › ["services/scaleService"](_services_scaleservice_.md)
+**jpegasus**
+
+> [Globals](../README.md) / "services/scaleService"
 
 # Module: "services/scaleService"
 
@@ -6,49 +8,39 @@
 
 ### Functions
 
-* [determineScale](_services_scaleservice_.md#const-determinescale)
-* [toCanvas](_services_scaleservice_.md#const-tocanvas)
+* [determineScale](_services_scaleservice_.md#determinescale)
+* [toCanvas](_services_scaleservice_.md#tocanvas)
 
 ## Functions
 
-### `Const` determineScale
+### determineScale
 
-▸ **determineScale**(`__namedParameters`: object, `__namedParameters`: object): *number*
+▸ `Const`**determineScale**(`__namedParameters`: { height: number ; width: number  }, `__namedParameters`: { maxHeight: undefined \| number ; maxWidth: undefined \| number ; scaleImageBy: number  }): number
 
-*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/scaleService.ts#L5)*
+*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/scaleService.ts#L5)*
 
-**Parameters:**
-
-▪ **__namedParameters**: *object*
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`height` | number |
-`width` | number |
+`__namedParameters` | { height: number ; width: number  } |
+`__namedParameters` | { maxHeight: undefined \| number ; maxWidth: undefined \| number ; scaleImageBy: number  } |
 
-▪ **__namedParameters**: *object*
-
-Name | Type |
------- | ------ |
-`maxHeight` | undefined &#124; number |
-`maxWidth` | undefined &#124; number |
-`scaleImageBy` | number |
-
-**Returns:** *number*
+**Returns:** number
 
 ___
 
-### `Const` toCanvas
+### toCanvas
 
-▸ **toCanvas**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): *Promise‹HTMLCanvasElement›*
+▸ `Const`**toCanvas**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): Promise\<HTMLCanvasElement>
 
-*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/scaleService.ts#L19)*
+*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/scaleService.ts#L19)*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `file` | File |
 `options` | [Options](../interfaces/_types_options_.options.md) |
 
-**Returns:** *Promise‹HTMLCanvasElement›*
+**Returns:** Promise\<HTMLCanvasElement>

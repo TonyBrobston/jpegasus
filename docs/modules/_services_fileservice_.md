@@ -1,4 +1,6 @@
-[jpegasus](../README.md) › ["services/fileService"](_services_fileservice_.md)
+**jpegasus**
+
+> [Globals](../README.md) / "services/fileService"
 
 # Module: "services/fileService"
 
@@ -6,18 +8,18 @@
 
 ### Functions
 
-* [create](_services_fileservice_.md#const-create)
-* [validate](_services_fileservice_.md#const-validate)
+* [create](_services_fileservice_.md#create)
+* [validate](_services_fileservice_.md#validate)
 
 ## Functions
 
-### `Const` create
+### create
 
-▸ **create**(`bytes`: Uint8Array[], `type`: string, `name`: string): *File | Blob*
+▸ `Const`**create**(`bytes`: Uint8Array[], `type`: string, `name`: string): File \| Blob
 
-*Defined in [services/fileService.ts:9](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/fileService.ts#L9)*
+*Defined in [services/fileService.ts:9](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/fileService.ts#L9)*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
@@ -25,20 +27,20 @@ Name | Type |
 `type` | string |
 `name` | string |
 
-**Returns:** *File | Blob*
+**Returns:** File \| Blob
 
 ___
 
-### `Const` validate
+### validate
 
-▸ **validate**(`file`: File): *boolean*
+▸ `Const`**validate**(`file`: File): boolean
 
-*Defined in [services/fileService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/fileService.ts#L1)*
+*Defined in [services/fileService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/fileService.ts#L1)*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `file` | File |
 
-**Returns:** *boolean*
+**Returns:** boolean
