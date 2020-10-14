@@ -7,4 +7,5 @@ export interface Options extends InputOptions {
     readonly returnOriginalOnFailure: boolean;
     readonly returnOriginalIfCompressedFileIsLarger: boolean;
     readonly scaleImageBy: number;
+    readonly transparencyFillColor: string;
 }

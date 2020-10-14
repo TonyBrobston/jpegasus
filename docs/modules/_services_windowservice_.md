@@ -1,4 +1,6 @@
-[jpegasus](../README.md) › ["services/windowService"](_services_windowservice_.md)
+**jpegasus**
+
+> [Globals](../README.md) / "services/windowService"
 
 # Module: "services/windowService"
 
@@ -6,20 +8,20 @@
 
 ### Functions
 
-* [toByteArray](_services_windowservice_.md#const-tobytearray)
+* [toByteArray](_services_windowservice_.md#tobytearray)
 
 ## Functions
 
-### `Const` toByteArray
+### toByteArray
 
-▸ **toByteArray**(`base64`: string): *Uint8Array[]*
+▸ `Const`**toByteArray**(`base64`: string): Uint8Array[]
 
-*Defined in [services/windowService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/windowService.ts#L1)*
+*Defined in [services/windowService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/windowService.ts#L1)*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `base64` | string |
 
-**Returns:** *Uint8Array[]*
+**Returns:** Uint8Array[]

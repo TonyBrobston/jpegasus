@@ -1,4 +1,6 @@
-[jpegasus](../README.md) › ["services/imageService"](_services_imageservice_.md)
+**jpegasus**
+
+> [Globals](../README.md) / "services/imageService"
 
 # Module: "services/imageService"
 
@@ -6,21 +8,21 @@
 
 ### Functions
 
-* [create](_services_imageservice_.md#const-create)
+* [create](_services_imageservice_.md#create)
 
 ## Functions
 
-### `Const` create
+### create
 
-▸ **create**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): *Promise‹HTMLImageElement›*
+▸ `Const`**create**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): Promise\<HTMLImageElement>
 
-*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/imageService.ts#L3)*
+*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/imageService.ts#L3)*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `file` | File |
 `options` | [Options](../interfaces/_types_options_.options.md) |
 
-**Returns:** *Promise‹HTMLImageElement›*
+**Returns:** Promise\<HTMLImageElement>

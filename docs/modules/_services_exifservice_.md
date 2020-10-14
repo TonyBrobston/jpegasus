@@ -1,4 +1,6 @@
-[jpegasus](../README.md) › ["services/exifService"](_services_exifservice_.md)
+**jpegasus**
+
+> [Globals](../README.md) / "services/exifService"
 
 # Module: "services/exifService"
 
@@ -6,102 +8,95 @@
 
 ### Variables
 
-* [applicationSegmentOneMarker](_services_exifservice_.md#const-applicationsegmentonemarker)
-* [beginOfExifHeaderMarker](_services_exifservice_.md#const-beginofexifheadermarker)
-* [byteOrderMarker](_services_exifservice_.md#const-byteordermarker)
-* [byteStuffingMarker](_services_exifservice_.md#const-bytestuffingmarker)
-* [orientationMarker](_services_exifservice_.md#const-orientationmarker)
-* [startOfFileMarker](_services_exifservice_.md#const-startoffilemarker)
+* [applicationSegmentOneMarker](_services_exifservice_.md#applicationsegmentonemarker)
+* [beginOfExifHeaderMarker](_services_exifservice_.md#beginofexifheadermarker)
+* [byteOrderMarker](_services_exifservice_.md#byteordermarker)
+* [byteStuffingMarker](_services_exifservice_.md#bytestuffingmarker)
+* [orientationMarker](_services_exifservice_.md#orientationmarker)
+* [startOfFileMarker](_services_exifservice_.md#startoffilemarker)
 
 ### Functions
 
-* [determineOrientation](_services_exifservice_.md#const-determineorientation)
-* [parseBytes](_services_exifservice_.md#const-parsebytes)
+* [determineOrientation](_services_exifservice_.md#determineorientation)
+* [parseBytes](_services_exifservice_.md#parsebytes)
 
 ## Variables
 
-### `Const` applicationSegmentOneMarker
+### applicationSegmentOneMarker
 
-• **applicationSegmentOneMarker**: *65505* = 65505
+• `Const` **applicationSegmentOneMarker**: 65505 = 65505
 
-*Defined in [services/exifService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/exifService.ts#L1)*
-
-___
-
-### `Const` beginOfExifHeaderMarker
-
-• **beginOfExifHeaderMarker**: *1165519206* = 1165519206
-
-*Defined in [services/exifService.ts:2](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/exifService.ts#L2)*
+*Defined in [services/exifService.ts:1](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/exifService.ts#L1)*
 
 ___
 
-### `Const` byteOrderMarker
+### beginOfExifHeaderMarker
 
-• **byteOrderMarker**: *18761* = 18761
+• `Const` **beginOfExifHeaderMarker**: 1165519206 = 1165519206
 
-*Defined in [services/exifService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/exifService.ts#L3)*
-
-___
-
-### `Const` byteStuffingMarker
-
-• **byteStuffingMarker**: *65280* = 65280
-
-*Defined in [services/exifService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/exifService.ts#L4)*
+*Defined in [services/exifService.ts:2](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/exifService.ts#L2)*
 
 ___
 
-### `Const` orientationMarker
+### byteOrderMarker
 
-• **orientationMarker**: *274* = 274
+• `Const` **byteOrderMarker**: 18761 = 18761
 
-*Defined in [services/exifService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/exifService.ts#L5)*
+*Defined in [services/exifService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/exifService.ts#L3)*
 
 ___
 
-### `Const` startOfFileMarker
+### byteStuffingMarker
 
-• **startOfFileMarker**: *65496* = 65496
+• `Const` **byteStuffingMarker**: 65280 = 65280
 
-*Defined in [services/exifService.ts:6](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/exifService.ts#L6)*
+*Defined in [services/exifService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/exifService.ts#L4)*
+
+___
+
+### orientationMarker
+
+• `Const` **orientationMarker**: 274 = 274
+
+*Defined in [services/exifService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/exifService.ts#L5)*
+
+___
+
+### startOfFileMarker
+
+• `Const` **startOfFileMarker**: 65496 = 65496
+
+*Defined in [services/exifService.ts:6](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/exifService.ts#L6)*
 
 ## Functions
 
-### `Const` determineOrientation
+### determineOrientation
 
-▸ **determineOrientation**(`file`: File): *Promise‹number›*
+▸ `Const`**determineOrientation**(`file`: File): Promise\<number>
 
-*Defined in [services/exifService.ts:35](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/exifService.ts#L35)*
+*Defined in [services/exifService.ts:36](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/exifService.ts#L36)*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `file` | File |
 
-**Returns:** *Promise‹number›*
+**Returns:** Promise\<number>
 
 ___
 
-### `Const` parseBytes
+### parseBytes
 
-▸ **parseBytes**(`dataView`: DataView, `resolve`: function): *void*
+▸ `Const`**parseBytes**(`dataView`: DataView, `resolve`: (uint16: number) => void): void
 
-*Defined in [services/exifService.ts:8](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/exifService.ts#L8)*
+*Defined in [services/exifService.ts:8](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/exifService.ts#L8)*
 
-**Parameters:**
-
-▪ **dataView**: *DataView*
-
-▪ **resolve**: *function*
-
-▸ (`uint16`: number): *void*
-
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`uint16` | number |
+`dataView` | DataView |
+`resolve` | (uint16: number) => void |
 
-**Returns:** *void*
+**Returns:** void

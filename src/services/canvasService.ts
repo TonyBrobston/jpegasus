@@ -49,7 +49,10 @@ const create = async (
     file: File,
     image: HTMLImageElement,
     scale: number,
-    {fixImageOrientation}: Options,
+    {
+        fixImageOrientation,
+        transparencyFillColor,
+    }: Options,
 ): Promise<HTMLCanvasElement> => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
@@ -61,6 +64,8 @@ const create = async (
         if (fixImageOrientation) {
             correctExifRotation(context, orientation, scaledHeight, scaledWidth);
         }
+        context.fillStyle = transparencyFillColor;
+        context.fillRect(0, 0, scaledWidth, scaledHeight)
         context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
         return canvas;
     } else {

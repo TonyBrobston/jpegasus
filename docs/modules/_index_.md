@@ -1,4 +1,6 @@
-[jpegasus](../README.md) › ["index"](_index_.md)
+**jpegasus**
+
+> [Globals](../README.md) / "index"
 
 # Module: "index"
 
@@ -6,33 +8,33 @@
 
 ### Variables
 
-* [determineOrientation](_index_.md#const-determineorientation)
+* [determineOrientation](_index_.md#determineorientation)
 
 ### Functions
 
-* [compress](_index_.md#const-compress)
+* [compress](_index_.md#compress)
 
 ## Variables
 
-### `Const` determineOrientation
+### determineOrientation
 
-• **determineOrientation**: *[determineOrientation](_services_exifservice_.md#const-determineorientation)* = exifService.determineOrientation
+• `Const` **determineOrientation**: [determineOrientation](_services_exifservice_.md#determineorientation) = exifService.determineOrientation
 
-*Defined in [index.ts:30](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/index.ts#L30)*
+*Defined in [index.ts:30](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/index.ts#L30)*
 
 ## Functions
 
-### `Const` compress
+### compress
 
-▸ **compress**(`file`: File, `inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
+▸ `Const`**compress**(`file`: File, `inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): Promise\<File \| Blob>
 
-*Defined in [index.ts:8](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/index.ts#L8)*
+*Defined in [index.ts:8](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/index.ts#L8)*
 
-**Parameters:**
+#### Parameters:
 
-Name | Type | Default |
+Name | Type | Default value |
 ------ | ------ | ------ |
 `file` | File | - |
 `inputOptions` | [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md) | {} |
 
-**Returns:** *Promise‹File | Blob›*
+**Returns:** Promise\<File \| Blob>
