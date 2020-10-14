@@ -1,4 +1,6 @@
-[jpegasus](../README.md) › ["services/canvasService"](_services_canvasservice_.md)
+**jpegasus**
+
+> [Globals](../README.md) / "services/canvasService"
 
 # Module: "services/canvasService"
 
@@ -6,19 +8,19 @@
 
 ### Functions
 
-* [correctExifRotation](_services_canvasservice_.md#const-correctexifrotation)
-* [create](_services_canvasservice_.md#const-create)
-* [setCanvasDimensions](_services_canvasservice_.md#const-setcanvasdimensions)
+* [correctExifRotation](_services_canvasservice_.md#correctexifrotation)
+* [create](_services_canvasservice_.md#create)
+* [setCanvasDimensions](_services_canvasservice_.md#setcanvasdimensions)
 
 ## Functions
 
-### `Const` correctExifRotation
+### correctExifRotation
 
-▸ **correctExifRotation**(`context`: CanvasTransform, `orientation`: number, `height`: number, `width`: number): *void*
+▸ `Const`**correctExifRotation**(`context`: CanvasTransform, `orientation`: number, `height`: number, `width`: number): void
 
-*Defined in [services/canvasService.ts:20](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/canvasService.ts#L20)*
+*Defined in [services/canvasService.ts:20](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/canvasService.ts#L20)*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
@@ -27,41 +29,36 @@ Name | Type |
 `height` | number |
 `width` | number |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-### `Const` create
+### create
 
-▸ **create**(`file`: File, `image`: HTMLImageElement, `scale`: number, `__namedParameters`: object): *Promise‹HTMLCanvasElement›*
+▸ `Const`**create**(`file`: File, `image`: HTMLImageElement, `scale`: number, `__namedParameters`: { fixImageOrientation: boolean ; transparencyFillColor: string  }): Promise\<HTMLCanvasElement>
 
-*Defined in [services/canvasService.ts:48](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/canvasService.ts#L48)*
+*Defined in [services/canvasService.ts:48](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/canvasService.ts#L48)*
 
-**Parameters:**
-
-▪ **file**: *File*
-
-▪ **image**: *HTMLImageElement*
-
-▪ **scale**: *number*
-
-▪ **__namedParameters**: *object*
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`fixImageOrientation` | boolean |
+`file` | File |
+`image` | HTMLImageElement |
+`scale` | number |
+`__namedParameters` | { fixImageOrientation: boolean ; transparencyFillColor: string  } |
 
-**Returns:** *Promise‹HTMLCanvasElement›*
+**Returns:** Promise\<HTMLCanvasElement>
 
 ___
 
-### `Const` setCanvasDimensions
+### setCanvasDimensions
 
-▸ **setCanvasDimensions**(`canvas`: HTMLCanvasElement, `orientation`: number, `fixImageOrientation`: boolean, `scaledHeight`: number, `scaledWidth`: number): *void*
+▸ `Const`**setCanvasDimensions**(`canvas`: HTMLCanvasElement, `orientation`: number, `fixImageOrientation`: boolean, `scaledHeight`: number, `scaledWidth`: number): void
 
-*Defined in [services/canvasService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/ebe9fe6/src/services/canvasService.ts#L4)*
+*Defined in [services/canvasService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/canvasService.ts#L4)*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
@@ -71,4 +68,4 @@ Name | Type |
 `scaledHeight` | number |
 `scaledWidth` | number |
 
-**Returns:** *void*
+**Returns:** void

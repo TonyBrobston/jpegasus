@@ -9,6 +9,7 @@ const override = (inputOptions: InputOptions): Options => {
         returnOriginalIfCompressedFileIsLarger: false,
         returnOriginalOnFailure: true,
         scaleImageBy: 1.00,
+        transparencyFillColor: '#FFF',
         ...inputOptions,
     };
 };

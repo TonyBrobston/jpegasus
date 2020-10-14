@@ -12,6 +12,7 @@ describe('optionService', (): void => {
                 returnOriginalIfCompressedFileIsLarger: false,
                 returnOriginalOnFailure: true,
                 scaleImageBy: 1.00,
+                transparencyFillColor: '#FFF',
             } as Options,
             inputOptions: {} as InputOptions,
             name: 'should not override any inputOptions',
@@ -26,6 +27,7 @@ describe('optionService', (): void => {
                 returnOriginalIfCompressedFileIsLarger: true,
                 returnOriginalOnFailure: false,
                 scaleImageBy: 0.49,
+                transparencyFillColor: '#FOO',
             } as Options,
             inputOptions: {
                 allowCrossOriginResourceSharing: true,
@@ -36,6 +38,7 @@ describe('optionService', (): void => {
                 returnOriginalIfCompressedFileIsLarger: true,
                 returnOriginalOnFailure: false,
                 scaleImageBy: 0.49,
+                transparencyFillColor: '#FOO',
             } as InputOptions,
             name: 'should override all inputOptions',
         },
@@ -47,6 +50,7 @@ describe('optionService', (): void => {
                 returnOriginalIfCompressedFileIsLarger: false,
                 returnOriginalOnFailure: true,
                 scaleImageBy: 1.00,
+                transparencyFillColor: '#FFF',
             } as Options,
             inputOptions: {
                 allowCrossOriginResourceSharing: true,

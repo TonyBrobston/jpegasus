@@ -22,13 +22,30 @@ describe('canvasService', (): void => {
     const scaledWidth = image.width * scale;
     const options = {
         fixImageOrientation: true,
+        transparencyFillColor: '#FOO'
     } as Options;
 
     const expectedOrientation = 1;
+    const drawImage = jest.fn();
+    const fillRect = jest.fn();
+    const transform = jest.fn();
+    const context = {
+        drawImage,
+        fillRect,
+        fillStyle: '',
+        transform,
+    };
+    const canvas = document.createElement('canvas');
+    canvas.getContext = jest.fn().mockReturnValue(context);
+    document.createElement = jest.fn((): HTMLCanvasElement => canvas);
 
     let actualCanvas: HTMLCanvasElement;
 
     exifService.determineOrientation = jest.fn((): Promise<number> => Promise.resolve(expectedOrientation));
+
+    afterEach((): void => {
+        transform.mockClear();
+    });
 
     describe('create', (): void => {
         beforeAll(async (): Promise<void> => {
@@ -40,25 +57,27 @@ describe('canvasService', (): void => {
             expect(exifService.determineOrientation).toHaveBeenCalledWith(file);
         });
 
-        it('should return a canvasService', (): void => {
+        it('should set fill style', (): void => {
+            expect(context.fillStyle).toBe(options.transparencyFillColor);
+        });
+
+        it('should fill rectangle', (): void => {
+            expect(fillRect).toHaveBeenCalledTimes(1);
+            expect(fillRect).toHaveBeenCalledWith(0,0, scaledWidth, scaledHeight);
+        });
+
+        it('should draw image', (): void => {
+            expect(drawImage).toHaveBeenCalledTimes(1);
+            expect(drawImage).toHaveBeenCalledWith(image, 0,0, scaledWidth, scaledHeight);
+        });
+
+        it('should return a canvas', (): void => {
             expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
             expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
         });
     });
 
     describe('correctExifRotation', (): void => {
-        afterEach((): void => {
-            transform.mockClear();
-        });
-
-        const transform = jest.fn();
-        const canvas = document.createElement('canvas');
-        canvas.getContext = jest.fn().mockReturnValue({
-            drawImage: jest.fn(),
-            transform,
-        });
-        document.createElement = jest.fn((): HTMLCanvasElement => canvas);
-
         const expectedRotationScenarios = [
             {
                 exifOrientation: 2,
@@ -140,7 +159,6 @@ describe('canvasService', (): void => {
 
     describe('cannot read context', (): void => {
         it('should throw if context is falsy', async (): Promise<void> => {
-            const canvas = document.createElement('canvas');
             canvas.getContext = jest.fn((): null => null);
             document.createElement = jest.fn((): HTMLCanvasElement => canvas);
 
@@ -152,7 +170,6 @@ describe('canvasService', (): void => {
         });
 
         it('should throw with message if context is falsy', async (): Promise<void> => {
-            const canvas = document.createElement('canvas');
             canvas.getContext = jest.fn((): null => null);
             document.createElement = jest.fn((): HTMLCanvasElement => canvas);
 

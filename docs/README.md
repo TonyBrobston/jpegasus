@@ -1,4 +1,6 @@
-[jpegasus](README.md)
+**jpegasus**
+
+> Globals
 
 # jpegasus
 
