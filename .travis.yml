@@ -18,7 +18,7 @@ cache:
     - ~/.cache
     - $HOME/Library/Caches/Homebrew
 before_install:
-  - pip install --user codecov
+  - sudo pip install codecov
 after_success:
   - codecov --file .coverage/lcov.info --disable search
 install:
