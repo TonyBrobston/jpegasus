@@ -16,7 +16,7 @@
 
 ▸ `Const`**create**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): Promise\<HTMLImageElement>
 
-*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/imageService.ts#L3)*
+*Defined in [services/imageService.ts:3](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/services/imageService.ts#L3)*
 
 #### Parameters:
 
