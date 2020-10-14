@@ -18,6 +18,7 @@
 * [fixImageOrientation](_types_inputoptions_.inputoptions.md#fiximageorientation)
 * [maxHeight](_types_inputoptions_.inputoptions.md#maxheight)
 * [maxWidth](_types_inputoptions_.inputoptions.md#maxwidth)
+* [preserveFileType](_types_inputoptions_.inputoptions.md#preservefiletype)
 * [quality](_types_inputoptions_.inputoptions.md#quality)
 * [returnOriginalIfCompressedFileIsLarger](_types_inputoptions_.inputoptions.md#returnoriginalifcompressedfileislarger)
 * [returnOriginalOnFailure](_types_inputoptions_.inputoptions.md#returnoriginalonfailure)
@@ -30,7 +31,7 @@
 
 • `Optional` `Readonly` **allowCrossOriginResourceSharing**: undefined \| false \| true
 
-*Defined in [types/InputOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/types/InputOptions.ts#L2)*
+*Defined in [types/InputOptions.ts:2](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/types/InputOptions.ts#L2)*
 
 ___
 
@@ -38,7 +39,7 @@ ___
 
 • `Optional` `Readonly` **fixImageOrientation**: undefined \| false \| true
 
-*Defined in [types/InputOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/types/InputOptions.ts#L3)*
+*Defined in [types/InputOptions.ts:3](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/types/InputOptions.ts#L3)*
 
 ___
 
@@ -46,7 +47,7 @@ ___
 
 • `Optional` `Readonly` **maxHeight**: undefined \| number
 
-*Defined in [types/InputOptions.ts:9](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/types/InputOptions.ts#L9)*
+*Defined in [types/InputOptions.ts:10](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/types/InputOptions.ts#L10)*
 
 ___
 
@@ -54,7 +55,15 @@ ___
 
 • `Optional` `Readonly` **maxWidth**: undefined \| number
 
-*Defined in [types/InputOptions.ts:10](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/types/InputOptions.ts#L10)*
+*Defined in [types/InputOptions.ts:11](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/types/InputOptions.ts#L11)*
+
+___
+
+### preserveFileType
+
+• `Optional` `Readonly` **preserveFileType**: undefined \| false \| true
+
+*Defined in [types/InputOptions.ts:4](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/types/InputOptions.ts#L4)*
 
 ___
 
@@ -62,7 +71,7 @@ ___
 
 • `Optional` `Readonly` **quality**: undefined \| number
 
-*Defined in [types/InputOptions.ts:4](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/types/InputOptions.ts#L4)*
+*Defined in [types/InputOptions.ts:5](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/types/InputOptions.ts#L5)*
 
 ___
 
@@ -70,7 +79,7 @@ ___
 
 • `Optional` `Readonly` **returnOriginalIfCompressedFileIsLarger**: undefined \| false \| true
 
-*Defined in [types/InputOptions.ts:6](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/types/InputOptions.ts#L6)*
+*Defined in [types/InputOptions.ts:7](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/types/InputOptions.ts#L7)*
 
 ___
 
@@ -78,7 +87,7 @@ ___
 
 • `Optional` `Readonly` **returnOriginalOnFailure**: undefined \| false \| true
 
-*Defined in [types/InputOptions.ts:5](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/types/InputOptions.ts#L5)*
+*Defined in [types/InputOptions.ts:6](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/types/InputOptions.ts#L6)*
 
 ___
 
@@ -86,7 +95,7 @@ ___
 
 • `Optional` `Readonly` **scaleImageBy**: undefined \| number
 
-*Defined in [types/InputOptions.ts:7](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/types/InputOptions.ts#L7)*
+*Defined in [types/InputOptions.ts:8](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/types/InputOptions.ts#L8)*
 
 ___
 
@@ -94,4 +103,4 @@ ___
 
 • `Optional` `Readonly` **transparencyFillColor**: undefined \| string
 
-*Defined in [types/InputOptions.ts:8](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/types/InputOptions.ts#L8)*
+*Defined in [types/InputOptions.ts:9](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/types/InputOptions.ts#L9)*

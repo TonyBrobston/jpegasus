@@ -5,6 +5,7 @@ import optionService from '../../src/services/optionService';
 import qualityService from '../../src/services/qualityService';
 import windowService from '../../src/services/windowService';
 import {InputOptions} from '../../src/types/InputOptions';
+import {Options} from '../../src/types/Options';
 
 jest.mock('../../src/services/windowService');
 jest.mock('../../src/services/fileService');
@@ -80,5 +81,24 @@ describe('qualityService', (): void => {
                 expect(actualBlob.size).toBe(scenario.expectedFile.size);
             });
         });
+    });
+
+    it('should preserve file type', (): void => {
+        const type = `image/${chance.pickone(['gif', 'png'])}`;
+        const file = new File(['a'], chance.string(), {type});
+        const canvas = document.createElement('canvas');
+        const quality = 1.00;
+        const options = {
+            preserveFileType: true,
+            quality,
+        } as Options;
+
+        qualityService.toFile(file, canvas, options);
+
+        expect(canvas.toDataURL).toHaveBeenCalledTimes(1);
+        expect(canvas.toDataURL).toHaveBeenCalledWith(type, quality);
+
+        expect(fileService.create).toHaveBeenCalledTimes(1);
+        expect(fileService.create).toHaveBeenCalledWith(bytes, type, file.name);
     });
 });

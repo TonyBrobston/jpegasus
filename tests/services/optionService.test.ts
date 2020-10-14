@@ -8,6 +8,7 @@ describe('optionService', (): void => {
             expectedOptions: {
                 allowCrossOriginResourceSharing: false,
                 fixImageOrientation: true,
+                preserveFileType: false,
                 quality: 0.5,
                 returnOriginalIfCompressedFileIsLarger: false,
                 returnOriginalOnFailure: true,
@@ -23,6 +24,7 @@ describe('optionService', (): void => {
                 fixImageOrientation: false,
                 maxHeight: 5,
                 maxWidth: 4,
+                preserveFileType: true,
                 quality: 0.75,
                 returnOriginalIfCompressedFileIsLarger: true,
                 returnOriginalOnFailure: false,
@@ -34,6 +36,7 @@ describe('optionService', (): void => {
                 fixImageOrientation: false,
                 maxHeight: 5,
                 maxWidth: 4,
+                preserveFileType: true,
                 quality: 0.75,
                 returnOriginalIfCompressedFileIsLarger: true,
                 returnOriginalOnFailure: false,
@@ -46,6 +49,7 @@ describe('optionService', (): void => {
             expectedOptions: {
                 allowCrossOriginResourceSharing: true,
                 fixImageOrientation: true,
+                preserveFileType: false,
                 quality: 0.5,
                 returnOriginalIfCompressedFileIsLarger: false,
                 returnOriginalOnFailure: true,

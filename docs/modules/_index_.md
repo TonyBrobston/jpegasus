@@ -20,7 +20,7 @@
 
 • `Const` **determineOrientation**: [determineOrientation](_services_exifservice_.md#determineorientation) = exifService.determineOrientation
 
-*Defined in [index.ts:30](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/index.ts#L30)*
+*Defined in [index.ts:30](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/index.ts#L30)*
 
 ## Functions
 
@@ -28,7 +28,7 @@
 
 ▸ `Const`**compress**(`file`: File, `inputOptions`: [InputOptions](../interfaces/_types_inputoptions_.inputoptions.md)): Promise\<File \| Blob>
 
-*Defined in [index.ts:8](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/index.ts#L8)*
+*Defined in [index.ts:8](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/index.ts#L8)*
 
 #### Parameters:
 

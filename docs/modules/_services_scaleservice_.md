@@ -17,7 +17,7 @@
 
 ▸ `Const`**determineScale**(`__namedParameters`: { height: number ; width: number  }, `__namedParameters`: { maxHeight: undefined \| number ; maxWidth: undefined \| number ; scaleImageBy: number  }): number
 
-*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/scaleService.ts#L5)*
+*Defined in [services/scaleService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/services/scaleService.ts#L5)*
 
 #### Parameters:
 
@@ -34,7 +34,7 @@ ___
 
 ▸ `Const`**toCanvas**(`file`: File, `options`: [Options](../interfaces/_types_options_.options.md)): Promise\<HTMLCanvasElement>
 
-*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/bd47fa0/src/services/scaleService.ts#L19)*
+*Defined in [services/scaleService.ts:19](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/services/scaleService.ts#L19)*
 
 #### Parameters:
 
