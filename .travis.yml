@@ -10,10 +10,13 @@ addons:
     casks:
       - microsoft-edge
     update: true
+before_cache:
+  - brew cleanup
 cache:
   directories:
     - ~/.npm
     - ~/.cache
+    - $HOME/Library/Caches/Homebrew
 before_install:
   - pip install --user codecov
 after_success:
