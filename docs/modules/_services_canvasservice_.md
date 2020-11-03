@@ -18,7 +18,7 @@
 
 ▸ `Const`**correctExifRotation**(`context`: CanvasTransform, `orientation`: number, `height`: number, `width`: number): void
 
-*Defined in [services/canvasService.ts:20](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/services/canvasService.ts#L20)*
+*Defined in [services/canvasService.ts:20](https://github.com/TonyBrobston/jpegasus/blob/faa1275/src/services/canvasService.ts#L20)*
 
 #### Parameters:
 
@@ -37,7 +37,7 @@ ___
 
 ▸ `Const`**create**(`file`: File, `image`: HTMLImageElement, `scale`: number, `__namedParameters`: { fixImageOrientation: boolean ; transparencyFillColor: string  }): Promise\<HTMLCanvasElement>
 
-*Defined in [services/canvasService.ts:48](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/services/canvasService.ts#L48)*
+*Defined in [services/canvasService.ts:48](https://github.com/TonyBrobston/jpegasus/blob/faa1275/src/services/canvasService.ts#L48)*
 
 #### Parameters:
 
@@ -56,7 +56,7 @@ ___
 
 ▸ `Const`**setCanvasDimensions**(`canvas`: HTMLCanvasElement, `orientation`: number, `fixImageOrientation`: boolean, `scaledHeight`: number, `scaledWidth`: number): void
 
-*Defined in [services/canvasService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/services/canvasService.ts#L4)*
+*Defined in [services/canvasService.ts:4](https://github.com/TonyBrobston/jpegasus/blob/faa1275/src/services/canvasService.ts#L4)*
 
 #### Parameters:
 
