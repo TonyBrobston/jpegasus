@@ -16,7 +16,7 @@
 
 ▸ `Const`**toFile**(`file`: File, `canvas`: HTMLCanvasElement, `__namedParameters`: { preserveFileType: boolean ; quality: number  }): File \| Blob
 
-*Defined in [services/qualityService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/ba960ee/src/services/qualityService.ts#L5)*
+*Defined in [services/qualityService.ts:5](https://github.com/TonyBrobston/jpegasus/blob/faa1275/src/services/qualityService.ts#L5)*
 
 #### Parameters:
 

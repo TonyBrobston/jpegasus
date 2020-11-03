@@ -40,7 +40,7 @@ module.exports = {
 ## Documentation
 **[compress](docs/modules/_index_.md#const-compress)**(`file`: File, `inputOptions`: [InputOptions](docs/interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
 
-**[determineOrientation](docs/modules/_index_.md#const-determineOrientation)**(`file`: File): *Promise‹number›*
+**[determineOrientation](docs/modules/_index_.md#const-determineOrientation)**(`file`: File | Blob): *Promise‹number›*
 
 ## Caution
 - Note that when the [`preserveFileType`](docs/interfaces/_types_inputoptions_.inputoptions.md#preservefiletype) option is `true`, the [`quality`](docs/interfaces/_types_inputoptions_.inputoptions.md#quality) option will only work for files such as `image/jpeg` and `image/webp` per the MDN web docs [here](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL).
