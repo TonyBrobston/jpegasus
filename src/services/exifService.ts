@@ -1,3 +1,6 @@
+import * as piexif from 'piexifjs';
+import fileService from './fileService';
+import windowService from './windowService';
 const applicationSegmentOneMarker = 0xFFE1;
 const beginOfExifHeaderMarker = 0x45786966;
 const byteOrderMarker = 0x4949;
@@ -51,6 +54,38 @@ const determineOrientation = async (file: File|Blob): Promise<number> => {
     });
 };
 
+
+const insertOrientation = async (file: File|Blob, orientation: number): Promise<File> => {
+    return new Promise((resolve: (fileWithOrientation: File) => void, reject: () => void): void => {
+        const reader = new FileReader();
+        reader.onload = (): void => {
+            try {
+                const zeroth = {
+                    [piexif.ImageIFD.Orientation]: orientation,
+                };
+                const exif = {};
+                const gps = {};
+                const exifObj = {'0th':zeroth, 'Exif':exif, 'GPS':gps};
+                const exifBytes = piexif.dump(exifObj);
+                const base64 = piexif.insert(exifBytes, reader.result);
+                const uint8ArrayOfArrays = windowService.toByteArray(base64.split(',')[1]);
+                const type = 'image/jpeg';
+                resolve(fileService.create(uint8ArrayOfArrays, type, file.name));
+            } catch (error) {
+                console.log(error);
+                reject();
+            }
+        };
+        reader.onerror = (error: ProgressEvent<FileReader>): void => {
+            console.log(error);
+            reject()
+        };
+        reader.readAsDataURL(file);
+    });
+
+};
+
 export default {
     determineOrientation,
+    insertOrientation
 };

@@ -11,8 +11,17 @@ describe('exifService', (): void => {
     interface WindowWithFileReader extends Window {
         FileReader: any;
     }
+    describe('insert orientation', (): void => {
+        it('should insert orientation', async (): Promise<void> => {
+            const fileWithNoExif = await readFileSystemFileToJavaScriptFile('no-exif.jpg');
+            const expectedOrientation = chance.natural({min: 1, max: 8})
+            const fileWithOrientation = await exifService.insertOrientation(fileWithNoExif, expectedOrientation);
+            const afterOrientation = await exifService.determineOrientation(fileWithOrientation);
+            expect(afterOrientation).toBe(expectedOrientation);
+        });
+    });
 
-    describe('read files', (): void => {
+    describe('determine orientation', (): void => {
         const scenarios = [
             {
                 expectedOrientation: 1,
@@ -113,6 +122,11 @@ describe('exifService', (): void => {
                 expectedOrientation: -1,
                 file: 'hasNoExif.jpeg',
                 name: 'should return orientation -1 because has no exif',
+            },
+            {
+                expectedOrientation: -1,
+                file: 'no-exif.jpeg',
+                name: 'should return orientation -1 because also has no exif',
             },
             {
                 expectedOrientation: -1,

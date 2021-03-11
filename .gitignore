@@ -6,3 +6,4 @@
 .npmrc
 /cypress/screenshots/
 /cypress/videos/
+.DS_Store
