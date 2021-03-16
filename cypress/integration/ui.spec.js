@@ -9,7 +9,7 @@ context('ui', () => {
       'chrome': '50.29',
       'firefox': '59.57',
       'edge': '50.29',
-      'electron': '50.26',
+      'electron': '50.49',
     };
     cy.fixture(fileName).then((fileContent) => {
       cy.get('#imageInput').attachFile(fileName, {
