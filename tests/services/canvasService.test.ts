@@ -1,4 +1,5 @@
 import {Chance} from 'chance';
+import {Options} from '../../src/types/Options';
 
 import * as exifOrientation from '@ginpei/exif-orientation';
 import canvasService from '../../src/services/canvasService';
@@ -7,7 +8,7 @@ const chance = new Chance();
 
 jest.mock('@ginpei/exif-orientation');
 
-describe('canvasService', () => {
+describe('canvasService', (): void => {
     const file = new File([chance.string()], chance.string());
     const image = document.createElement('img');
     image.height = 300;
@@ -19,40 +20,70 @@ describe('canvasService', () => {
     });
     const scaledHeight = image.height * scale;
     const scaledWidth = image.width * scale;
+    const options = {
+        fixImageOrientation: true,
+        transparencyFillColor: '#FOO'
+    } as Options;
 
     const expectedOrientation = {
         flipped: false,
         rotation: 0,
     };
+    const drawImage = jest.fn();
+    const fillRect = jest.fn();
+    const transform = jest.fn();
+    const context = {
+        drawImage,
+        fillRect,
+        fillStyle: '',
+        transform,
+    };
+    const canvas = document.createElement('canvas');
+    canvas.getContext = jest.fn().mockReturnValue(context);
+    document.createElement = jest.fn((): HTMLCanvasElement => canvas);
 
     let actualCanvas: HTMLCanvasElement;
 
     jest.spyOn(exifOrientation, 'getOrientation').mockResolvedValue(expectedOrientation);
 
-    describe('create', () => {
-        beforeAll(async () => {
-            actualCanvas = await canvasService.create(file, image, scale);
+    describe('create', (): void => {
+        beforeAll(async (): Promise<void> => {
+            actualCanvas = await canvasService.create(file, image, scale, options);
         });
 
-        it('should determine orientation', () => {
+        it('should determine orientation', (): void => {
             expect(exifOrientation.getOrientation).toHaveBeenCalledTimes(1);
             expect(exifOrientation.getOrientation).toHaveBeenCalledWith(file);
         });
 
-        it('should return a canvasService', () => {
+        it('should set fill style', (): void => {
+            expect(context.fillStyle).toBe(options.transparencyFillColor);
+        });
+
+        it('should fill rectangle', (): void => {
+            expect(fillRect).toHaveBeenCalledTimes(1);
+            expect(fillRect).toHaveBeenCalledWith(0,0, scaledWidth, scaledHeight);
+        });
+
+        it('should draw image', (): void => {
+            expect(drawImage).toHaveBeenCalledTimes(1);
+            expect(drawImage).toHaveBeenCalledWith(image, 0,0, scaledWidth, scaledHeight);
+        });
+
+        it('should return a canvas', (): void => {
             expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
             expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
         });
     });
 
-    describe('correctExifRotation', () => {
+    describe('correctExifRotation', (): void => {
         const transform = jest.fn();
         const canvas = document.createElement('canvas');
         canvas.getContext = jest.fn().mockReturnValue({
             drawImage: jest.fn(),
             transform,
         });
-        document.createElement = jest.fn(() => canvas);
+        document.createElement = jest.fn((): HTMLCanvasElement => canvas);
 
         const expectedRotationScenarios = [
             {
@@ -112,12 +143,12 @@ describe('canvasService', () => {
             name: string,
             parameters: number[],
             width: number,
-        }) => {
-            it(`should correct orientation ${scenario.name}`, async () => {
+        }): void => {
+            it(`should correct orientation ${scenario.name}`, async (): Promise<void> => {
                 transform.mockClear();
                 jest.spyOn(exifOrientation, 'getOrientation').mockResolvedValue(scenario.exifOrientation);
 
-                actualCanvas = await canvasService.create(file, image, scale);
+                actualCanvas = await canvasService.create(file, image, scale, options);
 
                 expect(actualCanvas.height).toBe(Math.floor(scenario.height));
                 expect(actualCanvas.width).toBe(Math.floor(scenario.width));
@@ -127,11 +158,11 @@ describe('canvasService', () => {
             });
         });
 
-        it('should not change orientation 1', async () => {
+        it('should not change orientation 1', async (): Promise<void> => {
             transform.mockClear();
             jest.spyOn(exifOrientation, 'getOrientation').mockResolvedValue({rotation: 0, flipped: false});
 
-            actualCanvas = await canvasService.create(file, image, scale);
+            actualCanvas = await canvasService.create(file, image, scale, options);
 
             expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
             expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
@@ -139,11 +170,11 @@ describe('canvasService', () => {
             expect(transform).not.toHaveBeenCalled();
         });
 
-        it('should not change orientation if invalid rotation', async () => {
+        it('should not change orientation if invalid rotation', async (): Promise<void> => {
             transform.mockClear();
             jest.spyOn(exifOrientation, 'getOrientation').mockResolvedValue({rotation: -1, flipped: true});
 
-            actualCanvas = await canvasService.create(file, image, scale);
+            actualCanvas = await canvasService.create(file, image, scale, options);
 
             expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
             expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
@@ -151,11 +182,11 @@ describe('canvasService', () => {
             expect(transform).not.toHaveBeenCalled();
         });
 
-        it('should not change orientation for undefined', async () => {
+        it('should not change orientation for undefined', async (): Promise<void> => {
             transform.mockClear();
             jest.spyOn(exifOrientation, 'getOrientation').mockResolvedValue(undefined);
 
-            actualCanvas = await canvasService.create(file, image, scale);
+            actualCanvas = await canvasService.create(file, image, scale, options);
 
             expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
             expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
@@ -163,13 +194,13 @@ describe('canvasService', () => {
             expect(transform).not.toHaveBeenCalled();
         });
 
-        it('should not change orientation if throw', async () => {
+        it('should not change orientation if throw', async (): Promise<void> => {
             transform.mockClear();
             jest.spyOn(exifOrientation, 'getOrientation').mockImplementation(async () => {
                 throw new Error();
             });
 
-            actualCanvas = await canvasService.create(file, image, scale);
+            actualCanvas = await canvasService.create(file, image, scale, options);
 
             expect(actualCanvas.height).toBe(Math.floor(scaledHeight));
             expect(actualCanvas.width).toBe(Math.floor(scaledWidth));
@@ -178,25 +209,23 @@ describe('canvasService', () => {
         });
     });
 
-    describe('cannot read context', () => {
-        it('should throw if context is falsy', async () => {
-            const canvas = document.createElement('canvas');
-            canvas.getContext = jest.fn(() => null);
-            document.createElement = jest.fn(() => canvas);
+    describe('cannot read context', (): void => {
+        it('should throw if context is falsy', async (): Promise<void> => {
+            actualCanvas.getContext = jest.fn((): null => null);
+            document.createElement = jest.fn((): HTMLCanvasElement => actualCanvas);
 
             try {
-                await canvasService.create(file, image, scale);
+                await canvasService.create(file, image, scale, options);
             } catch (error) {
                 expect(error.message).toBe('Could not get CanvasRenderingContext2D from HTMLCanvasElement.');
             }
         });
 
-        it('should throw with message if context is falsy', async () => {
-            const canvas = document.createElement('canvas');
-            canvas.getContext = jest.fn(() => null);
-            document.createElement = jest.fn(() => canvas);
+        it('should throw with message if context is falsy', async (): Promise<void> => {
+            actualCanvas.getContext = jest.fn((): null => null);
+            document.createElement = jest.fn((): HTMLCanvasElement => actualCanvas);
 
-            await expect(canvasService.create(file, image, scale)).rejects.toThrow();
+            await expect(canvasService.create(file, image, scale, options)).rejects.toThrow();
         });
     });
 });

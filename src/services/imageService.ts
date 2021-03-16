@@ -6,10 +6,10 @@ const create = async (file: File, options: Options): Promise<HTMLImageElement> =
         if (options.allowCrossOriginResourceSharing) {
             image.crossOrigin = 'Anonymous';
         }
-        image.addEventListener('load', () => {
+        image.addEventListener('load', (): void => {
             resolve(image);
         });
-        image.addEventListener('error', (error: ErrorEvent) => {
+        image.addEventListener('error', (error: ErrorEvent): void => {
             reject(error);
         });
         image.src = URL.createObjectURL(file);

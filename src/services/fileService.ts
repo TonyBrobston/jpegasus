@@ -10,7 +10,12 @@ const create = (bytes: Uint8Array[], type: string, name: string): File|Blob => {
     try {
         return new File(bytes, name, {type});
     } catch (error) {
-        return new Blob(bytes, {type});
+        const blob = new Blob(bytes, {type});
+        blob.name = name;
+        const now = Date.now()
+        blob.lastModified = now;
+        blob.lastModifiedDate = new Date(now);
+        return blob;
     }
 };
 

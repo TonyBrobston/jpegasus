@@ -1,12 +1,15 @@
 import {getOrientation, getOrientationInfo, IOrientationInfo, OrientationCode} from '@ginpei/exif-orientation';
 
+import {Options} from '../types/Options';
+
 const setCanvasDimensions = (
     canvas: HTMLCanvasElement,
     orientation: IOrientationInfo,
+    fixImageOrientation: boolean,
     scaledHeight: number,
     scaledWidth: number,
 ): void => {
-    if ([90, 270].includes(orientation.rotation)) {
+    if ([90, 270].includes(orientation.rotation) && fixImageOrientation) {
         canvas.width = scaledHeight;
         canvas.height = scaledWidth;
     } else {
@@ -51,15 +54,27 @@ const getOrientationSafe = async (file: File): Promise<IOrientationInfo> => {
     }
 };
 
-const create = async (file: File, image: HTMLImageElement, scale: number): Promise<HTMLCanvasElement> => {
+const create = async (
+    file: File,
+    image: HTMLImageElement,
+    scale: number,
+    {
+        fixImageOrientation,
+        transparencyFillColor,
+    }: Options,
+): Promise<HTMLCanvasElement> => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     if (context) {
         const scaledHeight = image.height * scale;
         const scaledWidth = image.width * scale;
         const orientation = await getOrientationSafe(file);
-        setCanvasDimensions(canvas, orientation, scaledHeight, scaledWidth);
-        correctExifRotation(context, orientation, scaledHeight, scaledWidth);
+        setCanvasDimensions(canvas, orientation, fixImageOrientation, scaledHeight, scaledWidth);
+        if (fixImageOrientation) {
+            correctExifRotation(context, orientation, scaledHeight, scaledWidth);
+        }
+        context.fillStyle = transparencyFillColor;
+        context.fillRect(0, 0, scaledWidth, scaledHeight)
         context.drawImage(image, 0, 0, scaledWidth, scaledHeight);
         return canvas;
     } else {

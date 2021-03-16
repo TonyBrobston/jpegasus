@@ -5,13 +5,14 @@ import optionService from '../../src/services/optionService';
 import qualityService from '../../src/services/qualityService';
 import windowService from '../../src/services/windowService';
 import {InputOptions} from '../../src/types/InputOptions';
+import {Options} from '../../src/types/Options';
 
 jest.mock('../../src/services/windowService');
 jest.mock('../../src/services/fileService');
 
 const chance = new Chance();
 
-describe('qualityService', () => {
+describe('qualityService', (): void => {
     const base64Prefix = chance.string();
     const base64Suffix = chance.string();
     const base64 = `${base64Prefix},${base64Suffix}`;
@@ -43,42 +44,61 @@ describe('qualityService', () => {
         inputOptions: {},
         name: string,
         quality: number,
-    }) => {
-        describe(scenario.name, () => {
+    }): void => {
+        describe(scenario.name, (): void => {
             const canvas = document.createElement('canvas');
 
-            beforeAll(() => {
-                canvas.toDataURL = jest.fn(() => base64);
+            beforeAll((): void => {
+                canvas.toDataURL = jest.fn((): string => base64);
                 windowService.toByteArray = jest.fn().mockReturnValue(bytes);
-                fileService.create = jest.fn(() => scenario.expectedFile);
+                fileService.create = jest.fn((): File => scenario.expectedFile);
 
                 actualBlob = qualityService.toFile(scenario.file, canvas,
                     optionService.override(scenario.inputOptions));
             });
 
-            afterAll(() => {
+            afterAll((): void => {
                 jest.clearAllMocks();
             });
 
-            it('should convert canvas to data url', () => {
+            it('should convert canvas to data url', (): void => {
                 expect(canvas.toDataURL).toHaveBeenCalledTimes(1);
                 expect(canvas.toDataURL).toHaveBeenCalledWith('image/jpeg', scenario.quality);
             });
 
-            it('should convert imageCanvas base64 to bytes', () => {
+            it('should convert imageCanvas base64 to bytes', (): void => {
                 expect(windowService.toByteArray).toHaveBeenCalledTimes(1);
                 expect(windowService.toByteArray).toHaveBeenCalledWith(base64Suffix);
             });
 
-            it('should create a new blob', () => {
+            it('should create a new blob', (): void => {
                 expect(fileService.create).toHaveBeenCalledTimes(1);
                 expect(fileService.create).toHaveBeenCalledWith(
                     bytes, 'image/jpeg', scenario.file.name);
             });
 
-            it('should return a compressed file', () => {
+            it('should return a compressed file', (): void => {
                 expect(actualBlob.size).toBe(scenario.expectedFile.size);
             });
         });
+    });
+
+    it('should preserve file type', (): void => {
+        const type = `image/${chance.pickone(['gif', 'png'])}`;
+        const file = new File(['a'], chance.string(), {type});
+        const canvas = document.createElement('canvas');
+        const quality = 1.00;
+        const options = {
+            preserveFileType: true,
+            quality,
+        } as Options;
+
+        qualityService.toFile(file, canvas, options);
+
+        expect(canvas.toDataURL).toHaveBeenCalledTimes(1);
+        expect(canvas.toDataURL).toHaveBeenCalledWith(type, quality);
+
+        expect(fileService.create).toHaveBeenCalledTimes(1);
+        expect(fileService.create).toHaveBeenCalledWith(bytes, type, file.name);
     });
 });

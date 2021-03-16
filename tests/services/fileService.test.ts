@@ -4,10 +4,10 @@ import fileService from '../../src/services/fileService';
 
 const chance = new Chance();
 
-describe('fileService', () => {
+describe('fileService', (): void => {
     const globalAny: any = global;
 
-    describe('validate', () => {
+    describe('validate', (): void => {
         const scenarios = [
             {
                 expectedOptions: true,
@@ -55,8 +55,8 @@ describe('fileService', () => {
             expectedOptions: boolean,
             file: File,
             name: string,
-        }) => {
-            it(`should not allow ${scenario.name}`, () => {
+        }): void => {
+            it(`should not allow ${scenario.name}`, (): void => {
                 const isValid = fileService.validate(scenario.file);
 
                 expect(isValid).toBe(scenario.expectedOptions);
@@ -64,44 +64,71 @@ describe('fileService', () => {
         });
     });
 
-    describe('create File', () => {
+    describe('create File', (): void => {
         const bytes =  Uint8Array.from([chance.integer()]);
         const type = `image/${chance.pickone(['jpeg', 'gif', 'png'])}`;
         const name = chance.string();
         let actualFile: File|Blob;
 
-        beforeAll(() => {
+        beforeAll((): void => {
             actualFile = fileService.create([bytes], type, name);
         });
 
-        it('should create a blob with size', () => {
+        it('should create a file with instance of File', (): void => {
+            expect(actualFile).toBeInstanceOf(File);
+        });
+
+        it('should create a file with name', (): void => {
+            expect(actualFile.name).toBe(name);
+        });
+
+        it('should create a file with size', (): void => {
             expect(actualFile.size).toBe(bytes.toString().length);
         });
 
-        it('should create a blob with type', () => {
+        it('should create a file with type', (): void => {
             expect(actualFile.type).toBe(type);
         });
     });
 
-    describe('create Blob', () => {
-        globalAny.File = jest.fn().mockImplementation(() => {
-            throw new Error();
-        });
+    describe('create Blob', (): void => {
         const bytes =  Uint8Array.from([chance.integer()]);
         const type = `image/${chance.pickone(['jpeg', 'gif', 'png'])}`;
         const name = chance.string();
+        const date = chance.date();
+        const now = date.getTime();
         let actualBlob: File|Blob;
 
-        beforeAll(() => {
+        beforeAll((): void => {
+            globalAny.File = jest.fn().mockImplementation((): void => {
+                throw new Error();
+            });
+            Date.now = jest.fn((): number => now)
             actualBlob = fileService.create([bytes], type, name);
         });
 
-        it('should create a blob with size', () => {
+        it('should create a blob with instance of Blob', (): void => {
+            expect(actualBlob).toBeInstanceOf(Blob);
+        });
+
+        it('should create a blob with name', (): void => {
+            expect(actualBlob.name).toBe(name);
+        });
+
+        it('should create a blob with size', (): void => {
             expect(actualBlob.size).toBe(bytes.toString().length);
         });
 
-        it('should create a blob with type', () => {
+        it('should create a blob with type', (): void => {
             expect(actualBlob.type).toBe(type);
+        });
+
+        it('should create a blob with lastModified', (): void => {
+            expect(actualBlob.lastModified).toBe(now);
+        });
+
+        it('should create a blob with lastModifiedDate', (): void => {
+            expect(actualBlob.lastModifiedDate).toEqual(date);
         });
     });
 });

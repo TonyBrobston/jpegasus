@@ -1,18 +1,24 @@
 language: node_js
-os: linux
-dist: xenial
+os: osx
+osx_image: xcode11
 node_js:
-  - 10.13.0
+  - 10.22.0
 addons:
-  apt:
-    packages:
-      - libgconf-2-4
+  chrome: stable
+  firefox: "81.0"
+  homebrew:
+    casks:
+      - microsoft-edge
+    update: true
+before_cache:
+  - brew cleanup
 cache:
   directories:
     - ~/.npm
     - ~/.cache
+    - $HOME/Library/Caches/Homebrew
 before_install:
-  - pip install --user codecov
+  - sudo pip install codecov
 after_success:
   - codecov --file .coverage/lcov.info --disable search
 install:

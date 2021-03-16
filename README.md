@@ -24,7 +24,7 @@ A client-side JavaScript tool that takes in a `File` of type `.jpeg`, `.png`, or
 ```js
 const jpegasus = require('jpegasus');
 
-function processFile {
+function processFile(file) {
     return jpegasus.compress(file, {
         maxHeight: 1000,
         maxWidth: 1000,
@@ -40,8 +40,13 @@ module.exports = {
 ## Documentation
 **[compress](docs/modules/_index_.md#const-compress)**(`file`: File, `inputOptions`: [InputOptions](docs/interfaces/_types_inputoptions_.inputoptions.md)): *Promise‹File | Blob›*
 
+**[determineOrientation](docs/modules/_index_.md#const-determineOrientation)**(`file`: File | Blob): *Promise‹number›*
+
+## Caution
+- Note that when the [`preserveFileType`](docs/interfaces/_types_inputoptions_.inputoptions.md#preservefiletype) option is `true`, the [`quality`](docs/interfaces/_types_inputoptions_.inputoptions.md#quality) option will only work for files such as `image/jpeg` and `image/webp` per the MDN web docs [here](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL).
+
 ## Feedback
-Do you have an idea for making jpegasus better? Add your idea under the issues tab, we'd love to hear about it!
+Do you have an idea for making [jpegasus](https://github.com/TonyBrobston/jpegasus) better? Add your idea under the [issues tab](https://github.com/TonyBrobston/jpegasus/issues/new), we'd love to hear about it!
 
 ## Contributors
 Thanks goes to these wonderful people:

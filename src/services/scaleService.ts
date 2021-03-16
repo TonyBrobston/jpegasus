@@ -19,7 +19,7 @@ const determineScale = ({height, width}: HTMLImageElement, {maxHeight, maxWidth,
 const toCanvas = async (file: File, options: Options): Promise<HTMLCanvasElement> => {
     const image = await imageService.create(file, options);
     const scale = determineScale(image, options);
-    return canvasService.create(file, image, scale);
+    return canvasService.create(file, image, scale, options);
 };
 
 export default {
