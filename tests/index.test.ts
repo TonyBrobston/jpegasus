@@ -6,6 +6,7 @@ import optionService from '../src/services/optionService';
 import qualityService from '../src/services/qualityService';
 import scaleService from '../src/services/scaleService';
 
+jest.mock('@ginpei/exif-orientation');
 jest.mock('../src/services/fileService');
 jest.mock('../src/services/scaleService');
 jest.mock('../src/services/qualityService');
