@@ -1,4 +1,4 @@
-import {getOrientation, getOrientationInfo, IOrientationInfo, OrientationCode} from '@ginpei/exif-orientation';
+import {getOrientation, getOrientationInfo, IOrientationInfo, OrientationCode, readOrientationCode, updateOrientationCode} from '@ginpei/exif-orientation';
 
 import {Options} from '../types/Options';
 
@@ -45,15 +45,6 @@ const correctExifRotation = (
     }
 };
 
-const getOrientationSafe = async (file: File): Promise<IOrientationInfo> => {
-    const original = {rotation: 0, flipped: false};
-    try {
-        return await getOrientation(file) || original;
-    } catch (error) {
-        return original;
-    }
-};
-
 const create = async (
     file: File,
     image: HTMLImageElement,
@@ -66,12 +57,13 @@ const create = async (
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     if (context) {
+        const orientation = await getOrientation(file);
+        const orientationOrOriginal = orientation || {rotation: 0, flipped: false};
         const scaledHeight = image.height * scale;
         const scaledWidth = image.width * scale;
-        const orientation = await getOrientationSafe(file);
-        setCanvasDimensions(canvas, orientation, fixImageOrientation, scaledHeight, scaledWidth);
+        setCanvasDimensions(canvas, orientationOrOriginal, fixImageOrientation, scaledHeight, scaledWidth);
         if (fixImageOrientation) {
-            correctExifRotation(context, orientation, scaledHeight, scaledWidth);
+            correctExifRotation(context, orientationOrOriginal, scaledHeight, scaledWidth);
         }
         context.fillStyle = transparencyFillColor;
         context.fillRect(0, 0, scaledWidth, scaledHeight)
