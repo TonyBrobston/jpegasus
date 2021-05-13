@@ -6,9 +6,9 @@ context('ui', () => {
   it('should compress an image and check size and type results', () => {
     const fileName = 'merlin-superJumo.jpg';
     const compressedSize = {
-      'chrome': '50.29',
+      'chrome': '46.90',
       'firefox': '59.57',
-      'edge': '50.29',
+      'edge': '46.90',
       'electron': '50.49',
     };
     cy.fixture(fileName).then((fileContent) => {
